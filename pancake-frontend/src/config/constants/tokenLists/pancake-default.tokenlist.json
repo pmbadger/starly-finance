@@ -1,0 +1,30 @@
+{
+  "name": "Starly Default List",
+  "timestamp": "2021-05-06T00:00:00Z",
+  "version": {
+    "major": 3,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://pancakeswap.finance/logo.png",
+  "keywords": ["starly", "default"],
+  "tokens": [
+    {
+      "name": "WETH Token",
+      "symbol": "WETH",
+      "address": "0x0a180A76e4466bF68A7F86fB029BEd3cCcFaAac5",
+      "chainId": 3,
+      "decimals": 18,
+      "logoURI": "https://download.logo.wine/logo/Ethereum/Ethereum-Logo.wine.png"
+    },
+    {
+      "name": "Starly Token",
+      "symbol": "STLY",
+      "address": "0x67C6c150914e6363F746796744636B7485B0A775",
+      "chainId": 3,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0xe898EDc43920F357A93083F1d4460437dE6dAeC2.png"
+    }
+  ]
+}
