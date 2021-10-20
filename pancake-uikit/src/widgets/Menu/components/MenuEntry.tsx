@@ -8,6 +8,7 @@ export interface Props {
   secondary?: boolean;
   isActive?: boolean;
   theme: DefaultTheme;
+  homeIcon?: boolean;
 }
 
 const rainbowAnimation = keyframes`
@@ -20,22 +21,35 @@ const rainbowAnimation = keyframes`
   }
 `;
 
-const LinkLabel = styled.div<{ isPushed: boolean }>`
-  color: ${({ isPushed, theme }) => (isPushed ? theme.colors.textSubtle : "transparent")};
+const LinkLabel = styled.div<Props>`
+  color: ${({ isActive }) => (isActive ?  "white" : "#82C8F4")};
   transition: color 0.4s;
   flex-grow: 1;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 18px;
+  font-family: 'SFProDisplay';
 `;
 
 const MenuEntry = styled.div<Props>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: ${MENU_ENTRY_HEIGHT}px;
-  padding: ${({ secondary }) => (secondary ? "0 32px" : "0 16px")};
+  height: 60px;
   font-size: ${({ secondary }) => (secondary ? "14px" : "16px")};
-  background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : "transparent")};
-  color: ${({ theme }) => theme.colors.textSubtle};
-  box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.primary}` : "none")};
+  color: ${({ isActive }) => (isActive ?  "white" : "#82C8F4")};
+  background-color: ${({ isActive }) => (isActive ?  "#1D243C" : "none")};
+
+  div{
+    color: ${({ isActive }) => (isActive ?  "white" : "#82C8F4")};
+  }
+
+  svg {
+      path{
+        ${({homeIcon}) => (homeIcon ? "stroke" : "fill")}: ${({ isActive }) => ((isActive) ?  "white" : "#4699C6")};
+      }
+  }
 
   a {
     display: flex;
@@ -44,12 +58,14 @@ const MenuEntry = styled.div<Props>`
     height: 100%;
   }
 
-  svg {
-    fill: ${({ theme }) => theme.colors.textSubtle};
+  &:hover{
+    background-color: #1D243C;
   }
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.tertiary};
+  svg {
+    fill: transparent;
+    margin-right: 22px;
+    margin-left: 27px;
   }
 
   // Safari fix

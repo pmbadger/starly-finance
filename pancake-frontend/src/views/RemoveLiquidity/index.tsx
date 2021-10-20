@@ -311,6 +311,10 @@ export default function RemoveLiquidity({
     }
   }
 
+  function renderContent() {
+    return <ConfirmationModalContent topContent={modalHeader} bottomContent={modalBottom} />
+  }
+
   function modalHeader() {
     return (
       <AutoColumn gap="md">
@@ -373,7 +377,7 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
+        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={() => onRemove()}>
           {t('Confirm')}
         </Button>
       </>
@@ -442,7 +446,7 @@ export default function RemoveLiquidity({
       customOnDismiss={handleDismissConfirmation}
       attemptingTxn={attemptingTxn}
       hash={txHash || ''}
-      content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={modalBottom} />}
+      content={() => renderContent()}
       pendingText={pendingText}
     />,
     true,
@@ -632,7 +636,7 @@ export default function RemoveLiquidity({
               <RowBetween>
                 <Button
                   variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
-                  onClick={onAttemptToApprove}
+                  onClick={() => onAttemptToApprove}
                   disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                   width="100%"
                   mr="0.5rem"

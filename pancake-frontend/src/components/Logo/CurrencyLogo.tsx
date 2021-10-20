@@ -13,7 +13,7 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 
 export default function CurrencyLogo({
   currency,
-  size = '24px',
+  size = '48px',
   style,
 }: {
   currency?: Currency
@@ -35,7 +35,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <img height={size} width={size} style={style} alt="ETH logo" src="/images/tokens/eth.svg" />
+    return <img height={size} width={size} style={style} alt="ETH logo" src="/images/tokens/eth_new.svg" />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />

@@ -5,44 +5,38 @@ import IconButton from "../../../components/Button/IconButton";
 import { MENU_ENTRY_HEIGHT } from "../config";
 import { PanelProps, PushedProps } from "../types";
 import CakePrice from "./CakePrice";
-import ThemeSwitcher from "./ThemeSwitcher";
 import SocialLinks from "./SocialLinks";
-import LangSelector from "./LangSelector";
+import SupplyAndPrice from './SupplyAndPrice';
 
 interface Props extends PanelProps, PushedProps {}
 
 const Container = styled.div`
   flex: none;
-  padding: 8px 4px;
-  background-color: ${({ theme }) => theme.nav.background};
-  border-top: solid 2px rgba(133, 133, 133, 0.1);
-`;
-
-const SettingsEntry = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: ${MENU_ENTRY_HEIGHT}px;
-  padding: 0 8px;
+  padding: 36px 13px;
+  padding-top: 0;  
+  background-color: #171D30;
+  width: 100%;
 `;
 
 const SocialEntry = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   height: ${MENU_ENTRY_HEIGHT}px;
-  padding: 0 16px;
+  width: 100%;
+  padding: 32px 24px;
+  border-bottom: 1px solid #3A4669;
+  border-top: 1px solid #3A4669;
+  margin-bottom: 36px;
 `;
+
+const PraceContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 const PanelFooter: React.FC<Props> = ({
   isPushed,
   pushNav,
-  toggleTheme,
-  isDark,
-  cakePriceUsd,
-  currentLang,
-  langs,
-  setLang,
 }) => {
   if (!isPushed) {
     return (
@@ -57,13 +51,14 @@ const PanelFooter: React.FC<Props> = ({
   return (
     <Container>
       <SocialEntry>
-        <CakePrice cakePriceUsd={cakePriceUsd} />
         <SocialLinks />
       </SocialEntry>
-      <SettingsEntry>
-        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-        <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
-      </SettingsEntry>
+      <PraceContainer>
+        <SupplyAndPrice/>
+      </PraceContainer>
+      <PraceContainer>
+        <CakePrice/>
+      </PraceContainer>
     </Container>
   );
 };

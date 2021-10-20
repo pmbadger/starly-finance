@@ -300,7 +300,6 @@ it("renders correctly", () => {
       font-size: 16px;
       background-color: transparent;
       color: #7A6EAA;
-      box-shadow: inset 4px 0px 0px #1FC7D4;
       -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -575,7 +574,7 @@ it("renders correctly", () => {
     @media screen and (min-width:968px) {
       .c9 {
         border-right: 2px solid rgba(133,133,133,0.1);
-        width: 56px;
+        width: 226px;
       }
     }
 

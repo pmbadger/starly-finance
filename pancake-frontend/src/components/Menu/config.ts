@@ -8,23 +8,24 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/',
   },
   {
-    label: t('Trade'),
-    icon: 'TradeIcon',
-    items: [
-      {
-        label: t('Exchange'),
-        href: '/swap',
-      },
-      {
-        label: t('Liquidity'),
-        href: '/pool',
-      },
-    ],
+    label: 'Exchange',
+    icon: 'ExchangeIcon',
+    href: '/swap',
   },
   {
-    label: t('Farms'),
-    icon: 'FarmIcon',
+    label: 'Farms',
+    icon: 'FarmsIcon',
     href: '/farms',
+  },
+  {
+    label: 'Launchpools',
+    icon: 'LaunchpoolsIcon',
+    href: '#',
+  },
+  {
+    label: 'Referral program',
+    icon: 'ReferralProgramIcon',
+    href: '#',
   },
   // {
   //   label: t('Pools'),

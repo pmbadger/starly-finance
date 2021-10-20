@@ -71,9 +71,7 @@ export default function Updater(): null {
               toast(
                 'Transaction receipt',
                 <Flex flexDirection="column">
-                  <Text>
-                    {transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}
-                  </Text>
+                  <Text>{transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>
                   {chainId && (
                     <Link external href={getBlockExplorerLink(hash, 'transaction', chainId)}>
                       View on block explorer

@@ -33,7 +33,7 @@ const CanceledRoundCard: React.FC<CanceledRoundCardProps> = ({ round }) => {
         icon={<BlockIcon mr="4px" width="21px" />}
         title={t('Canceled')}
         epoch={round.epoch}
-        blockNumber={estimatedEndBlock}
+        // blockNumber={estimatedEndBlock}
       />
       <CardBody p="16px">
         <MultiplierArrow isDisabled />

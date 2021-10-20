@@ -47,8 +47,7 @@ export const earnSectionData: SalesSectionProps = {
 
 export const cakeSectionData: SalesSectionProps = {
   headingText: 'STLY makes our world go round.',
-  bodyText:
-    'STLY token is at the heart of the Starly ecosystem. Buy it, farm it, spend it!',
+  bodyText: 'STLY token is at the heart of the Starly ecosystem. Buy it, farm it, spend it!',
   reverse: false,
   primaryButton: {
     to: '/swap?outputCurrency=0x67C6c150914e6363F746796744636B7485B0A775',

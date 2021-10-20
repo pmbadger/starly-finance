@@ -37,6 +37,56 @@
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
     </script>
+    <style>
+      @font-face {
+        font-family: 'SFProDisplay';
+        font-style: normal;
+        src: url('/fonts/SFProDisplay.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'HelveticaNeueCyrLight';
+        font-style: normal;
+        src: url('/fonts/HelveticaNeueCyr-Light.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'FuturaPT-Bold';
+        font-style: normal;
+        src: url('/fonts/FuturaPT-Bold.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'FuturaPT-Medium';
+        font-style: normal;
+        src: url('/fonts/FuturaPT-Medium.woff') format('woff')
+      }
+      #root{
+        background-image: url(/images/stars.png)!important;
+        background-repeat: repeat;
+        background-size: cover;
+        overflow: hidden;
+      }
+
+      #pink-circle, #blue-circle{
+        position: fixed;
+        border-radius: 50%;
+        width: 1294px;
+        height: 1255px;
+        opacity: 0.6;
+        filter: blur(256px);
+        z-index: 2;
+      }
+
+      #pink-circle{
+        background: #B03C66;
+        left: -797px;
+        top: 508px;
+      }
+
+      #blue-circle{
+        background: #3C72B0;
+        left: 1288px;
+        top: -628px;
+      }
+    </style>
   </head>
   <body>
     <!-- GTAG (noscript) -->
@@ -51,5 +101,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="portal-root"></div>
+    <div id="pink-circle"></div>
+    <div id="blue-circle"></div>
   </body>
 </html>

@@ -22,6 +22,26 @@ export const links = [
     href: "/",
   },
   {
+    label: "Exchange",
+    icon: "ExchangeIcon",
+    href: "/swap"
+  },
+  {
+    label: "Farms",
+    icon: "FarmsIcon",
+    href: "#"
+  },
+  {
+    label: "Launchpools",
+    icon: "LaunchpoolsIcon",
+    href: "#"
+  },
+  {
+    label: "Referral program",
+    icon: "ReferralProgramIcon",
+    href: "#"
+  }
+  /* {
     label: "Trade",
     icon: "TradeIcon",
     items: [
@@ -136,14 +156,34 @@ export const links = [
         href: "https://pancakeswap.medium.com",
       },
     ],
-  },
+  }, */
 ];
 
 export const socials = [
   {
-    label: "Telegram",
-    icon: "TelegramIcon",
+    label: "Facebook",
+    icon: "FacebookIcon",
     href: "#",
+  },
+  {
+    label: "Twitter",
+    icon: "TwitterIcon",
+    href: "#",
+  },
+  {
+    label: "Linkedin",
+    icon: "LinkedinIcon",
+    href: "#"
+  },
+  {
+    label: "Youtube",
+    icon: "YoutubeIcon",
+    href: "#"
+  }
+  // {
+    // label: "Telegram",
+    // icon: "TelegramIcon",
+    // href: "#",
     // items: [
     //   {
     //     label: "English",
@@ -198,15 +238,10 @@ export const socials = [
       //   href: "https://t.me/PancakeSwapWhales",
       // },
     // ],
-  },
-  {
-    label: "Twitter",
-    icon: "TwitterIcon",
-    href: "#",
-  },
+  // },
 ];
 
 export const MENU_HEIGHT = 64;
 export const MENU_ENTRY_HEIGHT = 48;
-export const SIDEBAR_WIDTH_FULL = 240;
+export const SIDEBAR_WIDTH_FULL = 226;
 export const SIDEBAR_WIDTH_REDUCED = 56;

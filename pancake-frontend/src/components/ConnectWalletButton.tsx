@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, useWalletModal } from 'pancakeswap-uikit'
+import { Button, useWalletModal, IconButton, Text } from 'pancakeswap-uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
 
 const ConnectWalletButton = (props) => {
   const { t } = useTranslation()
@@ -9,11 +10,24 @@ const ConnectWalletButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   // eslint-disable-next-line react/destructuring-assignment
-  const btnText = props?.text || 'Connect Wallet'
+  const { text, icon, iconPosition } = props
 
-  return (
+  const StyledText = styled(Text)`
+    font-family: 'FuturaPT-Medium';
+  `
+
+  return icon ? (
+    <IconButton
+      onClick={onPresentConnectModal}
+      {...props}
+      startIcon={iconPosition === 'start' ? icon : null}
+      endIcon={iconPosition === 'end' ? icon : null}
+    >
+      <StyledText>{t(text || 'Connect Wallet')}</StyledText>
+    </IconButton>
+  ) : (
     <Button onClick={onPresentConnectModal} {...props}>
-      {t(btnText)}
+      <StyledText>{t(text || 'Connect Wallet')}</StyledText>
     </Button>
   )
 }

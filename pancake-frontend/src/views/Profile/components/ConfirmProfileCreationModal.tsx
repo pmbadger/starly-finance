@@ -12,7 +12,6 @@ import ApproveConfirmButtons from './ApproveConfirmButtons'
 import { State } from '../ProfileCreation/contexts/types'
 
 interface Props {
-  userName: string
   selectedNft: State['selectedNft']
   account: string
   teamId: number

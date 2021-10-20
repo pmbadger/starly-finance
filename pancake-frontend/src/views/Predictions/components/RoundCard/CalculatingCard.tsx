@@ -30,7 +30,7 @@ const CalculatingCard: React.FC<CalculatingCardProps> = ({ round }) => {
           icon={<WaitIcon mr="4px" width="21px" />}
           title={t('Calculating')}
           epoch={round.epoch}
-          blockNumber={estimatedEndBlock}
+          // blockNumber={estimatedEndBlock}
         />
         <CardBody p="16px">
           <MultiplierArrow isDisabled />
