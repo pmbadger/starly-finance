@@ -6,6 +6,7 @@ import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
+import styled from 'styled-components'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -52,6 +53,16 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
+const FlexWrapper = styled.div`
+  display: flex;
+`
+const HeaderWrapper = styled.div`
+  width: 226px;
+  height: 750px;
+  color: green;
+  background: #171D30;
+`
+
 const App: React.FC = () => {
   usePollBlockNumber()
   useFetchProfile()
@@ -61,8 +72,11 @@ const App: React.FC = () => {
     <Router history={history}>
       <ResetCSS />
       <GlobalStyle />
-      <Menu>
+      <FlexWrapper>
         <SuspenseWithChunkError fallback={<PageLoader />}>
+          <HeaderWrapper>
+            Menu
+          </HeaderWrapper>
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -144,7 +158,7 @@ const App: React.FC = () => {
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>
-      </Menu>
+      </FlexWrapper>
       <EasterEgg iterations={2} />
       <ToastListener />
       <DatePickerPortal />

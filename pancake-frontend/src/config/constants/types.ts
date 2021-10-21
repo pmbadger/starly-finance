@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { SerializedBigNumber, TranslatableText } from 'state/types'
+import { StringLiteral } from 'typescript'
 
 export interface Address {
   3: string
@@ -232,4 +233,43 @@ export interface ConnectedBidder {
   account: string
   isWhitelisted: boolean
   bidderData?: Bidder
+}
+
+interface AbsolutePosition {
+  absTop: string
+  absLeft: string
+}
+
+interface ShapeSizes {
+  width: string
+  height: string
+}
+
+export interface LiteSVGBody {
+  pathD: string 
+  pathFill: string
+}
+
+export interface ShapeWrapper extends AbsolutePosition, ShapeSizes {
+  background: string
+  boxShadow?: string
+}
+
+export interface ShapeProps {
+  width: string
+  height: string
+  shapeWrapper: ShapeWrapper
+  SVGBody?: LiteSVGBody []
+  complexSVGBody?: string
+}
+
+export interface CircleProps extends AbsolutePosition {
+  diameter: string
+  SVGBody: string
+}
+
+export interface ImageProps extends AbsolutePosition, ShapeSizes {
+  background: string
+  opacity?: number
+  filter?: string
 }
