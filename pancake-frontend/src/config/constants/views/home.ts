@@ -1,4 +1,8 @@
-import { ShapeWrapper, ShapeProps, LiteSVGBody, CircleProps, ImageProps } from '../types'
+import {
+  ShapeWrapper, ShapeProps, LiteSVGBody, 
+  CircleProps, ImageProps, CardMainBgProps,
+  TextProps, CardMainContentProps, CardMainWrapperProps
+} from '../types'
 import Images from './images'
 
 const btcWrapper: ShapeWrapper = {
@@ -338,3 +342,192 @@ const star4: ImageProps = {
 }
 
 export const stars: ImageProps [] = [star1, star2, star3, star4]
+
+const rocket: ImageProps = {
+  width: '142px',
+  height: '268px',
+  absTop: '-12px',
+  absLeft: '230px',
+  background: Images.Rocket
+}
+
+const coinBlue: ImageProps = {
+  width: '300px',
+  height: '215px',
+  absTop: '55px',
+  absLeft: '90px',
+  background: Images.CoinBlue,
+  filter: 'drop-shadow(0px 40px 48px rgba(17, 21, 34, 0.49))'
+}
+
+const spaceman: ImageProps = {
+  width: '148px',
+  height: '168px',
+  absTop: '88px',
+  absLeft: '242px',
+  background: Images.Spaceman,
+  filter: 'drop-shadow(0px 40px 48px rgba(17, 21, 34, 0.49))'
+}
+
+const rocketLight: ImageProps = {
+  width: '213px',
+  height: '214px',
+  absTop: '124px',
+  absLeft: '275px',
+  background: 'rgba(190, 70, 32, 0.52)',
+  filter: 'blur(128px)'
+}
+
+const coinLight: ImageProps = {
+  width: '213px',
+  height: '214px',
+  absTop: '124px',
+  absLeft: '275px',
+  background: 'rgba(18, 122, 195, 0.66)',
+  filter: 'blur(128px)'
+}
+
+const manLight: ImageProps = {
+  width: '213px',
+  height: '214px',
+  absTop: '124px',
+  absLeft: '275px',
+  background: 'rgba(219, 194, 140, 0.25)',
+  filter: 'blur(128px)'
+}
+
+const coinStars: ImageProps [] = [
+  {
+    width: '23px',
+    height: '23px',
+    absTop: '68.58px',
+    absLeft: '300px',
+    background: '#FFDF6D',
+    filter: 'drop-shadow(0px 0px 12px rgba(240, 231, 3, 0.63))',
+    zIndex: '2'
+  },
+  {
+    width: '40px',
+    height: '40px',
+    absTop: '20px',
+    absLeft: '330px',
+    background: '#B5C9FF',
+    filter: 'drop-shadow(0px 0px 12px rgba(181, 201, 255, 0.6))',
+    zIndex: '2'
+  }
+]
+
+const cardMainRocket: CardMainBgProps = {
+  imageBg: rocket,
+  lightBg: rocketLight
+}
+
+const cardMainCoin: CardMainBgProps = {
+  imageBg: coinBlue,
+  lightBg: coinLight,
+  stars: coinStars
+}
+
+const cardMainMan: CardMainBgProps = {
+  imageBg: spaceman,
+  lightBg: manLight
+}
+
+const card1TextFirst: TextProps = {
+  maxWidth: '185px',
+  marginBottom: '22px',
+  fontFamily: 'HelveticaNeueCyr',
+  fontWeight: '550',
+  fontSize: '18px',
+  lineHeight: '25px',
+  color: '#FFFFFF',
+  text:'Stake Tokens in Farm and Earn Up to:'
+}
+
+const card1TextSecond: TextProps = {
+  maxWidth: '200px',
+  marginBottom: '26.4px',
+  fontFamily: 'Futura PT',
+  fontWeight: 'bold',
+  fontSize: '32px',
+  lineHeight: '41px',
+  color: '#FFDF6D',
+  text: '381.29% APY'
+}
+
+const card1TextBtn = 'Start Farming Now!'
+
+const card2TextFirst: TextProps = {
+  maxWidth: '250px',
+  marginBottom: '25.4px',
+  fontFamily: 'HelveticaNeueCyr',
+  fontWeight: '550',
+  fontSize: '18px',
+  lineHeight: '25px',
+  color: '#FFFFFF',
+  text:'Enjoy Referral Rewards From:'
+}
+
+const card2TextSecond: TextProps = {
+  maxWidth: '240px',
+  marginBottom: '26.6px',
+  fontFamily: 'Futura PT',
+  fontWeight: 'bold',
+  fontSize: '24px',
+  lineHeight: '31px',
+  color: '#FFDF6D',
+  text: 'Farms, Launchpools, Swaps'
+}
+
+const card2TextBtn = 'Invite and Start Earn'
+
+const card3TextFirst: TextProps = {
+  maxWidth: '280px',
+  marginBottom: '0',
+  fontFamily: 'HelveticaNeueCyr',
+  fontWeight: '550',
+  fontSize: '18px',
+  lineHeight: '25px',
+  color: '#FFFFFF',
+  text:'Receive Rewards as a Liquidity Provider:'
+}
+
+const card3TextSecond: TextProps = {
+  maxWidth: '210px',
+  marginBottom: '26.6px',
+  fontFamily: 'Futura PT',
+  fontWeight: 'bold',
+  fontSize: '24px',
+  lineHeight: '31px',
+  color: '#FFDF6D',
+  text: 'Earn income from swap transactions'
+}
+
+const card3TextBtn = 'Add Liquidity'
+
+export const cardsMainProps: CardMainWrapperProps [] = [
+  {
+    cardMainBgProps: cardMainRocket,
+    cardMainContentProps: {
+      textFirst: card1TextFirst,
+      textSecond: card1TextSecond,
+      textBtn:card1TextBtn
+    }
+  },
+  {
+    cardMainBgProps: cardMainCoin,
+    cardMainContentProps: {
+      textFirst: card2TextFirst,
+      textSecond: card2TextSecond,
+      textBtn:card2TextBtn
+    }
+  },
+  {
+    cardMainBgProps: cardMainMan,
+    cardMainContentProps: {
+      textFirst: card3TextFirst,
+      textSecond: card3TextSecond,
+      textBtn:card3TextBtn
+    }
+  }
+]

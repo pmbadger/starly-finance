@@ -272,4 +272,33 @@ export interface ImageProps extends AbsolutePosition, ShapeSizes {
   background: string
   opacity?: number
   filter?: string
+  zIndex?: string
+}
+
+export interface CardMainBgProps {
+  imageBg: ImageProps
+  lightBg: ImageProps
+  stars?: ImageProps []
+}
+
+export interface TextProps {
+  marginBottom: string
+  maxWidth: string
+  fontFamily: string
+  fontWeight: string
+  fontSize: string
+  lineHeight: string
+  color: string
+  text: string
+}
+
+export interface CardMainContentProps {
+  textFirst: TextProps
+  textSecond: TextProps
+  textBtn: string
+}
+
+export interface CardMainWrapperProps {
+  cardMainBgProps: CardMainBgProps
+  cardMainContentProps: CardMainContentProps
 }

@@ -18,6 +18,7 @@ import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } fro
 import UserBanner from './components/UserBanner'
 import HomeBg from './components/HomeBg'
 import HomeSwiper from './components/Swiper'
+import MainCards from './components/MainCards'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -87,6 +88,11 @@ const ClientsHeader = styled.h2`
   color: #FFFFFF;
 `
 
+const MarginTop = styled.div`
+  width: 100%;
+  height: 434px;
+`
+
 const Home: React.FC = () => {
   const { theme } = useTheme()
   const { account } = useWeb3React()
@@ -97,12 +103,9 @@ const Home: React.FC = () => {
     <>
       <Page>
         <HomeBg />
+        <MarginTop />
         <HomeSwiper />
-        <CardsWrapper>
-          <CardMain />
-          <CardMain />
-          <CardMain />
-        </CardsWrapper>
+        <MainCards/>
         <LaunchpoolsWrapper />
         <ClientsWrapper>
           <ClientsHeader>
