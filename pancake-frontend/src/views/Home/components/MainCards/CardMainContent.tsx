@@ -5,7 +5,6 @@ import { Button } from 'pancakeswap-uikit'
 import CustomeStar from '../HomeBg/CustomStar'
 
 const ContentWrapper = styled.div`
-  margin-top: -255px;
   padding: 30px 32px;
   width: 100%;
   height: 100%;
@@ -15,8 +14,6 @@ const ContentWrapper = styled.div`
 const TextLine = styled.div<{maxWidth, marginBottom, fontFamily, fontWeight, fontSize, lineHeight, color}>`
   display: flex;
   align-items: center;
-  /* margin-left: 53px;
-  margin-right: 62px; */
   margin-bottom: ${(props) => props.marginBottom || '0'};
   max-width: ${(props) => props.maxWidth || 'inherit'};
   font-family: ${(props) => props.fontFamily || 'inherit'};
@@ -24,6 +21,7 @@ const TextLine = styled.div<{maxWidth, marginBottom, fontFamily, fontWeight, fon
   font-size: ${(props) => props.fontSize || 'inherit'};
   line-height: ${(props) => props.lineHeight || 'inherit'};
   color: ${(props) => props.color || 'inherit'};
+  z-index: 3;
 `
 
 const CustomButton = styled(Button)`
@@ -36,6 +34,7 @@ const CustomButton = styled(Button)`
   line-height: 18px;
   letter-spacing: 0.02em;
   color: #FFFFFF;
+  z-index: 4;
 `
 
 const CardMainContent: React.FC<CardMainContentProps> = ({textFirst, textSecond, textBtn}) => {

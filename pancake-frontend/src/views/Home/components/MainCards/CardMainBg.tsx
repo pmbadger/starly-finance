@@ -23,14 +23,20 @@ const CardMainImageBg = styled.div<{width, height, absTop, absLeft, background}>
   left: ${(props) => props.absLeft || '0'};
 
   background: ${(props) => `url(${props.background})` || 'none'};
+  z-index: 3;
 `
 
 const LightBgWrapper = styled.div`
+  margin-top: -255px;
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 390px;
+  height: 256px;
   overflow: hidden;
   border-radius: 32px;
+  background: rgba(23, 29, 48, 0.8);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(60, 143, 160, 0.24);
+  z-index: -1;
 `
 
 const CardMainBg: React.FC<CardMainBgProps> = ({imageBg, lightBg, stars}) => {

@@ -5,7 +5,18 @@ import CoinXXXL from './coinXXXL.png'
 import Rocket from './rocket.png'
 import CoinBlue from './coin-blue.png'
 import Spaceman from './spaceman.png'
+import CoinBtcTop from './coin-btc-top.png'
+import CoinBtcBottom from './coin-btc-bottom.png'
+import CoinBtcLeft from './coin-btc-left.png'
+import CoinBtcRight from './coin-btc-right.png'
+import StarsBg from './stars-bg.png'
+import CoinBlueS from './coin-blue-s.png'
 
-const imageList = {FallinStar163, FallinStar200, FallinStar295, CoinXXXL, Rocket, CoinBlue, Spaceman}
+const ImageList = {
+    FallinStar163, FallinStar200, FallinStar295,
+    CoinXXXL, Rocket, CoinBlue, Spaceman,
+    CoinBtcTop, CoinBtcBottom, CoinBtcLeft, CoinBtcRight,
+    StarsBg, CoinBlueS
+}
 
-export default imageList
+export default ImageList

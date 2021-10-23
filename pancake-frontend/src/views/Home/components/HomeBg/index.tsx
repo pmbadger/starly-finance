@@ -8,7 +8,7 @@ import { shapes, circles, follinStars, lights, stars } from 'config/constants/vi
 import SunburstSvg from '../SunburstSvg'
 import CompositeImage from '../CompositeImage'
 import SpaceBgImg from '../../space-bg.png'
-import ShapeBg from './ShapeBg'
+import TokenIcon from './TokenIcon'
 import CircleBg from './CircleBg'
 import CustomeStar from './CustomStar'
 
@@ -65,7 +65,7 @@ const HomeBg = () => {
     }
 		<SpaceBg />
     {shapes.map((shape) => 
-      <ShapeBg 
+      <TokenIcon 
         width={shape.width}
         height={shape.height}
         shapeWrapper={shape.shapeWrapper}

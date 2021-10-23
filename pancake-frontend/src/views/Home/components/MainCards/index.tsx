@@ -16,8 +16,6 @@ const CardMain = styled.div`
   position: relative;
   width: 390px;
   height: 256px;
-  background: rgba(23, 29, 48, 0.8);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
   border-radius: 32px;
 `
 
@@ -28,15 +26,15 @@ const MainCardsWrapper: React.FC = () => {
       {
         cardsMainProps.map((card) => 
           <CardMain>
-            <CardMainBg
-              imageBg={card.cardMainBgProps.imageBg}
-              lightBg={card.cardMainBgProps.lightBg}
-              stars={card.cardMainBgProps.stars}
-            />
             <CardMainContent
               textFirst={card.cardMainContentProps.textFirst}
               textSecond={card.cardMainContentProps.textSecond}
               textBtn={card.cardMainContentProps.textBtn}
+            />
+            <CardMainBg
+              imageBg={card.cardMainBgProps.imageBg}
+              lightBg={card.cardMainBgProps.lightBg}
+              stars={card.cardMainBgProps.stars}
             />
           </CardMain>
         )

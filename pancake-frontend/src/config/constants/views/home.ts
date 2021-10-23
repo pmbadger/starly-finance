@@ -1,7 +1,7 @@
 import {
   ShapeWrapper, ShapeProps, LiteSVGBody, 
   CircleProps, ImageProps, CardMainBgProps,
-  TextProps, CardMainContentProps, CardMainWrapperProps
+  TextProps, CardMainWrapperProps
 } from '../types'
 import Images from './images'
 
@@ -531,3 +531,110 @@ export const cardsMainProps: CardMainWrapperProps [] = [
     }
   }
 ]
+
+const coinBtcTop: ImageProps = {
+  width: '86px',
+  height: '79px',
+  absTop: '-13px',
+  absLeft: '709px',
+  background: Images.CoinBtcTop
+}
+
+const coinBtcRight: ImageProps = {
+  width: '65px',
+  height: '65px',
+  absTop: '58px',
+  absLeft: '1142px',
+  background: Images.CoinBtcRight
+}
+
+const coinBtcBottom: ImageProps = {
+  width: '69px',
+  height: '47px',
+  absTop: '170px',
+  absLeft: '560px',
+  background: Images.CoinBtcBottom
+}
+
+const coinBtcLeft: ImageProps = {
+  width: '45px',
+  height: '49px',
+  absTop: '74px',
+  absLeft: '-16px',
+  background: Images.CoinBtcLeft
+}
+
+export const coinsBtc: ImageProps [] = [
+  coinBtcTop, coinBtcBottom, coinBtcLeft, coinBtcRight
+]
+
+export const LaunchpoolTextFirst: TextProps = {
+  maxWidth: '377px',
+  marginBottom: '14px',
+  fontFamily: 'HelveticaNeueCyr',
+  fontWeight: '550',
+  fontSize: '18px',
+  lineHeight: '25px',
+  color: '#FFFFFF',
+  text:'Launchpools - An Easy Way to Earn Crypto'
+}
+
+export const LaunchpoolTextSecond: TextProps = {
+  maxWidth: '400px',
+  marginBottom: '0',
+  fontFamily: 'Futura PT',
+  fontWeight: 'bold',
+  fontSize: '32px',
+  lineHeight: '38px',
+  color: '#FFDF6D',
+  text: 'Stake your BSW in exchange for even more tokens'
+}
+
+const walletIconFirstWrapper: ShapeWrapper = {
+  width: '58px',
+  height: '58px',
+  absTop: '24px',
+  absLeft: '20px',
+  background: '#3375BB'
+}
+
+const walletIconFirstSVGBody: LiteSVGBody [] = [
+  {
+    pathD: 'M14.999 1.35203L15.765 0.354972C15.5445 0.185642 15.2743 0.0938721 14.9964 0.0938721C14.7185 0.0938721 14.4483 0.185642 14.2278 0.354972L14.999 1.35203ZM28.166 5.22118H29.4218C29.4239 5.05447 29.3928 4.88903 29.331 4.73457C29.2694 4.58008 29.1765 4.43912 29.0601 4.32003C28.9434 4.20124 28.8041 4.10672 28.6506 4.04197C28.4968 3.97696 28.3321 3.94348 28.166 3.94285V5.22118ZM14.999 32.1172L14.3013 33.1646C14.5069 33.3023 14.7488 33.3758 14.9964 33.3756C15.2442 33.3756 15.4862 33.3023 15.6922 33.1646L14.999 32.1172ZM1.8441 5.22118V3.95957C1.67738 3.96023 1.5126 3.99369 1.35877 4.05869C1.20537 4.12361 1.06626 4.21809 0.949384 4.33678C0.832881 4.45585 0.740831 4.59618 0.679044 4.7513C0.616627 4.90581 0.585758 5.07129 0.588278 5.23791L1.8441 5.22118ZM14.2336 2.3433C19.9328 6.75829 26.4596 6.47701 28.1711 6.47701V3.95957C26.3973 3.95957 20.7154 4.18486 15.7823 0.355625L14.2336 2.3433ZM26.9153 5.19864C26.8201 11.033 26.5723 15.1499 26.0991 18.1965C25.6261 21.2429 24.9728 23.0228 24.1109 24.2954C23.2489 25.5678 22.1457 26.3956 20.5294 27.3586C18.9131 28.3216 16.8463 29.3914 14.3013 31.0751L15.72 33.1646C18.1305 31.5598 20.1356 30.5345 21.8412 29.5155C23.5611 28.5789 25.0533 27.2755 26.2118 25.6973C27.3376 24.0075 28.1093 21.7553 28.6051 18.5787C29.1007 15.4021 29.3543 11.1282 29.4495 5.23791L26.9153 5.19864ZM15.72 31.0751C13.1916 29.3856 11.1305 28.3381 9.52511 27.3644C7.91977 26.3905 6.81651 25.6128 5.94949 24.2954C5.08244 22.9778 4.37826 21.2261 3.89356 18.1965C3.40888 15.1667 3.19582 11.033 3.09992 5.19864L0.588278 5.23791C0.683548 11.1282 0.942944 15.4138 1.43278 18.5787C1.92262 21.7437 2.67187 23.9967 3.82083 25.6973C4.97373 27.2762 6.46219 28.5803 8.17917 29.5155C9.86883 30.5352 11.8907 31.5598 14.3013 33.1646L15.72 31.0751ZM1.8441 6.47635C3.53376 6.47635 10.0658 6.75829 15.765 2.34265L14.2278 0.354972C9.28309 4.18423 3.6007 3.95892 1.83831 3.95892L1.8441 6.47635Z',
+    pathFill: '#FFFDFA'
+  }
+]
+
+export const walletIconFirst: ShapeProps = {
+  width: '30',
+  height: '34',
+  shapeWrapper: walletIconFirstWrapper,
+  SVGBody: walletIconFirstSVGBody
+}
+
+
+const walletIconSecondWrapper: ShapeWrapper = {
+  width: '35px',
+  height: '34px',
+  absTop: '50px',
+  absLeft: '57.98px',
+  background: '#FFFDFA'
+}
+
+const walletIconSecondSVGBody = `
+  <path d="M17.9794 32.6924C26.646 32.6924 33.6717 25.6666 33.6717 17C33.6717 8.33342 26.646 1.30774 17.9794 1.30774C9.31279 1.30774 2.28711 8.33342 2.28711 17C2.28711 25.6666 9.31279 32.6924 17.9794 32.6924Z" fill="none"></path>
+  <path d="M17.9795 7.71373C14.1395 7.71373 11.001 10.8338 11.001 14.6924C11.001 15.4676 11.1305 16.2247 11.3704 16.9632C11.5363 17.4618 12.0904 17.7384 12.6074 17.5724C13.1056 17.4062 13.3826 16.8524 13.2163 16.3355C13.0141 15.7609 12.9203 15.1537 12.9396 14.5447C13.0136 11.9416 15.1182 9.80027 17.7212 9.67076C20.6195 9.52323 23.0195 11.8309 23.0195 14.6924C23.0195 17.3693 20.9149 19.5663 18.2751 19.7139C18.2751 19.7139 17.2962 19.7693 16.8165 19.843L16.2628 19.9353C16.2072 19.9537 16.152 19.8985 16.1705 19.843L16.3364 19.0306L17.2411 14.8583C17.3518 14.3414 17.0197 13.8243 16.5026 13.7137C15.9857 13.6029 15.4687 13.9351 15.358 14.452L13.1611 24.7166C13.0504 25.2335 13.3826 25.7505 13.8996 25.8612C14.4164 25.972 14.9334 25.6398 15.0441 25.1228C15.0626 25.0121 15.358 23.6643 15.358 23.6643C15.5795 22.6304 16.4287 21.8737 17.4258 21.7445C17.6474 21.7077 18.5149 21.6522 18.5149 21.6522C22.1151 21.3751 24.9581 18.3661 24.9581 14.692C24.9581 10.8334 21.8197 7.71338 17.9795 7.71338V7.71373Z" fill="#191326"></path>
+  <path d="M18.478 23.7756C17.8503 23.6464 17.2227 24.0343 17.0931 24.6803C16.964 25.308 17.3517 25.9356 17.9979 26.0648C18.6255 26.1939 19.2532 25.8066 19.3824 25.1601C19.5115 24.5137 19.124 23.9047 18.478 23.7756Z" fill="#E6007A"></path>
+  <g style="mix-blend-mode:multiply" opacity="0.05">
+    <g style="mix-blend-mode:multiply" opacity="0.05">
+      <path d="M17.9793 32.1807C26.3634 32.1807 33.1602 25.384 33.1602 16.9998C33.1602 8.61576 26.3634 1.81909 17.9793 1.81909C9.59525 1.81909 2.79858 8.61576 2.79858 16.9998C2.79858 25.384 9.59525 32.1807 17.9793 32.1807Z" stroke="#191326"></path>
+    </g>
+  </g>
+`
+
+export const walletIconSecond: ShapeProps = {
+  width: '35',
+  height: '34',
+  shapeWrapper: walletIconSecondWrapper,
+  complexSVGBody: walletIconSecondSVGBody
+}
