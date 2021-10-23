@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { CardMainContentProps } from 'config/constants/types'
 import { Button } from 'pancakeswap-uikit'
-import CustomeStar from '../HomeBg/CustomStar'
 
 const ContentWrapper = styled.div`
   padding: 30px 32px;
@@ -62,7 +61,7 @@ const CardMainContent: React.FC<CardMainContentProps> = ({textFirst, textSecond,
       >
         {textSecond.text}
       </TextLine>
-      <CustomButton onClick={() => console.log('click')}>
+      <CustomButton>
         {textBtn}
       </CustomButton>
     </ContentWrapper>

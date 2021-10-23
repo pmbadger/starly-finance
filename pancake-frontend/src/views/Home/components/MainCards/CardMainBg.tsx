@@ -62,6 +62,7 @@ const CardMainBg: React.FC<CardMainBgProps> = ({imageBg, lightBg, stars}) => {
       {
         stars ? (stars.map((star) => 
           <CustomeStar
+            key={star.id}
             width={star.width}
             height={star.height}
             absTop={star.absTop}

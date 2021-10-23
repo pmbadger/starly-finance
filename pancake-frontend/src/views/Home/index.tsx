@@ -20,28 +20,7 @@ import HomeBg from './components/HomeBg'
 import HomeSwiper from './components/Swiper'
 import MainCards from './components/MainCards'
 import LaunchpoolSection from './components/LaunchpoolSection'
-
-const ClientsWrapper = styled.div`
-  height: 195px;
-`
-const ClientsCardsWrapper = styled.div`
-  margin-top: 21px;
-  display: flex;
-  gap: 32px;
-`
-
-const ClientCard = styled.div`
-  width: 377px;
-  height: 328px;
-  background: rgba(21, 35, 64, 0.8);
-  backdrop-filter: blur(4px);
-  border-radius: 24px;
-`
-
-const ClientsHeader = styled.h2`
-  font-size: 32px;
-  color: #FFFFFF;
-`
+import MeritsSection from './components/MeritsSection'
 
 const MarginTop = styled.div`
   width: 100%;
@@ -49,31 +28,16 @@ const MarginTop = styled.div`
 `
 
 const Home: React.FC = () => {
-  const { theme } = useTheme()
-  const { account } = useWeb3React()
-
-  const HomeSectionContainerStyles = { margin: '0', width: '100%', maxWidth: '968px' }
 
   return (
-    <>
-      <Page>
-        <HomeBg />
-        <MarginTop />
-        <HomeSwiper />
-        <MainCards/>
-        <LaunchpoolSection />
-        <ClientsWrapper>
-          <ClientsHeader>
-            Why Choose us?
-          </ClientsHeader>
-          <ClientsCardsWrapper>
-            <ClientCard />
-            <ClientCard />
-            <ClientCard />
-          </ClientsCardsWrapper>
-        </ClientsWrapper>
-      </Page>
-    </>
+    <Page>
+      <HomeBg />
+      <MarginTop />
+      <HomeSwiper />
+      <MainCards/>
+      <LaunchpoolSection />
+      <MeritsSection />
+    </Page>
   )
 }
 

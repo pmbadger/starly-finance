@@ -1,7 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import React from 'react'
 import styled from 'styled-components'
-import Images from 'config/constants/views/images'
 import { walletIconFirst, walletIconSecond } from 'config/constants/views/home'
 import { Button } from 'pancakeswap-uikit'
 import TokenIcon from '../../HomeBg/TokenIcon'
@@ -128,13 +127,13 @@ const WalletContent: React.FC = () => {
       <WalletContentWrapper>
         <TokenInfoWrapper>
           <TokenIcons>
-            <TokenIcon 
+            <TokenIcon
               width={walletIconFirst.width}
               height={walletIconFirst.height}
               shapeWrapper={walletIconFirst.shapeWrapper}
               SVGBody={walletIconFirst.SVGBody}
             />
-            <IconSecond 
+            <IconSecond
               width={walletIconSecond.width}
               height={walletIconSecond.height}
               shapeWrapper={walletIconSecond.shapeWrapper}

@@ -11,12 +11,14 @@ import CoinBtcLeft from './coin-btc-left.png'
 import CoinBtcRight from './coin-btc-right.png'
 import StarsBg from './stars-bg.png'
 import CoinBlueS from './coin-blue-s.png'
+import World from './world.png'
+import SpaceBgImg from './space-bg.png'
 
 const ImageList = {
     FallinStar163, FallinStar200, FallinStar295,
     CoinXXXL, Rocket, CoinBlue, Spaceman,
     CoinBtcTop, CoinBtcBottom, CoinBtcLeft, CoinBtcRight,
-    StarsBg, CoinBlueS
+    StarsBg, CoinBlueS, World, SpaceBgImg
 }
 
 export default ImageList

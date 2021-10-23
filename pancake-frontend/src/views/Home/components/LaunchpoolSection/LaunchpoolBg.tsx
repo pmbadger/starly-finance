@@ -55,6 +55,7 @@ const LaunchpoolBg: React.FC = () => {
       <StarsBg />
       {coinsBtc.map((coin) => 
         <LaunchpoolImageBg
+          key={coin.id}
           width={coin.width}
           height={coin.height}
           absTop={coin.absTop}

@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from 'components/Card'
 import {cardsMainProps} from 'config/constants/views/home'
-import {CardMainWrapperProps} from 'config/constants/types'
 import CardMainBg from './CardMainBg'
 import CardMainContent from './CardMainContent'
 
@@ -25,7 +23,7 @@ const MainCardsWrapper: React.FC = () => {
     <CardsWrapper>
       {
         cardsMainProps.map((card) => 
-          <CardMain>
+          <CardMain key={card.id}>
             <CardMainContent
               textFirst={card.cardMainContentProps.textFirst}
               textSecond={card.cardMainContentProps.textSecond}

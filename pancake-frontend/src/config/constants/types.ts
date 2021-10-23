@@ -253,6 +253,7 @@ export interface LiteSVGBody {
 export interface ShapeWrapper extends AbsolutePosition, ShapeSizes {
   background: string
   boxShadow?: string
+  id?: string
 }
 
 export interface ShapeProps {
@@ -261,9 +262,11 @@ export interface ShapeProps {
   shapeWrapper: ShapeWrapper
   SVGBody?: LiteSVGBody []
   complexSVGBody?: string
+  id?: string
 }
 
 export interface CircleProps extends AbsolutePosition {
+  id: string
   diameter: string
   SVGBody: string
 }
@@ -273,6 +276,7 @@ export interface ImageProps extends AbsolutePosition, ShapeSizes {
   opacity?: number
   filter?: string
   zIndex?: string
+  id?: string
 }
 
 export interface CardMainBgProps {
@@ -301,4 +305,12 @@ export interface CardMainContentProps {
 export interface CardMainWrapperProps {
   cardMainBgProps: CardMainBgProps
   cardMainContentProps: CardMainContentProps
+  id?: string 
+}
+
+export interface MeritCardProps {
+  image: string
+  title: TextProps
+  text: TextProps
+  id?: string
 }

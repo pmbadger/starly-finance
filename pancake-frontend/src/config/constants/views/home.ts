@@ -1,7 +1,7 @@
 import {
   ShapeWrapper, ShapeProps, LiteSVGBody, 
   CircleProps, ImageProps, CardMainBgProps,
-  TextProps, CardMainWrapperProps
+  TextProps, CardMainWrapperProps, MeritCardProps
 } from '../types'
 import Images from './images'
 
@@ -21,6 +21,7 @@ const btcSignBody: LiteSVGBody [] = [
 ]
 
 const btcSign: ShapeProps = {
+  id: '1',
   width: '22',
   height: '27',
   shapeWrapper: btcWrapper,
@@ -43,6 +44,7 @@ const eosSignBody: LiteSVGBody [] = [
 ]
 
 const eosSign: ShapeProps = {
+  id: '2',
   width: '21',
   height: '29',
   shapeWrapper: eosWrapper,
@@ -86,6 +88,7 @@ const ethSignBody: LiteSVGBody [] = [
 ]
 
 const ethSign: ShapeProps = {
+  id: '3',
   width: '25',
   height: '40',
   shapeWrapper: ethWrapper,
@@ -108,6 +111,7 @@ const linkSignBody: LiteSVGBody [] = [
 ]
 
 const linkSign: ShapeProps = {
+  id: '4',
   width: '22',
   height: '25',
   shapeWrapper: linkWrapper,
@@ -138,6 +142,7 @@ const solComplexSVGBody = `
 `
 
 const solSign: ShapeProps = {
+  id: '5',
   width: '28',
   height: '16',
   shapeWrapper: solWrapper,
@@ -165,6 +170,7 @@ const starlyComplexSVGBody = `
 `
 
 const starlySign: ShapeProps = {
+  id: '6',
   width: '62',
   height: '79',
   shapeWrapper: starlyWrapper,
@@ -174,6 +180,7 @@ const starlySign: ShapeProps = {
 export const shapes: ShapeProps [] = [btcSign, eosSign, linkSign, ethSign, starlySign, solSign]
 
 const circle566: CircleProps = {
+  id: '7',
   diameter: '566',
   absTop: '13px',
   absLeft: '1123.5px',
@@ -189,6 +196,7 @@ const circle566: CircleProps = {
 }
 
 const circle340: CircleProps = {
+  id: '8',
   diameter: '340',
   absTop: '97.76px',
   absLeft: '1319.02px',
@@ -204,6 +212,7 @@ const circle340: CircleProps = {
 }
 
 const circle453: CircleProps = {
+  id: '9',
   diameter: '453',
   absTop: '58.21px',
   absLeft: '1163.06px',
@@ -219,6 +228,7 @@ const circle453: CircleProps = {
 }
 
 const circle227: CircleProps = {
+  id: '10',
   diameter: '227',
   absTop: '97.76px',
   absLeft: '1239.91px',
@@ -234,6 +244,7 @@ const circle227: CircleProps = {
 }
 
 const circle114: CircleProps = {
+  id: '11',
   diameter: '114',
   absTop: '267.29px',
   absLeft: '1276.07px',
@@ -243,6 +254,7 @@ const circle114: CircleProps = {
 export const circles: CircleProps [] = [circle566, circle340, circle453, circle227, circle114]
 
 const follinStar295: ShapeWrapper = {
+  id: '12',
   width: '295px',
   height: '86px',
   absTop: '0',
@@ -251,6 +263,7 @@ const follinStar295: ShapeWrapper = {
 }
 
 const follinStar163: ShapeWrapper = {
+  id: '13',
   width: '163px',
   height: '109px',
   absTop: '1171px',
@@ -259,6 +272,7 @@ const follinStar163: ShapeWrapper = {
 }
 
 const follinStar200: ShapeWrapper = {
+  id: '14',
   width: '200px',
   height: '134px',
   absTop: '339px',
@@ -269,6 +283,7 @@ const follinStar200: ShapeWrapper = {
 export const follinStars: ShapeWrapper [] = [follinStar295, follinStar163, follinStar200]
 
 const lightRed: ImageProps = {
+  id: '15',
   width: '1294px',
   height: '1255px',
   absTop: '508px',
@@ -279,6 +294,7 @@ const lightRed: ImageProps = {
 }
 
 const lightBlue: ImageProps = {
+  id: '16',
   width: '1294px',
   height: '1255px',
   absTop: '-628px',
@@ -289,6 +305,7 @@ const lightBlue: ImageProps = {
 }
 
 const lightBlueFaint: ImageProps = {
+  id: '17',
   width: '244.12px',
   height: '236.21px',
   absTop: '180.27px',
@@ -310,32 +327,36 @@ export const coinXXXL: ImageProps = {
 }
 
 const star1: ImageProps = {
-  width: '16.95px',
-  height: '16.95px',
+  id: '18',
+  width: '17',
+  height: '17',
   absTop: '497.85px',
   absLeft: '1583.49px',
   background: '#313A54'
 }
 
 const star2: ImageProps = {
-  width: '16.95px',
-  height: '16.95px',
+  id: '19',
+  width: '17',
+  height: '17',
   absTop: '93.24px',
   absLeft: '1512.28px',
   background: '#A0B4E9'
 }
 
 const star3: ImageProps = {
-  width: '16.95px',
-  height: '16.95px',
+  id: '20',
+  width: '17',
+  height: '17',
   absTop: '95.5px',
   absLeft: '1241.04px',
   background: '#A0B4E9'
 }
 
 const star4: ImageProps = {
-  width: '15.82px',
-  height: '15.82px',
+  id: '21',
+  width: '16',
+  height: '16',
   absTop: '261.64px',
   absLeft: '1311.11px',
   background: '#FFFFFF'
@@ -398,8 +419,9 @@ const manLight: ImageProps = {
 
 const coinStars: ImageProps [] = [
   {
-    width: '23px',
-    height: '23px',
+    id: '22',
+    width: '23',
+    height: '23',
     absTop: '68.58px',
     absLeft: '300px',
     background: '#FFDF6D',
@@ -407,8 +429,9 @@ const coinStars: ImageProps [] = [
     zIndex: '2'
   },
   {
-    width: '40px',
-    height: '40px',
+    id: '23',
+    width: '40',
+    height: '40',
     absTop: '20px',
     absLeft: '330px',
     background: '#B5C9FF',
@@ -512,7 +535,8 @@ export const cardsMainProps: CardMainWrapperProps [] = [
       textFirst: card1TextFirst,
       textSecond: card1TextSecond,
       textBtn:card1TextBtn
-    }
+    },
+    id: '30'
   },
   {
     cardMainBgProps: cardMainCoin,
@@ -520,7 +544,8 @@ export const cardsMainProps: CardMainWrapperProps [] = [
       textFirst: card2TextFirst,
       textSecond: card2TextSecond,
       textBtn:card2TextBtn
-    }
+    },
+    id: '31'
   },
   {
     cardMainBgProps: cardMainMan,
@@ -528,11 +553,13 @@ export const cardsMainProps: CardMainWrapperProps [] = [
       textFirst: card3TextFirst,
       textSecond: card3TextSecond,
       textBtn:card3TextBtn
-    }
+    },
+    id: '32'
   }
 ]
 
 const coinBtcTop: ImageProps = {
+  id: '24',
   width: '86px',
   height: '79px',
   absTop: '-13px',
@@ -541,6 +568,7 @@ const coinBtcTop: ImageProps = {
 }
 
 const coinBtcRight: ImageProps = {
+  id: '25',
   width: '65px',
   height: '65px',
   absTop: '58px',
@@ -549,6 +577,7 @@ const coinBtcRight: ImageProps = {
 }
 
 const coinBtcBottom: ImageProps = {
+  id: '26',
   width: '69px',
   height: '47px',
   absTop: '170px',
@@ -557,6 +586,7 @@ const coinBtcBottom: ImageProps = {
 }
 
 const coinBtcLeft: ImageProps = {
+  id: '27',
   width: '45px',
   height: '49px',
   absTop: '74px',
@@ -638,3 +668,36 @@ export const walletIconSecond: ShapeProps = {
   shapeWrapper: walletIconSecondWrapper,
   complexSVGBody: walletIconSecondSVGBody
 }
+
+const meritCardTitle: TextProps = {
+  maxWidth: '100%',
+  marginBottom: '13px',
+  fontFamily: 'Futura PT',
+  fontWeight: '600',
+  fontSize: '24px',
+  lineHeight: '29px',
+  color: '#FFFFFF',
+  text:'Global Exposure'
+}
+
+const meritCardText: TextProps = {
+  maxWidth: '280px',
+  marginBottom: '0',
+  fontFamily: 'HelveticaNeueCyr',
+  fontWeight: '300',
+  fontSize: '16px',
+  lineHeight: '19px',
+  color: '#82C8F4',
+  text:'Get access to 100k+ Starly users across the globe.'
+}
+
+const meritCardContent: MeritCardProps = {
+  id: '1',
+  image: Images.World,
+  title: meritCardTitle,
+  text: meritCardText
+}
+
+export const meritCardsContent: MeritCardProps [] = [
+  meritCardContent, meritCardContent, meritCardContent
+]

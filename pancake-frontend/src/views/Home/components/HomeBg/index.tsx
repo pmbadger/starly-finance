@@ -1,13 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import Container from 'components/Layout/Container'
-import { useWeb3React } from '@web3-react/core'
 import { shapes, circles, follinStars, lights, stars } from 'config/constants/views/home'
-import SunburstSvg from '../SunburstSvg'
-import CompositeImage from '../CompositeImage'
-import SpaceBgImg from '../../space-bg.png'
+import Images from 'config/constants/views/images'
 import TokenIcon from './TokenIcon'
 import CircleBg from './CircleBg'
 import CustomeStar from './CustomStar'
@@ -33,7 +27,7 @@ const SpaceBg = styled.div`
   top: 0px;
   z-index: -3;
 
-  background: url(${SpaceBgImg});
+  background: url(${Images.SpaceBgImg});
   mix-blend-mode: screen;
 `
 
@@ -53,7 +47,8 @@ const HomeBg = () => {
   return (
 	<>
     {lights.map((light) => 
-      <EllipseBg 
+      <EllipseBg
+        key={light.id}
         width={light.width}
         height={light.height}
         absTop={light.absTop}
@@ -66,6 +61,8 @@ const HomeBg = () => {
 		<SpaceBg />
     {shapes.map((shape) => 
       <TokenIcon 
+        key={shape.id}
+        id={shape.id}
         width={shape.width}
         height={shape.height}
         shapeWrapper={shape.shapeWrapper}
@@ -75,7 +72,9 @@ const HomeBg = () => {
     }
     {
       circles.map((circle) => 
-      <CircleBg 
+      <CircleBg
+        key={circle.id}
+        id={circle.id}
         diameter={circle.diameter}
         absTop={circle.absTop}
         absLeft={circle.absLeft}
@@ -85,6 +84,8 @@ const HomeBg = () => {
     {
       follinStars.map((star) => 
       <FollingStarBg
+        key={star.id}
+        id={star.id}
         width={star.width}
         height={star.height}
         absTop={star.absTop}
@@ -95,6 +96,7 @@ const HomeBg = () => {
     {
       stars.map((star) => 
       <CustomeStar
+        key={star.id}
         width={star.width}
         height={star.height}
         absTop={star.absTop}
