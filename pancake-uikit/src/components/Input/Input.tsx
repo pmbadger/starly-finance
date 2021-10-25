@@ -45,9 +45,10 @@ const Input = styled.input<InputProps>`
   padding: 0 16px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  font-family: 'FuturaPT-Medium';
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: white;
   }
 
   &:disabled {
@@ -55,10 +56,6 @@ const Input = styled.input<InputProps>`
     box-shadow: none;
     color: ${({ theme }) => theme.colors.textDisabled};
     cursor: not-allowed;
-  }
-
-  &:focus:not(:disabled) {
-    box-shadow: ${({ theme }) => theme.shadows.focus};
   }
 `;
 

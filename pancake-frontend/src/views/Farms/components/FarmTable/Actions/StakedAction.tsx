@@ -27,6 +27,23 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
+const StyledConnectWalletButton = styled(ConnectWalletButton)`
+  padding: 12px 7px;
+  width: 158px;
+  height: 45px;
+  background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 21px;
+
+  img {
+    margin-right: 12px;
+    margin-top: -3px;
+  }
+`
+
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
@@ -102,16 +119,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   if (!account) {
     return (
-      <ActionContainer>
-        <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-            {t('Start Farming')}
-          </Text>
-        </ActionTitles>
-        <ActionContent>
-          <ConnectWalletButton width="100%" />
-        </ActionContent>
-      </ActionContainer>
+      <StyledConnectWalletButton
+        text="Unlock Wallet"
+        icon={<img alt="lock" src="/images/lock.svg" />}
+        iconPosition="start"
+      />
     )
   }
 

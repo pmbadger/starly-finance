@@ -16,6 +16,7 @@ const MultiplierWrapper = styled.div`
   width: 36px;
   text-align: right;
   margin-right: 14px;
+  font-family: 'FuturaPT-Bold';
 
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: left;

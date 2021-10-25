@@ -38,8 +38,8 @@ const ChildrenWrapper = styled(Container)`
   padding-bottom: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 54px;
+    padding-bottom: 54px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {

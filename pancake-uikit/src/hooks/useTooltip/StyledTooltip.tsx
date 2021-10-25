@@ -13,7 +13,7 @@ export const Arrow = styled.div`
   &::before {
     content: "";
     transform: rotate(45deg);
-    background: ${({ theme }) => theme.tooltip.background};
+    background: #152340;
   }
 `;
 
@@ -24,7 +24,8 @@ export const StyledTooltip = styled.div`
   border-radius: 16px;
   max-width: 320px;
   z-index: 101;
-  background: ${({ theme }) => theme.tooltip.background};
+  background: #152340;
+  font-family: 'FuturaPT-Medium';
   color: ${({ theme }) => theme.tooltip.text};
   box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
 

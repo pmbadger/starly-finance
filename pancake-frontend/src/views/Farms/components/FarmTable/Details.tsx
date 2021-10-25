@@ -12,10 +12,23 @@ const Container = styled.div`
   width: 100%;
   justify-content: flex-end;
   padding-right: 8px;
-  color: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-family: 'FuturaPT-Medium';
+  font-style: normal;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 21px;
+  padding-top: 14px;
+  margin-right: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-right: 0px;
+  }
+
+  svg {
+    path {
+      fill: white !important;
+    }
   }
 `
 
@@ -32,7 +45,7 @@ const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
   return (
     <Container>
       {!isMobile && t('Details')}
-      <ArrowIcon color="primary" toggled={actionPanelToggled} />
+      <ArrowIcon color="white" toggled={actionPanelToggled} />
     </Container>
   )
 }

@@ -5,8 +5,17 @@ import debounce from 'lodash/debounce'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledInput = styled(Input)`
-  border-radius: 16px;
+  border-radius: 12px;
   margin-left: auto;
+  width: 270px;
+  height: 54px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #455381;
+  background: url(images/search.svg) no-repeat scroll 21px 17px;
+  padding-left: 50px;
+  font-size: 14px;
+  line-height: 18px;
 `
 
 const InputWrapper = styled.div`
@@ -16,7 +25,9 @@ const InputWrapper = styled.div`
   }
 `
 
-const Container = styled.div<{ toggled: boolean }>``
+const Container = styled.div<{ toggled: boolean }>`
+  margin-bottom: 20px;
+`
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void

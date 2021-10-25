@@ -65,8 +65,9 @@ const StyledConnectWalletButton = styled(ConnectWalletButton)`
   line-height: 21px;
 
   img {
-    margin-left: 5px;
-    margin-top: -10px;
+    position: absolute;
+    margin-left: 130px;
+    margin-top: -15px;
   }
 `
 

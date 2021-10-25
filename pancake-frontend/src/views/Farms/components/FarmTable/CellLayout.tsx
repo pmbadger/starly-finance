@@ -2,15 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Label = styled.div`
-  font-size: 12px;
-  color: ${({ theme }) => theme.colors.textSubtle};
+  font-family: 'FuturaPT-Medium';
+  color: #82c8f4;
   text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  margin: 4px 0px;
 `
 
 const ContentContainer = styled.div`
   min-height: 24px;
   display: flex;
   align-items: center;
+  font-family: 'FuturaPT-Medium';
+
+  svg {
+    path {
+      fill: #82c8f4;
+    }
+  }
 `
 
 interface CellLayoutProps {

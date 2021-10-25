@@ -12,9 +12,10 @@ interface EarnedPropsWithLoading extends EarnedProps {
 }
 
 const Amount = styled.span<{ earned: number }>`
-  color: ${({ earned, theme }) => (earned ? theme.colors.text : theme.colors.textDisabled)};
+  color: white;
   display: flex;
   align-items: center;
+  font-family: 'FuturaPT-Bold';
 `
 
 const Earned: React.FunctionComponent<EarnedPropsWithLoading> = ({ earnings, userDataReady }) => {

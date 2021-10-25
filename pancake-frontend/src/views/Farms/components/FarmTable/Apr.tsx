@@ -29,7 +29,7 @@ const Container = styled.div`
 
     svg {
       path {
-        fill: ${({ theme }) => theme.colors.textSubtle};
+        fill: #82c8f4;
       }
     }
   }
@@ -38,6 +38,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   min-width: 60px;
   text-align: left;
+  font-family: 'FuturaPT-Bold';
 `
 
 const Apr: React.FC<AprProps> = ({
