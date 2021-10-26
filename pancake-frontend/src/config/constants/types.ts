@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { SerializedBigNumber, TranslatableText } from 'state/types'
+import { StringLiteral } from 'typescript'
 
 export interface Address {
   3: string
@@ -232,4 +233,84 @@ export interface ConnectedBidder {
   account: string
   isWhitelisted: boolean
   bidderData?: Bidder
+}
+
+interface AbsolutePosition {
+  absTop: string
+  absLeft: string
+}
+
+interface ShapeSizes {
+  width: string
+  height: string
+}
+
+export interface LiteSVGBody {
+  pathD: string
+  pathFill: string
+}
+
+export interface ShapeWrapper extends AbsolutePosition, ShapeSizes {
+  background: string
+  boxShadow?: string
+  id?: string
+}
+
+export interface ShapeProps {
+  width: string
+  height: string
+  shapeWrapper: ShapeWrapper
+  SVGBody?: LiteSVGBody[]
+  complexSVGBody?: string
+  id?: string
+}
+
+export interface CircleProps extends AbsolutePosition {
+  id: string
+  diameter: string
+  SVGBody: string
+}
+
+export interface ImageProps extends AbsolutePosition, ShapeSizes {
+  background: string
+  opacity?: number
+  filter?: string
+  zIndex?: string
+  id?: string
+}
+
+export interface CardMainBgProps {
+  imageBg: ImageProps
+  lightBg: ImageProps
+  stars?: ImageProps[]
+}
+
+export interface TextProps {
+  marginBottom: string
+  maxWidth: string
+  fontFamily: string
+  fontWeight: string
+  fontSize: string
+  lineHeight: string
+  color: string
+  text: string
+}
+
+export interface CardMainContentProps {
+  textFirst: TextProps
+  textSecond: TextProps
+  textBtn: string
+}
+
+export interface CardMainWrapperProps {
+  cardMainBgProps: CardMainBgProps
+  cardMainContentProps: CardMainContentProps
+  id?: string
+}
+
+export interface MeritCardProps {
+  image: string
+  title: TextProps
+  text: TextProps
+  id?: string
 }
