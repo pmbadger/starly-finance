@@ -13,7 +13,7 @@ const ConnectWalletButton = (props) => {
   const { text, icon, iconPosition } = props
 
   const StyledText = styled(Text)`
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
   `
 
   return icon ? (

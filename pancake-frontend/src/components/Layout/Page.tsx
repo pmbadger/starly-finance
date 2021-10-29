@@ -10,6 +10,7 @@ import Container from './Container'
 const StyledPage = styled(Container)`
   min-height: 100vh;
   padding: 54px 0;
+  padding-bottom: 0;
 `
 
 const PageMeta = () => {

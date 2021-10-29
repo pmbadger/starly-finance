@@ -147,14 +147,14 @@ const StyledIconButton = styled(IconButton)`
   }
 
   ${Text} {
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
     font-size: 16px;
     line-height: 21px;
   }
 `
 
 const StyledText = styled(Text)`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   width: 50px;
 `
 
@@ -163,7 +163,7 @@ const LPContainer = styled.div`
 `
 
 const Label = styled.div`
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   color: #82c8f4;
   text-align: left;
   font-style: normal;
@@ -177,7 +177,7 @@ const ContentContainer = styled.div`
   min-height: 24px;
   display: flex;
   align-items: center;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
 
   svg {
     path {

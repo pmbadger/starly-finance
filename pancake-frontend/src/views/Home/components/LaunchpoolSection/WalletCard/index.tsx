@@ -3,13 +3,19 @@ import styled from 'styled-components'
 import Images from 'config/constants/views/images'
 import WalletContent from './WalletContent'
 
-const WalletCardWrapper = styled.div`
-  position: absolute;
-  margin: 0px 24px;
+interface Props {
+  position?: string
+  disable?: boolean
+  margin?: string
+}
+
+const WalletCardWrapper = styled.div<{ position; margin }>`
+  position: ${({ position }) => position || 'absolute'};
+  margin: ${({ margin }) => margin || '0 24px'};
   width: 276px;
   height: 202px;
-  left: 753px;
-  top: 45px;
+  left: ${({ position }) => (position === 'relative' ? 'none' : '753px')};
+  top: ${({ position }) => (position === 'relative' ? 'none' : '45px')};
 
   background: rgb(21, 35, 64);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
@@ -65,17 +71,21 @@ const WalletLightWrapper = styled.div`
   z-index: -1;
 `
 
-const WalletCard: React.FC = () => {
+const WalletCard: React.FC<Props> = ({ position, disable, margin }) => {
   return (
-    <WalletCardWrapper>
+    <WalletCardWrapper position={position} margin={margin}>
       <MaxWrapper>
-        <MaxImage />
-        <MaxText>Max. 500</MaxText>
+        {!disable && (
+          <>
+            <MaxImage />
+            <MaxText>Max. 500</MaxText>
+          </>
+        )}
         <WalletLightWrapper>
           <WalletLight />
         </WalletLightWrapper>
       </MaxWrapper>
-      <WalletContent />
+      <WalletContent disable={disable} />
     </WalletCardWrapper>
   )
 }

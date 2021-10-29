@@ -45,7 +45,7 @@ const Input = styled.input<InputProps>`
   padding: 0 16px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
 
   &::placeholder {
     color: white;

@@ -38,7 +38,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   min-width: 60px;
   text-align: left;
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
 `
 
 const Apr: React.FC<AprProps> = ({

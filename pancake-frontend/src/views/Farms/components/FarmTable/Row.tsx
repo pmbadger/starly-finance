@@ -115,7 +115,7 @@ const FarmMobileCell = styled.div`
 `
 
 const ApyTmpText = styled(Text)`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   margin-right: 8px;
 `
 
@@ -137,7 +137,7 @@ const HotButton = styled(Button)`
   background: #d33b3b;
   border-radius: 50px;
 
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 450;
   font-size: 11px;

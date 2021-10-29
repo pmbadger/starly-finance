@@ -27,7 +27,7 @@ const LiquidityWrapper = styled.div`
   }
 
   ${Text} {
-    font-family: 'FuturaPT-Bold';
+    font-family: 'Futura PT Bold';
   }
 `
 

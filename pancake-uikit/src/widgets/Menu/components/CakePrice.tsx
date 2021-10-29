@@ -31,7 +31,7 @@ const PriceLink = styled.a`
 const StyledText = styled(Text)`
   color: white;
   font-size: 11px;
-  font-family: 'SFProDisplay';
+  font-family: 'SF Pro Display';
 `
 
 const CakePrice: React.FC<Props> = () => {

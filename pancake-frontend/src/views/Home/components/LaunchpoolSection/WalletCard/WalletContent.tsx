@@ -5,6 +5,10 @@ import { walletIconFirst, walletIconSecond } from 'config/constants/views/home'
 import { Button } from 'pancakeswap-uikit'
 import TokenIcon from '../../HomeBg/TokenIcon'
 
+interface Props {
+  disable?: boolean
+}
+
 const WalletContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,17 +67,24 @@ const BtnsWrapper = styled.div`
   justify-content: center;
 `
 
-const CustomButton = styled(Button)`
+const CustomButton = styled(Button)<{
+  disable?: boolean
+}>`
   position: relative;
   margin-top: 25px;
-  background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
-  font-family: 'SF Pro Display';
+  background: ${({ disable }) => (disable ? '#1F3258' : 'linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%)')};
+  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   letter-spacing: 0.02em;
-  color: #ffffff;
+  color: ${({ disable }) => (disable ? '#82C8F4' : '#ffffff')};
+  svg {
+    path {
+      fill: ${({ disable }) => (disable ? '#82C8F4' : 'inner')};
+    }
+  }
 `
 
 const SwgUnlockWrapper = styled.div`
@@ -130,7 +141,7 @@ const StarXS: React.FC = () => {
   )
 }
 
-const WalletContent: React.FC = () => {
+const WalletContent: React.FC<Props> = ({ disable }) => {
   return (
     <WalletContentWrapper>
       <TokenInfoWrapper>
@@ -152,8 +163,8 @@ const WalletContent: React.FC = () => {
           <TextLine
             maxWidth="84px"
             marginBottom="2px"
-            fontFamily="Futura PT"
-            fontWeight="600"
+            fontFamily="Futura PT Bold"
+            fontWeight="500"
             fontSize="16px"
             lineHeight="21px"
             color="#FFFFFF"
@@ -174,7 +185,7 @@ const WalletContent: React.FC = () => {
           <TextLine
             maxWidth="112.8px"
             marginBottom="2px"
-            fontFamily="Futura PT"
+            fontFamily="Futura PT Bold"
             fontWeight="600"
             fontSize="16px"
             lineHeight="21px"
@@ -185,9 +196,9 @@ const WalletContent: React.FC = () => {
         </TextWrapper>
       </TokenInfoWrapper>
       <BtnsWrapper>
-        <CustomButton startIcon={<UnlockIcon />}>
+        <CustomButton startIcon={<UnlockIcon />} disable={disable}>
           Unlock Wallet
-          <StarXS />
+          {disable || <StarXS />}
         </CustomButton>
         <CustomButtonText variant="text">Show Details</CustomButtonText>
       </BtnsWrapper>

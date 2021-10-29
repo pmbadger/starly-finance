@@ -30,7 +30,7 @@ const StyledPage = styled.div`
 `
 
 const Title = styled(Text)`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   color: white;
   font-weight: 600;
   font-size: 42px;
@@ -41,7 +41,7 @@ const Title = styled(Text)`
 
 const SubTitle = styled(Text)`
   font-style: normal;
-  font-family: HelveticaNeueCyrLight;
+  font-family: HelveticaNeueCyr;
   font-weight: 300;
   font-size: 18px;
   line-height: 140%;

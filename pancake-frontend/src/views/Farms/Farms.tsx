@@ -53,7 +53,7 @@ const ToggleWrapper = styled.div`
 
   ${Text} {
     margin-left: 13px;
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
     color: #82c8f4;
     font-size: 14px;
     line-height: 18px;
@@ -78,7 +78,7 @@ const ViewControls = styled.div`
 `
 
 const Title = styled(Text)`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   color: white;
   font-weight: 600;
   font-size: 42px;
@@ -90,7 +90,7 @@ const Title = styled(Text)`
 
 const SubTitle = styled(Text)`
   font-style: normal;
-  font-family: HelveticaNeueCyrLight;
+  font-family: HelveticaNeueCyr;
   font-weight: 300;
   font-size: 18px;
   line-height: 140%;
@@ -118,11 +118,10 @@ const TableContainer = styled.div`
   background: #111522;
   border-top: 1px solid rgba(130, 200, 244, 0.1);
   height: 100vh;
-  margin-bottom: -54px;
 `
 
 const StyledText = styled(Text)`
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   font-size: 16px;
   line-height: 21px;
 `
@@ -164,6 +163,7 @@ const CoinStand = styled.img`
   top: 5px;
   width: 330px;
 `
+
 const Comet = styled.img`
   position: fixed;
   top: -25px;
@@ -176,12 +176,23 @@ const HarvestButton = styled(Button)`
   width: 140px;
   height: 54px;
   border-radius: 12px;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   color: #82c8f4;
   font-weight: normal;
   font-size: 16px;
   line-height: 21px;
   margin-bottom: 20px;
+`
+const CoinStandBackground = styled.div`
+  position: absolute;
+  z-index: -2;
+  width: 428px;
+  height: 236px;
+  left: 48vw;
+  top: 283px;
+
+  background: #3969aa;
+  filter: blur(256px);
 `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
@@ -205,7 +216,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('all')
   const chosenFarmsLength = useRef(0)
 
   const isArchived = pathname.includes('archived')
@@ -467,6 +478,7 @@ const Farms: React.FC = () => {
   return (
     <>
       <Page>
+        <CoinStandBackground />
         <Coin1 alt="coin" src="/images/coin4.png" />
         <Coin2 alt="coin" src="/images/coin3.png" />
         <Comet alt="comet" src="/images/comet.png" />

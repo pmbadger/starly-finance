@@ -22,7 +22,7 @@ const Row = styled.div`
     margin: 12px 0;
 
     div{
-        font-family: 'SFProDisplay';
+        font-family: 'SF Pro Display';
     }
 `
 

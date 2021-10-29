@@ -25,7 +25,7 @@ export const StyledTooltip = styled.div`
   max-width: 320px;
   z-index: 101;
   background: #152340;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   color: ${({ theme }) => theme.tooltip.text};
   box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
 

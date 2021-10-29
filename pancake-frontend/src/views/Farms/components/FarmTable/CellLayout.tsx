@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Label = styled.div`
-  font-family: 'FuturaPT-Medium';
+f ont-family: 'Futura PT';
   color: #82c8f4;
   text-align: left;
   font-style: normal;
@@ -16,7 +16,7 @@ const ContentContainer = styled.div`
   min-height: 24px;
   display: flex;
   align-items: center;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
 
   svg {
     path {

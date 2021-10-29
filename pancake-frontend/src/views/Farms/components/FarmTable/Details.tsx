@@ -13,7 +13,7 @@ const Container = styled.div`
   justify-content: flex-end;
   padding-right: 8px;
   color: white;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 450;
   font-size: 16px;

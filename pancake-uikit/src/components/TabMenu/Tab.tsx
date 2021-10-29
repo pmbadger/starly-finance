@@ -3,7 +3,7 @@ import { color } from "styled-system";
 import { TabProps } from "./types";
 
 const Tab = styled.button<TabProps>`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   display: inline-flex;
   justify-content: center;
   cursor: pointer;

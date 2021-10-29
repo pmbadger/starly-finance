@@ -29,7 +29,7 @@ const LinkLabel = styled.div<Props>`
   font-style: normal;
   font-size: 15px;
   line-height: 18px;
-  font-family: 'SFProDisplay';
+  font-family: 'SF Pro Display';
 `;
 
 const MenuEntry = styled.div<Props>`

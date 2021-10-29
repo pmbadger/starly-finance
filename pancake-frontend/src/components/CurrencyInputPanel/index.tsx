@@ -12,7 +12,7 @@ import { RowBetween } from '../Layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
 
 const InputRow = styled.div<{ selected: boolean }>`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   height: 70px;
   display: flex;
   flex-flow: row nowrap;
@@ -93,7 +93,7 @@ export default function CurrencyInputPanel({
   )
   return (
     <InputPanel id={id}>
-      <Text style={{ marginBottom: '13px', fontFamily: 'FuturaPT-Medium' }}>{translatedLabel}</Text>
+      <Text style={{ marginBottom: '13px', fontFamily: 'Futura PT' }}>{translatedLabel}</Text>
       <Container hideInput={hideInput}>
         {!hideInput && (
           <LabelRow>
@@ -145,7 +145,7 @@ export default function CurrencyInputPanel({
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" style={{ color: 'white' }} fontFamily="FuturaPT-Medium">
+                <Text id="pair" style={{ color: 'white' }} fontFamily="Futura PT">
                   {currency ? '' : t('Select a Currency')}
                 </Text>
               )}

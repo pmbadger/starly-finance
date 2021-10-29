@@ -19,7 +19,7 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   text-overflow: ellipsis;
   padding: 0px;
   -webkit-appearance: textfield;
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
 
   ::-webkit-search-decoration {
     -webkit-appearance: none;

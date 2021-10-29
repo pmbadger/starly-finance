@@ -50,7 +50,7 @@ export const ModalContainer = styled(Box)<{ minWidth: string }>`
   z-index: ${({ theme }) => theme.zIndices.modal};
 
   h2, h3, h4, h5, p{
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
   }
 
   ${({ theme }) => theme.mediaQueries.xs} {

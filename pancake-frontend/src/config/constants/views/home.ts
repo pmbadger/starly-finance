@@ -478,7 +478,7 @@ const card1TextFirst: TextProps = {
 const card1TextSecond: TextProps = {
   maxWidth: '200px',
   marginBottom: '26.4px',
-  fontFamily: 'Futura PT',
+  fontFamily: 'Futura PT Bold',
   fontWeight: 'bold',
   fontSize: '32px',
   lineHeight: '41px',
@@ -502,7 +502,7 @@ const card2TextFirst: TextProps = {
 const card2TextSecond: TextProps = {
   maxWidth: '240px',
   marginBottom: '26.6px',
-  fontFamily: 'Futura PT',
+  fontFamily: 'Futura PT Bold',
   fontWeight: 'bold',
   fontSize: '24px',
   lineHeight: '31px',
@@ -526,7 +526,7 @@ const card3TextFirst: TextProps = {
 const card3TextSecond: TextProps = {
   maxWidth: '210px',
   marginBottom: '26.6px',
-  fontFamily: 'Futura PT',
+  fontFamily: 'Futura PT  ',
   fontWeight: 'bold',
   fontSize: '24px',
   lineHeight: '31px',

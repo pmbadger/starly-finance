@@ -14,7 +14,7 @@ const DropDownHeader = styled.div`
   transition: border-radius 0.15s;
 
   ${Text} {
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
     font-size: 14px;
     line-height: 18px;
     text-overflow: ellipsis;
@@ -56,7 +56,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
         border-bottom: 1px solid #131c32;
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
         border-radius: 12px 12px 0 0;
-        font-family: 'FuturaPT-Medium';
+        font-family: 'Futura PT';
       }
 
       ${DropDownListContainer} {
@@ -89,7 +89,7 @@ const ListItem = styled.li`
   padding: 8px 12px;
 
   ${Text} {
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
     font-size: 14px;
     line-height: 18px;
   }

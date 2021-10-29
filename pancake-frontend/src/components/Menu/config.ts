@@ -20,7 +20,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: 'Launchpools',
     icon: 'LaunchpoolsIcon',
-    href: '#',
+    href: '/launchpools',
   },
   {
     label: 'Referral program',

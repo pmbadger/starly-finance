@@ -43,7 +43,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
     height: 45px;
     background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
     color: white;
-    font-family: 'FuturaPT-Medium';
+    font-family: 'Futura PT';
     padding: 12px 32px;
     font-weight: 450;
     font-size: 16px;

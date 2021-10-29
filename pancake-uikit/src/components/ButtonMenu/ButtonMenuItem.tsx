@@ -9,7 +9,7 @@ interface InactiveButtonProps extends BaseButtonProps {
 }
 
 const InactiveButton: PolymorphicComponent<InactiveButtonProps, "button"> = styled(Button)<InactiveButtonProps>`
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   background-color: transparent;
   height: 54px;
   color: ${({ theme, variant }) => (variant === variants.PRIMARY ? theme.colors.primary : "#82C8F4")};

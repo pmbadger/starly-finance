@@ -13,7 +13,7 @@ const getBackgroundColor = ({ variant }: StyledButtonMenuProps) => {
 };
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
-  font-family: 'FuturaPT-Medium';
+  font-family: 'Futura PT';
   background-color: ${getBackgroundColor};
   border-radius: 12px;
   display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};

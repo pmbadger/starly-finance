@@ -44,7 +44,7 @@ const Label = styled(Text)`
 `
 
 const CardTitle = styled(Text)`
-  font-family: 'FuturaPT-Bold';
+  font-family: 'Futura PT Bold';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
