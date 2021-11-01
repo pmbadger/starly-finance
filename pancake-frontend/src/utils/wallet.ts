@@ -2,6 +2,7 @@
 
 import { BASE_BLOCK_EXPLORER_URL, BASE_URL } from 'config'
 import { nodes } from './getRpcUrl'
+import { CAKE } from '../config/constants/tokens'
 
 /**
  * Prompt the user to add Ethereum as a network on Metamask, or switch to Ethereum if the wallet is on a different network
@@ -61,4 +62,9 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
   })
 
   return tokenAdded
+}
+
+export const registerCakeToken = async () => {
+  const cakeToken = CAKE[process.env.REACT_APP_CHAIN_ID]
+  return registerToken(cakeToken.address, cakeToken.symbol, cakeToken.decimals)
 }

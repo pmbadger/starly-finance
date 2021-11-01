@@ -59,6 +59,8 @@ const MobileOnlyOverlay = styled(Overlay)`
 const Menu: React.FC<NavProps> = ({
   userMenu,
   globalMenu,
+  cakeTotalSupply,
+  registerCakeToken,
   isDark,
   toggleTheme,
   langs,
@@ -118,6 +120,8 @@ const Menu: React.FC<NavProps> = ({
       </StyledNav>
       <BodyWrapper>
         <Panel
+          cakeTotalSupply={cakeTotalSupply}
+          registerCakeToken={registerCakeToken}
           isPushed={isPushed}
           isMobile={isMobile}
           showMenu={showMenu}
