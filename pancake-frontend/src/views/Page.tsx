@@ -65,7 +65,7 @@ const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...pro
     <StyledPage {...props}>
       <Row>
         <Title>Make a Swap at No Cost</Title>
-        <SubTitle>Up to 100% of the trading fee returned in STRL tokens</SubTitle>
+        <SubTitle>Up to 100% of the trading fee returned in STLY tokens</SubTitle>
       </Row>
       <AppBody>
         <Wrapper id="swap-page">

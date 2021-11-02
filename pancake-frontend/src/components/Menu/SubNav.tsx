@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Tab, TabMenu } from 'pancakeswap-uikit'
 
 const getActiveIndex = (pathname: string): number => {
-  if (pathname.includes('/liquidity')) {
+  if (pathname.includes('/liquidity') || pathname.includes('/add')) {
     return 1
   }
   return 0

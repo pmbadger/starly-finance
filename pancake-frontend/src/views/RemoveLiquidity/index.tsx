@@ -636,7 +636,9 @@ export default function RemoveLiquidity({
               <RowBetween>
                 <Button
                   variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
-                  onClick={() => onAttemptToApprove}
+                  onClick={() => {
+                    onAttemptToApprove()
+                  }}
                   disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                   width="100%"
                   mr="0.5rem"
