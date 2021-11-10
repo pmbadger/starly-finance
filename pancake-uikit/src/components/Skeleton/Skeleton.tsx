@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { space, layout } from "styled-system";
 import { SkeletonProps, animation as ANIMATION, variant as VARIANT } from "./types";
+import {lightColors} from "../../theme";
 
 const waves = keyframes`
    from {
@@ -27,7 +28,7 @@ const pulse = keyframes`
 const Root = styled.div<SkeletonProps>`
   min-height: 20px;
   display: block;
-  background-color: ${({ theme }) => theme.colors.backgroundDisabled};
+  background-color: ${({ theme }) => theme.colors.backgroundSkeleton};
   border-radius: ${({ variant, theme }) => (variant === VARIANT.CIRCLE ? theme.radii.circle : theme.radii.small)};
 
   ${layout}

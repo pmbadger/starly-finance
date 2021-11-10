@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Flex, LogoutIcon, useModal, UserMenu as UIKitUserMenu, UserMenuDivider, UserMenuItem } from 'pancakeswap-uikit'
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import { StyledConnectWalletButton } from 'components/ConnectWalletButton'
 import { FetchStatus, useGetEthBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import WalletModal, { WalletView, LOW_ETH_BALANCE } from './WalletModal'
@@ -23,7 +23,7 @@ const UserMenu = () => {
   const hasLowEthBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_ETH_BALANCE)
 
   if (!account) {
-    return <ConnectWalletButton scale="sm" />
+    return <StyledConnectWalletButton />
   }
 
   return (

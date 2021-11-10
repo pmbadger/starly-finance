@@ -300,6 +300,7 @@ export interface CardMainContentProps {
   textFirst: TextProps
   textSecond: TextProps
   textBtn: string
+  textLink: string
 }
 
 export interface CardMainWrapperProps {

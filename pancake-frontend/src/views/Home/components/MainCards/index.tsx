@@ -26,6 +26,7 @@ const MainCardsWrapper: React.FC = () => {
             textFirst={card.cardMainContentProps.textFirst}
             textSecond={card.cardMainContentProps.textSecond}
             textBtn={card.cardMainContentProps.textBtn}
+            textLink={card.cardMainContentProps.textLink}
           />
           <CardMainBg
             imageBg={card.cardMainBgProps.imageBg}

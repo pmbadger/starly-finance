@@ -1,7 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_BLOCK_EXPLORER_URL, BASE_URL } from 'config'
-import { nodes } from './getRpcUrl'
+import { BASE_URL } from 'config'
 import { CAKE } from '../config/constants/tokens'
 
 /**
@@ -14,20 +13,8 @@ export const setupNetwork = async () => {
     const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
       await provider.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Ropsten Test Network',
-            nativeCurrency: {
-              name: 'ETH',
-              symbol: 'eth',
-              decimals: 18,
-            },
-            rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_BLOCK_EXPLORER_URL}/`],
-          },
-        ],
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: `0x${chainId.toString(16)}` }],
       })
       return true
     } catch (error) {

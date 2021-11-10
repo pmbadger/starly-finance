@@ -94,7 +94,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative BNB Launchpools
+                Lucrative ETH Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"
@@ -104,7 +104,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Wide horizons for STRL hodlers
+                Wide horizons for STLY hodlers
               </TextLine>
             </TextContentSection>
             <TextBorder />
@@ -127,7 +127,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#F08BB9"
               >
-                {`500 STRL\u00a0\u00a0\u00a0\u00a0\u00a0|\u00a0\u00a0\u00a0\u00a0\u00a020 STRL`}
+                {`500 STLY\u00a0\u00a0\u00a0\u00a0\u00a0|\u00a0\u00a0\u00a0\u00a0\u00a020 STLY`}
               </TextLine>
             </TextContentSection>
           </TextContentWraper>
@@ -153,7 +153,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative BNB Launchpools
+                Lucrative ETH Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"

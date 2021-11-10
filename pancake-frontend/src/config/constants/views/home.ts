@@ -487,6 +487,7 @@ const card1TextSecond: TextProps = {
 }
 
 const card1TextBtn = 'Start Farming Now!'
+const card1Link = '/farms'
 
 const card2TextFirst: TextProps = {
   maxWidth: '250px',
@@ -511,6 +512,7 @@ const card2TextSecond: TextProps = {
 }
 
 const card2TextBtn = 'Invite and Start Earn'
+const card2Link = '#'
 
 const card3TextFirst: TextProps = {
   maxWidth: '280px',
@@ -535,6 +537,7 @@ const card3TextSecond: TextProps = {
 }
 
 const card3TextBtn = 'Add Liquidity'
+const card3Link = '/liquidity'
 
 export const cardsMainProps: CardMainWrapperProps[] = [
   {
@@ -543,6 +546,7 @@ export const cardsMainProps: CardMainWrapperProps[] = [
       textFirst: card1TextFirst,
       textSecond: card1TextSecond,
       textBtn: card1TextBtn,
+      textLink: card1Link,
     },
     id: '30',
   },
@@ -552,6 +556,7 @@ export const cardsMainProps: CardMainWrapperProps[] = [
       textFirst: card2TextFirst,
       textSecond: card2TextSecond,
       textBtn: card2TextBtn,
+      textLink: card2Link,
     },
     id: '31',
   },
@@ -561,6 +566,7 @@ export const cardsMainProps: CardMainWrapperProps[] = [
       textFirst: card3TextFirst,
       textSecond: card3TextSecond,
       textBtn: card3TextBtn,
+      textLink: card3Link,
     },
     id: '32',
   },
@@ -623,7 +629,7 @@ export const LaunchpoolTextSecond: TextProps = {
   fontSize: '32px',
   lineHeight: '38px',
   color: '#FFDF6D',
-  text: 'Stake your BSW in exchange for even more tokens',
+  text: 'Stake your STLY in exchange for even more tokens',
 }
 
 const walletIconFirstWrapper: ShapeWrapper = {

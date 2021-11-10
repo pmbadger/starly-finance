@@ -11,7 +11,7 @@ export const light: CardTheme = {
   cardHeaderBackground: {
     default: lightColors.gradients.cardHeader,
     blue: lightColors.gradients.blue,
-    bubblegum: lightColors.gradients.bubblegum,
+    bubblegum: lightColors.cardHeader,
     violet: lightColors.gradients.violet,
   },
   dropShadow: "drop-shadow(0px 1px 4px rgba(25, 19, 38, 0.15))",

@@ -32,4 +32,32 @@ const ConnectWalletButton = (props) => {
   )
 }
 
+const ConnectWalletButtonStyle = styled(ConnectWalletButton)`
+  padding: 12px 7px;
+  width: 158px;
+  height: 45px;
+  background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 21px;
+
+  img {
+    position: absolute;
+    margin-left: 130px;
+    margin-top: -15px;
+  }
+`
+
+export const StyledConnectWalletButton = () => {
+  return (
+    <ConnectWalletButtonStyle
+      text="Connect wallet"
+      icon={<img alt="star" src="/images/star.svg" />}
+      iconPosition="end"
+    />
+  )
+}
+
 export default ConnectWalletButton
