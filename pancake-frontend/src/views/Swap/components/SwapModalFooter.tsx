@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Text, AutoRenewIcon } from 'pancakeswap-uikit'
+import { Button, Text, AutoRenewIcon, Flex } from 'pancakeswap-uikit'
 import { Field } from 'state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,
@@ -10,7 +10,7 @@ import {
 } from 'utils/prices'
 import { AutoColumn } from 'components/Layout/Column'
 import QuestionHelper from 'components/QuestionHelper'
-import { AutoRow, RowBetween, RowFixed } from 'components/Layout/Row'
+import { AutoRow } from 'components/Layout/Row'
 import { Trade, TradeType } from 'pancakeswap-sdk'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
@@ -21,6 +21,7 @@ const SwapModalFooterContainer = styled(AutoColumn)`
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   background-color: ${({ theme }) => theme.colors.background};
+  flex-direction: column;
 `
 
 export default function SwapModalFooter({
@@ -47,7 +48,7 @@ export default function SwapModalFooter({
   return (
     <>
       <SwapModalFooterContainer>
-        <RowBetween align="center">
+        <AutoRow justify="space-between">
           <Text fontSize="14px">Price</Text>
           <Text
             fontSize="14px"
@@ -64,19 +65,20 @@ export default function SwapModalFooter({
               <AutoRenewIcon width="14px" />
             </StyledBalanceMaxMini>
           </Text>
-        </RowBetween>
+        </AutoRow>
 
-        <RowBetween>
-          <RowFixed>
+        <AutoRow justify="space-between">
+          <Flex>
             <Text fontSize="14px">
               {trade.tradeType === TradeType.EXACT_INPUT ? 'Minimum received' : 'Maximum sold'}
             </Text>
             <QuestionHelper
+              style={{ alignSelf: 'center' }}
               text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed."
               ml="4px"
             />
-          </RowFixed>
-          <RowFixed>
+          </Flex>
+          <Flex>
             <Text fontSize="14px">
               {trade.tradeType === TradeType.EXACT_INPUT
                 ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
@@ -87,19 +89,26 @@ export default function SwapModalFooter({
                 ? trade.outputAmount.currency.symbol
                 : trade.inputAmount.currency.symbol}
             </Text>
-          </RowFixed>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
+          </Flex>
+        </AutoRow>
+
+        <AutoRow justify="space-between">
+          <div style={{ display: 'flex' }}>
             <Text fontSize="14px">Price Impact</Text>
-            <QuestionHelper text="The difference between the market price and your price due to trade size." ml="4px" />
-          </RowFixed>
+            <QuestionHelper
+              style={{ alignSelf: 'center' }}
+              text="The difference between the market price and your price due to trade size."
+              ml="4px"
+            />
+          </div>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
+        </AutoRow>
+
+        <AutoRow justify="space-between">
+          <Flex>
             <Text fontSize="14px">Liquidity Provider Fee</Text>
             <QuestionHelper
+              style={{ alignSelf: 'center' }}
               text={
                 <>
                   <Text mb="12px">For each trade a 0.01% fee is paid</Text>
@@ -110,11 +119,11 @@ export default function SwapModalFooter({
               }
               ml="4px"
             />
-          </RowFixed>
+          </Flex>
           <Text fontSize="14px">
             {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
           </Text>
-        </RowBetween>
+        </AutoRow>
       </SwapModalFooterContainer>
 
       <AutoRow>
@@ -124,7 +133,6 @@ export default function SwapModalFooter({
           disabled={disabledConfirm}
           mt="12px"
           id="confirm-swap-or-send"
-          width="100%"
         >
           {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
         </Button>

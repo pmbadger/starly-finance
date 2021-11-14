@@ -1,7 +1,7 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo } from 'react'
 import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from 'pancakeswap-uikit'
 import styled from 'styled-components'
-import Row, { RowBetween, RowFixed } from 'components/Layout/Row'
+import Row, { AutoRow, RowBetween, RowFixed } from 'components/Layout/Row'
 import { useToken } from 'hooks/Tokens'
 import { useRemoveUserAddedToken } from 'state/user/hooks'
 import useUserAddedTokens from 'state/user/hooks/useUserAddedTokens'
@@ -10,7 +10,7 @@ import { getBlockExplorerLink, isAddress } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import { Token } from 'pancakeswap-sdk'
-import Column, { AutoColumn } from '../Layout/Column'
+import Column from '../Layout/Column'
 import ImportRow from './ImportRow'
 import { CurrencyModalView } from './types'
 
@@ -93,36 +93,34 @@ export default function ManageTokens({
   return (
     <Wrapper>
       <Column style={{ width: '100%', flex: '1 1' }}>
-        <AutoColumn gap="14px">
-          <Row>
-            <Input
-              id="token-search-input"
-              scale="lg"
-              placeholder="0x0000"
-              value={searchQuery}
-              autoComplete="off"
-              ref={inputRef as RefObject<HTMLInputElement>}
-              onChange={handleInput}
-              isWarning={!isAddressValid}
-            />
-          </Row>
-          {!isAddressValid && <Text color="failure">{t('Enter valid token address')}</Text>}
-          {searchToken && (
-            <ImportRow
-              token={searchToken}
-              showImportView={() => setModalView(CurrencyModalView.importToken)}
-              setImportToken={setImportToken}
-              style={{ height: 'fit-content' }}
-            />
-          )}
-        </AutoColumn>
+        <Row mb="16px">
+          <Input
+            id="token-search-input"
+            scale="lg"
+            placeholder="0x0000"
+            value={searchQuery}
+            autoComplete="off"
+            ref={inputRef as RefObject<HTMLInputElement>}
+            onChange={handleInput}
+            isWarning={!isAddressValid}
+          />
+        </Row>
+        {!isAddressValid && <Text color="failure">{t('Enter valid token address')}</Text>}
+        {searchToken && (
+          <ImportRow
+            token={searchToken}
+            showImportView={() => setModalView(CurrencyModalView.importToken)}
+            setImportToken={setImportToken}
+            style={{ height: 'fit-content' }}
+          />
+        )}
         {tokenList}
         <Footer>
           <Text bold color="textSubtle">
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('Custom Token') : t('Custom Tokens')}
           </Text>
           {userAddedTokens.length > 0 && (
-            <Button variant="tertiary" onClick={handleRemoveAll}>
+            <Button variant="secondary" onClick={handleRemoveAll}>
               {t('Clear all')}
             </Button>
           )}

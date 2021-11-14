@@ -60,22 +60,63 @@ const Row = styled.div`
   position: relative;
 `
 
+const CardContent = styled.div`
+  padding: 30px 78px 55px;
+`
+
+const Coin1 = styled.img`
+  position: fixed;
+  top: 300px;
+  right: 1%;
+`
+const Coin2 = styled.img`
+  position: fixed;
+  filter: blur(4px);
+`
+
+const Coin3 = styled.img`
+  position: fixed;
+  top: 90px;
+  filter: blur(4px);
+  right: 32%;
+`
+
+const Coin4 = styled.img`
+  position: fixed;
+  top: 370px;
+  left: 5%;
+`
+
+const Comet = styled.img`
+  position: fixed;
+  top: 550px;
+  right: 0;
+`
+
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
   return (
-    <StyledPage {...props}>
-      <Row>
-        <Title>Make a Swap at No Cost</Title>
-        <SubTitle>Up to 100% of the trading fee returned in STLY tokens</SubTitle>
-      </Row>
-      <AppBody>
-        <Wrapper id="swap-page">
-          <SubNav />
-          {children}
-        </Wrapper>
-      </AppBody>
-      <Flex flexGrow={1} />
-      <Footer />
-    </StyledPage>
+    <>
+      <Coin1 alt="coin" src="/images/coin.png" />
+      <Coin2 alt="coin" src="/images/coin1.png" />
+      <Coin3 alt="coin" src="/images/coin3.png" />
+      <Coin4 alt="coin" src="/images/coin4.png" />
+      <Comet alt="comet" src="/images/comet.png" />
+
+      <StyledPage {...props}>
+        <Row>
+          <Title>Make a Swap at No Cost</Title>
+          <SubTitle>Up to 100% of the trading fee returned in STLY tokens</SubTitle>
+        </Row>
+        <AppBody>
+          <Wrapper id="swap-page">
+            <SubNav />
+            <CardContent>{children}</CardContent>
+          </Wrapper>
+        </AppBody>
+        <Flex flexGrow={1} />
+        <Footer />
+      </StyledPage>
+    </>
   )
 }
 

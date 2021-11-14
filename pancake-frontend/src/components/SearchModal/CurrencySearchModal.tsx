@@ -23,7 +23,7 @@ import { CurrencyModalView } from './types'
 
 const Footer = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  background-color: ${({ theme }) => theme.colors.tertiary};
   text-align: center;
 `
 
@@ -120,9 +120,10 @@ export default function CurrencySearchModal({
           <Footer>
             <Button
               scale="sm"
-              variant="text"
+              variant="primary"
               onClick={() => setModalView(CurrencyModalView.manage)}
               className="list-token-manage-button"
+              width="100%"
             >
               {t('Manage Tokens')}
             </Button>

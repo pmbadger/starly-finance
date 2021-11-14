@@ -59,7 +59,7 @@ export const StyledBalanceMaxMini = styled.button`
 `
 
 export const TruncatedText = styled(Text).attrs({ ellipsis: true })`
-  width: 220px;
+  max-width: 220px;
 `
 
 const SwapCallbackErrorInner = styled.div`
@@ -103,7 +103,7 @@ export function SwapCallbackError({ error }: { error: string }) {
 }
 
 export const SwapShowAcceptChanges = styled(AutoColumn)`
-  background-color: ${({ theme }) => `${theme.colors.warning}33`};
+  background-color: ${({ theme }) => `${theme.colors.secondary}33`};
   padding: 0.5rem;
   border-radius: 12px;
   margin-top: 8px;

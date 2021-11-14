@@ -60,4 +60,19 @@ export const StyledConnectWalletButton = () => {
   )
 }
 
+export const StyledConnectWalletButtonExchange = styled(ConnectWalletButton)`
+  height: 74px;
+  padding: 24px 32px;
+  font-style: normal;
+  font-weight: 450;
+  font-size: 20px;
+  line-height: 26px;
+  width: 100%;
+  background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
+
+  img {
+    margin-right: 26px;
+  }
+`
+
 export default ConnectWalletButton
