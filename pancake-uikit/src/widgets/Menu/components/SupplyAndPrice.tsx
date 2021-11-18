@@ -26,6 +26,9 @@ const Row = styled.div`
     div{
         font-family: 'SF Pro Display';
     }
+    div > span {
+      font-family: 'SF Pro Display';
+    }
 `
 
 const StarContainer = styled.div`

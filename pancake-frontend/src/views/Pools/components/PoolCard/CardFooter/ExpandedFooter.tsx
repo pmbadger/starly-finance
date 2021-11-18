@@ -14,7 +14,6 @@ import {
   useTooltip,
   Button,
   Link,
-  HelpIcon,
 } from 'pancakeswap-uikit'
 import { BASE_BLOCK_EXPLORER_URL } from 'config'
 import { useBlock } from 'state/block/hooks'
@@ -83,30 +82,18 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
 
-  const {
-    targetRef: totalStakedTargetRef,
-    tooltip: totalStakedTooltip,
-    tooltipVisible: totalStakedTooltipVisible,
-  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }), {
-    placement: 'bottom',
-  })
-
   return (
-    <ExpandedWrapper flexDirection="column">
+    <ExpandedWrapper flexDirection="column" mt="17px">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Total staked')}:</Text>
         <Flex alignItems="flex-start">
           {totalStaked && totalStaked.gte(0) ? (
             <>
               <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
-              <span ref={totalStakedTargetRef}>
-                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-              </span>
             </>
           ) : (
             <Skeleton width="90px" height="21px" />
           )}
-          {totalStakedTooltipVisible && totalStakedTooltip}
         </Flex>
       </Flex>
       {stakingLimit && stakingLimit.gt(0) && (
@@ -146,18 +133,15 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           </Flex>
         </Flex>
       )}
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false} small>
-          {t('See Token Info')}
-        </LinkExternal>
-      </Flex>
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={earningToken.projectLink} bold={false} small>
-          {t('View Project Site')}
-        </LinkExternal>
-      </Flex>
+      {earningToken?.projectLink && earningToken?.projectLink !== '' && (
+        <Flex mb="2px" justifyContent="flex-start">
+          <LinkExternal href={earningToken.projectLink} bold={false} small>
+            {t('View Project Site')}
+          </LinkExternal>
+        </Flex>
+      )}
       {poolContractAddress && (
-        <Flex mb="2px" justifyContent="flex-end">
+        <Flex mb="2px" justifyContent="flex-start">
           <LinkExternal
             href={`${BASE_BLOCK_EXPLORER_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
             bold={false}

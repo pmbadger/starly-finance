@@ -104,8 +104,12 @@ const CollectModal: React.FC<CollectModalProps> = ({
             variant="subtle"
             onItemClick={(index) => setShouldCompound(!index)}
           >
-            <ButtonMenuItem as="button">{t('Compound')}</ButtonMenuItem>
-            <ButtonMenuItem as="button">{t('Harvest')}</ButtonMenuItem>
+            <ButtonMenuItem as="button" width="50%">
+              {t('Compound')}
+            </ButtonMenuItem>
+            <ButtonMenuItem as="button" width="50%">
+              {t('Harvest')}
+            </ButtonMenuItem>
           </ButtonMenu>
           <Flex ml="10px" ref={targetRef}>
             <HelpIcon color="textSubtle" />

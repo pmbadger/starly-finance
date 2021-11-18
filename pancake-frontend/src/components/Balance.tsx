@@ -28,21 +28,17 @@ const Balance: React.FC<BalanceProps> = ({
   }, [value])
 
   return (
-    <CountUp
-      start={previousValue.current}
-      end={value}
-      prefix={prefix}
-      suffix={unit}
-      decimals={decimals}
-      duration={1}
-      separator=" "
-    >
-      {({ countUpRef }) => (
-        <>
-          <Text ref={countUpRef} color={isDisabled ? 'textDisabled' : color} onClick={onClick} {...props} />
-        </>
-      )}
-    </CountUp>
+    <Text color={isDisabled ? 'textDisabled' : color} onClick={onClick} {...props}>
+      <CountUp
+        start={previousValue.current}
+        end={value}
+        prefix={prefix}
+        suffix={unit}
+        decimals={decimals}
+        duration={1}
+        separator=" "
+      />
+    </Text>
   )
 }
 

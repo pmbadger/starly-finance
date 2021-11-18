@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useLocation, Link, useRouteMatch } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'pancakeswap-uikit'
+import { ButtonMenu, ButtonMenuItem } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const LaunchpoolsTabButtons = () => {
@@ -28,11 +28,9 @@ const LaunchpoolsTabButtons = () => {
         <ButtonMenuItem as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
-        <NotificationDot>
-          <ButtonMenuItem as={Link} to={`${url}/archived`}>
-            {t('Archive')}
-          </ButtonMenuItem>
-        </NotificationDot>
+        <ButtonMenuItem as={Link} to={`${url}/archived`}>
+          {t('Archive')}
+        </ButtonMenuItem>
       </ButtonMenu>
     </Wrapper>
   )

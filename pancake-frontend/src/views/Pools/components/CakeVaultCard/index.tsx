@@ -1,14 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, CardBody, Flex, Text } from 'pancakeswap-uikit'
+import { Box, CardBody, Flex } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import { ConnectWalletBtnWithUnlockAndStar } from 'components/ConnectWalletButton'
 import tokens from 'config/constants/tokens'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
-import AprRow from '../PoolCard/AprRow'
-import { StyledCard } from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
@@ -16,7 +14,15 @@ import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentCakeProfitRow from './RecentCakeProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
-  min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
+  // min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
+  padding: 0;
+`
+
+const BtnsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 22px;
 `
 
 interface CakeVaultProps {
@@ -41,36 +47,36 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
   }
 
   return (
-    <StyledCard isActive>
+    <>
       <StyledCardHeader
         isStaking={accountHasSharesStaked}
         isAutoVault
         earningToken={tokens.cake}
         stakingToken={tokens.cake}
+        pool={pool}
+        performanceFee={performanceFeeAsDecimal}
       />
       <StyledCardBody isLoading={isLoading}>
-        <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
-        <Box mt="24px">
-          <RecentCakeProfitRow />
-        </Box>
-        <Box mt="8px">
-          <UnstakingFeeCountdownRow />
-        </Box>
-        <Flex mt="32px" flexDirection="column">
+        <Flex flexDirection="column">
           {account ? (
-            <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
-          ) : (
             <>
-              <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
-                {t('Start earning')}
-              </Text>
-              <ConnectWalletButton />
+              <Box mt="24px">
+                <RecentCakeProfitRow />
+              </Box>
+              <Box mt="8px">
+                <UnstakingFeeCountdownRow />
+              </Box>
+              <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
             </>
+          ) : (
+            <BtnsWrapper>
+              <ConnectWalletBtnWithUnlockAndStar />
+            </BtnsWrapper>
           )}
         </Flex>
       </StyledCardBody>
       <CardFooter pool={pool} account={account} />
-    </StyledCard>
+    </>
   )
 }
 

@@ -8,6 +8,7 @@ const TokenPairImage: React.FC<TokenPairImageProps> = ({
   secondarySrc,
   width,
   height,
+  secondaryImageSize,
   variant = variants.DEFAULT,
   primaryImageProps = {},
   secondaryImageProps = {},
@@ -20,8 +21,8 @@ const TokenPairImage: React.FC<TokenPairImageProps> = ({
       <StyledSecondaryImage
         variant={variant}
         src={secondarySrc}
-        width={width}
-        height={height}
+        width={secondaryImageSize || width}
+        height={secondaryImageSize || height}
         {...secondaryImageProps}
       />
     </Wrapper>

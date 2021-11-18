@@ -16,5 +16,7 @@ export const StyledPrimaryImage = styled(TokenImage)<StyledImageProps>`
 
 export const StyledSecondaryImage = styled(TokenImage)<StyledImageProps>`
   position: absolute;
-  width: ${({ width }) => `${width}px`};  
+  width: ${({ width }) => `${width}px`};
+  bottom: 0;
+  left: 0;
 `;

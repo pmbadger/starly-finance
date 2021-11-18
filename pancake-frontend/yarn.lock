@@ -2485,9 +2485,9 @@
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/lodash@^4.14.168":
-  version "4.14.176"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.176.tgz#641150fc1cda36fbfa329de603bbb175d7ee20c0"
-  integrity sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==
+  version "4.14.177"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.177.tgz#f70c0d19c30fab101cad46b52be60363c43c4578"
+  integrity sha512-0fDwydE2clKe9MNfvXHBHF9WEahRuj+msTuQqOmAApNORFvhMYZKNGGJdCzuhheVjMps/ti0Ak/iJPACMaevvw==
 
 "@types/marked@^2.0.2":
   version "2.0.5"
@@ -10056,7 +10056,7 @@ pako@~1.0.5:
 
 "pancakeswap-uikit@file:./src/libs/pancakeswap-uikit-v0.46.0.tgz":
   version "0.46.0"
-  resolved "file:./src/libs/pancakeswap-uikit-v0.46.0.tgz#11c585bcba14188032c00eea1d895991fcb834a9"
+  resolved "file:./src/libs/pancakeswap-uikit-v0.46.0.tgz#6fa8da58eb63d8f75aec37588f69599c8f73c8f7"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

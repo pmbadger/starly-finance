@@ -81,7 +81,7 @@ const ViewsControlsPanel: React.FC<Props> = ({ isArchived, stakedOnly, setStaked
         <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="lg" />
         <Text>{t('Staked Only')}</Text>
       </ToggleWrapper>
-      <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
+      <SearchInput onChange={handleChangeQuery} placeholder="Search Launchpool" />
       <Select
         options={[
           {
@@ -111,7 +111,6 @@ const ViewsControlsPanel: React.FC<Props> = ({ isArchived, stakedOnly, setStaked
         ]}
         onChange={handleSortOptionChange}
       />
-      <HarvestButton>Harvest All</HarvestButton>
     </ViewControls>
   )
 }

@@ -70,7 +70,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
+                <Heading>0</Heading>
                 <Text fontSize="12px" color="textDisabled">
                   0 USD
                 </Text>

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Label = styled.div`
-f ont-family: 'Futura PT';
+  font-family: 'Futura PT';
   color: #82c8f4;
   text-align: left;
   font-style: normal;
