@@ -18,11 +18,8 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
     case '/farms':
       activeIndex = 0
       break
-    case '/farms/history':
-      activeIndex = 1
-      break
     case '/farms/archived':
-      activeIndex = 2
+      activeIndex = 1
       break
     default:
       activeIndex = 0
@@ -32,14 +29,14 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
   return (
     <Wrapper>
       <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+        <ButtonMenuItem id="btn91-live-tab" as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
-        <NotificationDot show={hasStakeInFinishedFarms}>
-          <ButtonMenuItem as={Link} to={`${url}/archived`}>
-            {t('Archive')}
-          </ButtonMenuItem>
-        </NotificationDot>
+        {/* <NotificationDot show={hasStakeInFinishedFarms}> */}
+        <ButtonMenuItem id="btn92-archived-tab" as={Link} to={`${url}/archived`}>
+          {t('Archive')}
+        </ButtonMenuItem>
+        {/* </NotificationDot> */}
       </ButtonMenu>
     </Wrapper>
   )

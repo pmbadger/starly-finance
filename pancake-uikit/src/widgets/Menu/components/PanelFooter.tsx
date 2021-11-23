@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import styled from "styled-components";
 import { CogIcon } from "../../../components/Svg";
 import IconButton from "../../../components/Button/IconButton";
@@ -8,7 +8,10 @@ import CakePrice from "./CakePrice";
 import SocialLinks from "./SocialLinks";
 import SupplyAndPrice from './SupplyAndPrice';
 
-interface Props extends PanelProps, PushedProps {}
+interface Props extends PanelProps, PushedProps {
+  registerCakeToken: () => boolean;
+  cakeTotalSupply?: ReactElement
+}
 
 const Container = styled.div`
   flex: none;
@@ -37,11 +40,14 @@ const PraceContainer = styled.div`
 const PanelFooter: React.FC<Props> = ({
   isPushed,
   pushNav,
+  cakePriceUsd,
+  registerCakeToken,
+  cakeTotalSupply
 }) => {
   if (!isPushed) {
     return (
       <Container>
-        <IconButton variant="text" onClick={() => pushNav(true)}>
+        <IconButton id="btn159-cog" variant="text" onClick={() => pushNav(true)}>
           <CogIcon />
         </IconButton>
       </Container>
@@ -54,10 +60,10 @@ const PanelFooter: React.FC<Props> = ({
         <SocialLinks />
       </SocialEntry>
       <PraceContainer>
-        <SupplyAndPrice/>
+        <SupplyAndPrice cakePriceUsd={cakePriceUsd} cakeTotalSupply={cakeTotalSupply}/>
       </PraceContainer>
       <PraceContainer>
-        <CakePrice/>
+        <CakePrice registerCakeToken={registerCakeToken}/>
       </PraceContainer>
     </Container>
   );

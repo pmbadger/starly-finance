@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
   padding: 16px;
-  border: 2px solid ${({ theme }) => theme.colors.input};
+  border: 1px solid #455381;
+  //border: 2px solid ${({ theme }) => theme.colors.input};
   border-radius: 16px;
   flex-grow: 1;
   flex-basis: 0;
@@ -16,7 +17,7 @@ export const ActionContainer = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    margin-left: 48px;
+    margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
     max-height: 100px;

@@ -1,37 +1,34 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Card, CardBody, Flex, Skeleton, Text, Link, ArrowForwardIcon } from 'pancakeswap-uikit'
-import BigNumber from 'bignumber.js'
+import { AutoRenewIcon, Button, Text } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
 import { useMasterchef } from 'hooks/useContract'
 import { harvestFarm } from 'utils/calls'
-import Balance from 'components/Balance'
 import useFarmsWithBalance from 'views/Home/hooks/useFarmsWithBalance'
+import { useWeb3React } from '@web3-react/core'
 
-const StyledCard = styled(Card)`
-  width: 100%;
-  height: fit-content;
+const HarvestButton = styled(Button)`
+  background: #255aba33;
+  width: 140px;
+  height: 54px;
+  border-radius: 12px;
+  font-family: 'Futura PT';
+  color: #82c8f4;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  margin-bottom: 20px;
 `
 
-const HarvestCard = () => {
+const HarvestAllFarms = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
-  const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
+  const { farmsWithStakedBalance } = useFarmsWithBalance()
+  const { account } = useWeb3React()
 
   const masterChefContract = useMasterchef()
-  const cakePriceBusd = usePriceCakeBusd()
-  const earningsBusd = new BigNumber(farmEarningsSum).multipliedBy(cakePriceBusd)
-  const numFarmsToCollect = farmsWithStakedBalance.length
-
-  const earningsText = t('%earningsBusd% to collect from %count% %farms%', {
-    earningsBusd: earningsBusd.toString(),
-    count: numFarmsToCollect > 0 ? numFarmsToCollect : '',
-    farms: numFarmsToCollect === 0 || numFarmsToCollect > 1 ? 'farms' : 'farm',
-  })
-  const [preText, toCollectText] = earningsText.split(earningsBusd.toString())
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
@@ -52,58 +49,19 @@ const HarvestCard = () => {
   }, [farmsWithStakedBalance, masterChefContract, toastSuccess, toastError, t])
 
   return (
-    <StyledCard>
-      <CardBody>
-        <Flex flexDirection={['column', null, null, 'row']} justifyContent="space-between" alignItems="center">
-          <Flex flexDirection="column" alignItems={['center', null, null, 'flex-start']}>
-            {preText && (
-              <Text mb="4px" color="textSubtle">
-                {preText}
-              </Text>
-            )}
-            {earningsBusd && !earningsBusd.isNaN() ? (
-              <Balance
-                decimals={earningsBusd.gt(0) ? 2 : 0}
-                fontSize="24px"
-                bold
-                prefix={earningsBusd.gt(0) ? '~$' : '$'}
-                lineHeight="1.1"
-                value={earningsBusd.toNumber()}
-              />
-            ) : (
-              <Skeleton width={96} height={24} my="2px" />
-            )}
-            <Text mb={['16px', null, null, '0']} color="textSubtle">
-              {toCollectText}
-            </Text>
-          </Flex>
-          {numFarmsToCollect <= 0 ? (
-            <Link href="farms">
-              <Button width={['100%', null, null, 'auto']} variant="secondary">
-                <Text color="primary" bold>
-                  {t('Start earning')}
-                </Text>
-                <ArrowForwardIcon ml="4px" color="primary" />
-              </Button>
-            </Link>
-          ) : (
-            <Button
-              width={['100%', null, null, 'auto']}
-              id="harvest-all"
-              isLoading={pendingTx}
-              endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
-              disabled={pendingTx}
-              onClick={harvestAllFarms}
-            >
-              <Text color="invertedContrast" bold>
-                {pendingTx ? t('Harvesting') : t('Harvest all')}
-              </Text>
-            </Button>
-          )}
-        </Flex>
-      </CardBody>
-    </StyledCard>
+    <HarvestButton
+      width={['100%', null, null, 'auto']}
+      id="harvest-all"
+      isLoading={pendingTx}
+      endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+      disabled={pendingTx || farmsWithStakedBalance.length === 0 || !account}
+      onClick={harvestAllFarms}
+    >
+      <Text color="secondary" bold>
+        {pendingTx ? t('Harvesting') : t('Harvest All')}
+      </Text>
+    </HarvestButton>
   )
 }
 
-export default HarvestCard
+export default HarvestAllFarms

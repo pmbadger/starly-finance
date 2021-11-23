@@ -23,7 +23,7 @@ const TextLine = styled.div<{ maxWidth; marginBottom; fontFamily; fontWeight; fo
   z-index: 3;
 `
 
-const CustomButton = styled(Button)`
+const CustomButton = styled.a`
   background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
 
   font-family: 'SF Pro Display';
@@ -36,7 +36,7 @@ const CustomButton = styled(Button)`
   z-index: 4;
 `
 
-const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond, textBtn }) => {
+const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond, textBtn, textLink, btnId }) => {
   return (
     <ContentWrapper>
       <TextLine
@@ -61,7 +61,9 @@ const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond
       >
         {textSecond.text}
       </TextLine>
-      <CustomButton>{textBtn}</CustomButton>
+      <Button id={btnId} as={CustomButton} href={textLink}>
+        {textBtn}
+      </Button>
     </ContentWrapper>
   )
 }

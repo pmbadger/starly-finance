@@ -27,14 +27,14 @@ function ConfirmAddModalBottom({
       <RowBetween>
         <Text>{t('%asset% Deposited', { asset: currencies[Field.CURRENCY_A]?.symbol })}</Text>
         <RowFixed>
-          <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
+          <CurrencyLogo size="24px" currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
           <Text>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
         <Text>{t('%asset% Deposited', { asset: currencies[Field.CURRENCY_B]?.symbol })}</Text>
         <RowFixed>
-          <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
+          <CurrencyLogo size="24px" currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
           <Text>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
@@ -57,7 +57,7 @@ function ConfirmAddModalBottom({
         <Text>{t('Share of Pool')}:</Text>
         <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
-      <Button onClick={onAdd} mt="20px">
+      <Button id="btn65-confirm-supply" onClick={onAdd} mt="20px">
         {noLiquidity ? t('Create Pool & Supply') : t('Confirm Supply')}
       </Button>
     </>

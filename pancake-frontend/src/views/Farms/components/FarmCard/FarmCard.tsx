@@ -82,6 +82,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
               {farm.apr ? (
                 <>
                   <ApyButton
+                    aryButtonId={`btn110-apr-${farm.pid}`}
                     lpLabel={lpLabel}
                     addLiquidityUrl={addLiquidityUrl}
                     cakePrice={cakePrice}

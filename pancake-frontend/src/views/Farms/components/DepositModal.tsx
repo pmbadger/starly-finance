@@ -12,9 +12,17 @@ interface DepositModalProps {
   onDismiss?: () => void
   tokenName?: string
   addLiquidityUrl?: string
+  pid: number
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
+const DepositModal: React.FC<DepositModalProps> = ({
+  max,
+  onConfirm,
+  onDismiss,
+  tokenName = '',
+  addLiquidityUrl,
+  pid,
+}) => {
   const [val, setVal] = useState('')
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
@@ -40,7 +48,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal modalCloseId={`btn100-deposit-modal-close-${pid}`} title={t('Stake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -49,12 +57,20 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake')}
+        inputId={`deposit-${pid}`}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+        <Button
+          id={`btn101-deposit-cancel-${pid}`}
+          variant="secondary"
+          onClick={onDismiss}
+          width="100%"
+          disabled={pendingTx}
+        >
           {t('Cancel')}
         </Button>
         <Button
+          id={`btn102-deposit-confirm-${pid}`}
           width="100%"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
@@ -77,7 +93,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           {pendingTx ? t('Confirming') : t('Confirm')}
         </Button>
       </ModalActions>
-      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
+      <LinkExternal id={`btn103-deposit-get-${pid}`} href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
         {t('Get %symbol%', { symbol: tokenName })}
       </LinkExternal>
     </Modal>

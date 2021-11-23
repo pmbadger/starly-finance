@@ -23,6 +23,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
         <Skeleton width="100%" height="52px" />
       ) : (
         <Button
+          id={`btn144-enable-pool-${pool.sousId}`}
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           disabled={requestedApproval}

@@ -105,7 +105,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
         <ModalTitle>
           <Heading>{t('Collect Winnings')}</Heading>
         </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <ModalCloseButton modalCloseId="collect-winnings-modal-close" onDismiss={onDismiss} />
       </ModalHeader>
       <ModalBody p="24px">
         <TrophyGoldIcon width="96px" mx="auto" mb="24px" />

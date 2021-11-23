@@ -1,4 +1,5 @@
 import { scales, variants } from "./types";
+import {lightColors} from "../../theme";
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -18,17 +19,23 @@ export const scaleVariants = {
 
 export const styleVariants = {
   [variants.PRIMARY]: {
-    backgroundColor: "primary",
+    background: lightColors.gradients.blue,
+    fontFamily: "Futura PT",
     color: "white",
+    ":disabled": {
+      background: lightColors.disabled,
+      boxShadow: "none",
+      color: "secondary"
+    },
   },
   [variants.SECONDARY]: {
-    backgroundColor: "transparent",
-    border: "2px solid",
-    borderColor: "primary",
+    backgroundColor: lightColors.buttonSecondary,
+    borderRadius: "12px",
+    fontFamily: "Futura PT",
     boxShadow: "none",
-    color: "primary",
+    color: "secondary",
     ":disabled": {
-      backgroundColor: "transparent",
+      backgroundColor: lightColors.disabled,
     },
   },
   [variants.TERTIARY]: {

@@ -29,7 +29,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
         )}
       </Text>
     </>,
-    { placement: 'bottom-start' },
+    { placement: 'top-start' },
   )
 
   const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
@@ -59,6 +59,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
       alignItems={isTableVariant ? 'flex-start' : 'center'}
       justifyContent="space-between"
       flexDirection={isTableVariant ? 'column' : 'row'}
+      mb="16px"
     >
       {tooltipVisible && tooltip}
       <TooltipText ref={targetRef} small>

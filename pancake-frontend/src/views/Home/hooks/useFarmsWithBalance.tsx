@@ -18,17 +18,18 @@ const useFarmsWithBalance = () => {
   const [earningsSum, setEarningsSum] = useState<number>(null)
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
+  const farms = farmsConfig.filter((farm) => farm.pid !== 0)
 
   useEffect(() => {
     const fetchBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
+      const calls = farms.map((farm) => ({
         address: getMasterChefAddress(),
         name: 'pendingBSW',
         params: [farm.pid, account],
       }))
 
       const rawResults = await multicall(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      const results = farms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
       const farmsWithBalances = results.filter((balanceType) => balanceType.balance.gt(0))
       const totalEarned = farmsWithBalances.reduce((accum, earning) => {
         const earningNumber = new BigNumber(earning.balance)
@@ -45,7 +46,7 @@ const useFarmsWithBalance = () => {
     if (account) {
       fetchBalances()
     }
-  }, [account, fastRefresh])
+  }, [account, farms, fastRefresh])
 
   return { farmsWithStakedBalance, earningsSum }
 }

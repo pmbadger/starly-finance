@@ -84,6 +84,7 @@ const SlippageTabs = () => {
         </Flex>
         <Flex flexWrap="wrap">
           <Button
+            id="btn80-slippage-0.1"
             mt="4px"
             mr="4px"
             scale="sm"
@@ -96,6 +97,7 @@ const SlippageTabs = () => {
             0.1%
           </Button>
           <Button
+            id="btn81-slippage-0.5"
             mt="4px"
             mr="4px"
             scale="sm"
@@ -108,6 +110,7 @@ const SlippageTabs = () => {
             0.5%
           </Button>
           <Button
+            id="btn82-slippage-1"
             mr="4px"
             mt="4px"
             scale="sm"

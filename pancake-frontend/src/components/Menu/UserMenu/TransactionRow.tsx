@@ -52,7 +52,11 @@ const TransactionRow: React.FC<TransactionRowProps> = ({ txn }) => {
   }
 
   return (
-    <TxnLink href={getBlockExplorerLink(txn.hash, 'transaction', chainId)} external>
+    <TxnLink
+      id="btn28-wallet-transactions-by-hash"
+      href={getBlockExplorerLink(txn.hash, 'transaction', chainId)}
+      external
+    >
       <TxnIcon>{renderIcon(txn)}</TxnIcon>
       <Summary>{txn.summary ?? txn.hash}</Summary>
       <TxnIcon>

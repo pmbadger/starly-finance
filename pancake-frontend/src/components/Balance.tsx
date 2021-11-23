@@ -36,7 +36,7 @@ const Balance: React.FC<BalanceProps> = ({
         suffix={unit}
         decimals={decimals}
         duration={1}
-        separator=","
+        separator=" "
       />
     </Text>
   )

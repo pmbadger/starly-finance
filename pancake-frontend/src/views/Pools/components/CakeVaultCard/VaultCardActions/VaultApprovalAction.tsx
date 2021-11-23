@@ -19,6 +19,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
         <Skeleton width="100%" height="52px" />
       ) : (
         <Button
+          id="btn124-auto-pool-approve"
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           disabled={requestedApproval}

@@ -73,7 +73,20 @@ const TextBorder = styled.div`
 
 const HomeSwiper: React.FC = () => {
   return (
-    <Swiper navigation className="mySwiper">
+    <Swiper
+      navigation
+      className="mySwiper"
+      onSwiper={() => {
+        const swiperPrevBtn = document.getElementsByClassName('swiper-button-prev')
+        if (swiperPrevBtn.length > 0) {
+          swiperPrevBtn[0].setAttribute('id', 'btn29-swiper-prev')
+        }
+        const swiperNextBtn = document.getElementsByClassName('swiper-button-next')
+        if (swiperNextBtn.length > 0) {
+          swiperNextBtn[0].setAttribute('id', 'btn30-swiper-next')
+        }
+      }}
+    >
       <SwiperSlide>
         <SwiperWrapper>
           <CoinBg
@@ -94,7 +107,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative BNB Launchpools
+                Lucrative ETH Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"
@@ -104,7 +117,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Wide horizons for STRL hodlers
+                Wide horizons for STLY hodlers
               </TextLine>
             </TextContentSection>
             <TextBorder />
@@ -127,7 +140,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#F08BB9"
               >
-                {`500 STRL\u00a0\u00a0\u00a0\u00a0\u00a0|\u00a0\u00a0\u00a0\u00a0\u00a020 STRL`}
+                {`500 STLY\u00a0\u00a0\u00a0\u00a0\u00a0|\u00a0\u00a0\u00a0\u00a0\u00a020 STLY`}
               </TextLine>
             </TextContentSection>
           </TextContentWraper>
@@ -153,7 +166,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative BNB Launchpools
+                Lucrative ETH Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"

@@ -28,6 +28,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
+      aryModalId={pool.sousId.toString()}
       tokenPrice={earningTokenPrice}
       apr={apr}
       linkLabel={t('Get %symbol%', { symbol: stakingToken.symbol })}

@@ -23,12 +23,13 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
-import ConnectWalletButton from './components/ConnectWalletButton'
+import UserMenu from './components/Menu/UserMenu'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const Pools = lazy(() => import('./views/Pools'))
 // const FarmAuction = lazy(() => import('./views/FarmAuction'))
 // const Lottery = lazy(() => import('./views/Lottery'))
 // const Ifos = lazy(() => import('./views/Ifos'))
@@ -46,7 +47,6 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
-const Launchpools = lazy(() => import('./views/Launchpools'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -54,25 +54,7 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
-const StyledConnectWalletButton = styled(ConnectWalletButton)`
-  padding: 12px 7px;
-  width: 158px;
-  height: 45px;
-  background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
-  border-radius: 12px;
-  font-style: normal;
-  font-weight: 450;
-  font-size: 16px;
-  line-height: 21px;
-
-  img {
-    position: absolute;
-    margin-left: 130px;
-    margin-top: -15px;
-  }
-`
-
-const ConnectWalletButtonContainer = styled.div`
+const WalletButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -111,7 +93,7 @@ const App: React.FC = () => {
               <Farms />
             </Route>
             <Route path="/launchpools">
-              <Launchpools />
+              <Pools />
             </Route>
             {/* <Route exact path="/farms/auction"> */}
             {/*  <FarmAuction /> */}
@@ -189,13 +171,9 @@ const App: React.FC = () => {
         </SuspenseWithChunkError>
       </Menu>
       <Container>
-        <ConnectWalletButtonContainer>
-          <StyledConnectWalletButton
-            text="Connect wallet"
-            icon={<img alt="star" src="/images/star.svg" />}
-            iconPosition="end"
-          />
-        </ConnectWalletButtonContainer>
+        <WalletButtonContainer>
+          <UserMenu />
+        </WalletButtonContainer>
       </Container>
       <EasterEgg iterations={2} />
       <ToastListener />

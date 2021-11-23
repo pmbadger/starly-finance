@@ -28,21 +28,16 @@ const CakeVaultCardActions: React.FC<{
     <Flex flexDirection="column">
       <Flex flexDirection="column">
         <Box display="inline">
-          <InlineText
-            color={accountHasSharesStaked ? 'secondary' : 'textSubtle'}
-            textTransform="uppercase"
-            bold
-            fontSize="12px"
-          >
-            {accountHasSharesStaked ? stakingToken.symbol : t('Stake')}{' '}
-          </InlineText>
-          <InlineText
-            color={accountHasSharesStaked ? 'textSubtle' : 'secondary'}
-            textTransform="uppercase"
-            bold
-            fontSize="12px"
-          >
-            {accountHasSharesStaked ? t('Staked (compounding)') : `${stakingToken.symbol}`}
+          {/*  <InlineText */}
+          {/*    color={accountHasSharesStaked ? 'secondary' : 'textSubtle'} */}
+          {/*    textTransform="uppercase" */}
+          {/*    bold */}
+          {/*    fontSize="12px" */}
+          {/*  > */}
+          {/*    {accountHasSharesStaked ? stakingToken.symbol : t('Stake')}{' '} */}
+          {/*  </InlineText> */}
+          <InlineText color={accountHasSharesStaked ? 'textSubtle' : 'secondary'} bold fontSize="12px">
+            {accountHasSharesStaked ? `Staked ${stakingToken.symbol}` : ''}
           </InlineText>
         </Box>
         {isVaultApproved ? (

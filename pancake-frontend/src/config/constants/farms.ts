@@ -16,7 +16,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'STLY-ETH LP',
+    lpSymbol: 'STLY – ETH',
     lpAddresses: {
       3: '0x110B11C4C08fE1E282B7Cd17ebDFc1Ce18d630Cf',
     },

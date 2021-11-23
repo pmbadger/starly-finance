@@ -149,6 +149,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
   return (
     <Modal
+      modalCloseId={isRemovingStake ? 'btn128-unstake-auto-pool-close' : 'btn128-stake-auto-pool-close'}
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
@@ -186,16 +187,44 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         step={1}
       />
       <Flex alignItems="center" justifyContent="space-between" mt="8px">
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(25)}>
+        <StyledButton
+          id={isRemovingStake ? 'btn129-unstake-auto-pool-25' : 'btn129-stake-auto-pool-25'}
+          scale="xs"
+          mx="2px"
+          p="4px 16px"
+          variant="tertiary"
+          onClick={() => handleChangePercent(25)}
+        >
           25%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(50)}>
+        <StyledButton
+          id={isRemovingStake ? 'btn130-unstake-auto-pool-50' : 'btn130-stake-auto-pool-50'}
+          scale="xs"
+          mx="2px"
+          p="4px 16px"
+          variant="tertiary"
+          onClick={() => handleChangePercent(50)}
+        >
           50%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(75)}>
+        <StyledButton
+          id={isRemovingStake ? 'btn131-unstake-auto-pool-75' : 'btn131-stake-auto-pool-75'}
+          scale="xs"
+          mx="2px"
+          p="4px 16px"
+          variant="tertiary"
+          onClick={() => handleChangePercent(75)}
+        >
           75%
         </StyledButton>
-        <StyledButton scale="xs" mx="2px" p="4px 16px" variant="tertiary" onClick={() => handleChangePercent(100)}>
+        <StyledButton
+          id={isRemovingStake ? 'btn132-unstake-auto-pool-max' : 'btn132-stake-auto-pool-max'}
+          scale="xs"
+          mx="2px"
+          p="4px 16px"
+          variant="tertiary"
+          onClick={() => handleChangePercent(100)}
+        >
           {t('Max')}
         </StyledButton>
       </Flex>
@@ -203,6 +232,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         <FeeSummary stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
       )}
       <Button
+        id={isRemovingStake ? 'btn133-unstake-auto-pool-confirm' : 'btn133-stake-auto-pool-confirm'}
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
@@ -212,7 +242,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <Button mt="8px" as="a" external href="/swap" variant="secondary">
+        <Button id="btn134-auto-pool-get-token" mt="8px" as="a" external href="/swap" variant="secondary">
           {t('Get %symbol%', { symbol: stakingToken.symbol })}
         </Button>
       )}

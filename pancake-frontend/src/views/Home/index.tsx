@@ -6,16 +6,18 @@ import HomeSwiper from './components/Swiper'
 import MainCards from './components/MainCards'
 import LaunchpoolSection from './components/LaunchpoolSection'
 import MeritsSection from './components/MeritsSection'
+import HomeHeader from './components/HomeHeader'
+import HomeTopFarms from './components/TopFarms'
 
 const MarginTop = styled.div`
   width: 100%;
-  height: 434px;
+  height: 70px;
 `
 
 const Container = styled.div`
   width: 80%;
   max-width: 1194px;
-  margin: 0 auto;
+  margin: 0 auto 90px;
 `
 
 const Home: React.FC = () => {
@@ -23,6 +25,8 @@ const Home: React.FC = () => {
     <Page>
       <Container>
         <HomeBg />
+        <HomeHeader />
+        <HomeTopFarms />
         <MarginTop />
         <HomeSwiper />
         <MainCards />

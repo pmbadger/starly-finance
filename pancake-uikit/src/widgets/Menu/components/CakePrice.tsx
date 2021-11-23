@@ -5,9 +5,10 @@ import Text from "../../../components/Text/Text";
 
 interface Props {
   cakePriceUsd?: number;
+  registerCakeToken: () => boolean;
 }
 
-const PriceLink = styled.a`
+const AddTokenButton = styled.a`
   display: flex;
   align-items: center;
   background-color: #21283B;
@@ -34,15 +35,15 @@ const StyledText = styled(Text)`
   font-family: 'SF Pro Display';
 `
 
-const CakePrice: React.FC<Props> = () => {
+const CakePrice: React.FC<Props> = (props) => {
+  const { registerCakeToken } = props
   return (
-    <PriceLink
-      href="http://3.144.73.77:80/swap"
-      target="_blank"
+    <AddTokenButton id="btn8-add-stly-to-metamask"
+      onClick={() => registerCakeToken()}
     >
       <MetamaskIcon width="24px" mr="8px" />
-      <StyledText>Add STRL to Metamask</StyledText>
-    </PriceLink>
+      <StyledText>Add STLY to Metamask</StyledText>
+    </AddTokenButton>
   );
 };
 

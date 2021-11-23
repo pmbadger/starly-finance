@@ -69,9 +69,9 @@ const LaunchpoolsHeader: React.FC = () => {
         <SubTitle>
           Looking for a less resource-intensive alternative to mining?
           <br />
-          Use your BSW tokens to earn more tokens, for Free.
+          Use your STLY tokens to earn more tokens, for Free.
         </SubTitle>
-        <StyledIconButton endIcon={<img alt="star" src="/images/star.svg" />}>
+        <StyledIconButton id="btn114-add-new-project-pools" endIcon={<img alt="star" src="/images/star.svg" />}>
           <Text>{t('Add New Project')}</Text>
         </StyledIconButton>
       </TitlesContainer>

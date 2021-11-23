@@ -20,7 +20,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
   const dispatch = useAppDispatch()
   const { data: farms } = useFarms()
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED)
-  const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null, null, null, null, null])
+  const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null])
   const cakePriceBusd = usePriceCakeBusd()
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
       })
 
       const sortedByApr = orderBy(farmsWithApr, (farm) => farm.apr + farm.lpRewardsApr, 'desc')
-      setTopFarms(sortedByApr.slice(0, 5))
+      setTopFarms(sortedByApr.slice(0, 1))
     }
 
     if (fetchStatus === FetchStatus.SUCCESS && !topFarms[0]) {

@@ -69,6 +69,7 @@ export default function Pool() {
     if (allV2PairsWithLiquidity?.length > 0) {
       return allV2PairsWithLiquidity.map((v2Pair, index) => (
         <FullPositionCard
+          positionCardId="btn77-full-position-card"
           key={v2Pair.liquidityToken.address}
           pair={v2Pair}
           mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}
@@ -99,7 +100,14 @@ export default function Pool() {
         )}
       </Body>
       <CardFooter style={{ textAlign: 'center' }}>
-        <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
+        <Button
+          style={{ height: '74px' }}
+          id="join-pool-button"
+          as={Link}
+          to="/add"
+          width="100%"
+          startIcon={<AddIcon color="white" />}
+        >
           {t('Add Liquidity')}
         </Button>
       </CardFooter>

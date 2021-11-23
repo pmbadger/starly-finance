@@ -21,7 +21,7 @@ export const StyledInput = styled(Input)`
   border: none;
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   &:focus:not(:disabled) {

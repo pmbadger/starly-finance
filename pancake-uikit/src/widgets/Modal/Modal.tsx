@@ -14,6 +14,8 @@ const Modal: React.FC<ModalProps> = ({
   bodyPadding = "24px",
   headerBackground = "transparent",
   minWidth = "320px",
+  modalCloseId,
+  modalBackButtonId,
   ...props
 }) => {
   const theme = useTheme();
@@ -21,10 +23,10 @@ const Modal: React.FC<ModalProps> = ({
     <ModalContainer minWidth={minWidth} {...props}>
       <ModalHeader background='#152340'>
         <ModalTitle>
-          {onBack && <ModalBackButton onBack={onBack} />}
+          {onBack && <ModalBackButton modalBackButtonId={modalBackButtonId} onBack={onBack} />}
           <Heading>{title}</Heading>
         </ModalTitle>
-        {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
+        {!hideCloseButton && <ModalCloseButton modalCloseId={modalCloseId} onDismiss={onDismiss} />}
       </ModalHeader>
       <ModalBody p={bodyPadding}>{children}</ModalBody>
     </ModalContainer>

@@ -29,6 +29,7 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
+  id: string;
   label: string;
   icon: string;
   items?: MenuSubEntry[];
@@ -39,6 +40,8 @@ export interface MenuEntry {
 }
 
 export interface PanelProps {
+  cakeTotalSupply?: ReactElement;
+  registerCakeToken: () => boolean;
   isDark: boolean;
   toggleTheme: (isDark: boolean) => void;
   cakePriceUsd?: number;

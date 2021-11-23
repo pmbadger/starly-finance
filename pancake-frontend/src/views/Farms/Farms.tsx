@@ -2,12 +2,11 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { RowType, Toggle, Text, Flex, IconButton, Button } from 'pancakeswap-uikit'
+import { RowType, Toggle, Text, Flex, IconButton } from 'pancakeswap-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks'
-import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -25,6 +24,8 @@ import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import { getApy } from '../../utils/compoundApyHelpers'
+import HarvestAllFarms from '../Home/components/UserBanner/HarvestCard'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ const ViewControls = styled.div`
   display: flex;
   width: 80%;
   justify-content: space-between;
+  max-width: 1193px;
 
   > div {
     padding: 8px 0px;
@@ -171,18 +173,6 @@ const Comet = styled.img`
   z-index: 0;
 `
 
-const HarvestButton = styled(Button)`
-  background: #255aba33;
-  width: 140px;
-  height: 54px;
-  border-radius: 12px;
-  font-family: 'Futura PT';
-  color: #82c8f4;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  margin-bottom: 20px;
-`
 const CoinStandBackground = styled.div`
   position: absolute;
   z-index: -2;
@@ -214,7 +204,8 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  // const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const viewMode = ViewMode.TABLE
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('all')
   const chosenFarmsLength = useRef(0)
@@ -363,10 +354,11 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const lpLabel = farm.lpSymbol
 
     const row: RowProps = {
       apr: {
+        pid: farm.pid,
         value: getDisplayApr(farm.apr, farm.lpRewardsApr),
         multiplier: farm.multiplier,
         lpLabel,
@@ -376,7 +368,7 @@ const Farms: React.FC = () => {
         originalValue: farm.apr,
       },
       apy: {
-        value: '484.29%',
+        value: getApy(farm.apr, 1, 365, 0),
       },
       farm: {
         label: lpLabel,
@@ -487,11 +479,11 @@ const Farms: React.FC = () => {
           <TitlesContainer>
             <Title>Farms</Title>
             <SubTitle>
-              Biswap Farms offer multiple farming opportunities to you. Get double <br />
-              rewards by staking your LP tokens in return for additional BSW tokens <br />
+              Starly Farms offer multiple farming opportunities to you. Get double <br />
+              rewards by staking your LP tokens in return for additional STLY tokens <br />
               and earning high income from swap transactions.
             </SubTitle>
-            <StyledIconButton endIcon={<img alt="star" src="/images/star.svg" />}>
+            <StyledIconButton id="btn90-add-new-project-farms" endIcon={<img alt="star" src="/images/star.svg" />}>
               <StyledText>{t('Add New Project')}</StyledText>
             </StyledIconButton>
           </TitlesContainer>
@@ -534,7 +526,7 @@ const Farms: React.FC = () => {
                 ]}
                 onChange={handleSortOptionChange}
               />
-              <HarvestButton>Harvest All</HarvestButton>
+              <HarvestAllFarms />
             </ViewControls>
           </ControlContainer>
           {renderContent()}

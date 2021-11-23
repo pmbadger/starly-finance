@@ -164,21 +164,25 @@ export const socials = [
     label: "Facebook",
     icon: "FacebookIcon",
     href: "#",
+    id: 'btn4-facebook'
   },
   {
     label: "Twitter",
     icon: "TwitterIcon",
     href: "#",
+    id: 'btn5-twitter'
   },
   {
     label: "Linkedin",
     icon: "LinkedinIcon",
-    href: "#"
+    href: "#",
+    id: 'btn6-linkedin'
   },
   {
     label: "Youtube",
     icon: "YoutubeIcon",
-    href: "#"
+    href: "#",
+    id: 'btn7-youtube'
   }
   // {
     // label: "Telegram",

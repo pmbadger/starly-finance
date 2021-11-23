@@ -2,8 +2,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { walletIconFirst, walletIconSecond } from 'config/constants/views/home'
-import { Button } from 'pancakeswap-uikit'
+import { Button, useWalletModal } from 'pancakeswap-uikit'
 import TokenIcon from '../../HomeBg/TokenIcon'
+import useAuth from '../../../../../hooks/useAuth'
 
 interface Props {
   disable?: boolean
@@ -142,6 +143,8 @@ const StarXS: React.FC = () => {
 }
 
 const WalletContent: React.FC<Props> = ({ disable }) => {
+  const { login, logout } = useAuth()
+  const { onPresentConnectModal } = useWalletModal(login, logout)
   return (
     <WalletContentWrapper>
       <TokenInfoWrapper>
@@ -196,7 +199,7 @@ const WalletContent: React.FC<Props> = ({ disable }) => {
         </TextWrapper>
       </TokenInfoWrapper>
       <BtnsWrapper>
-        <CustomButton startIcon={<UnlockIcon />} disable={disable}>
+        <CustomButton onClick={onPresentConnectModal} startIcon={<UnlockIcon />} disable={disable}>
           Unlock Wallet
           {disable || <StarXS />}
         </CustomButton>

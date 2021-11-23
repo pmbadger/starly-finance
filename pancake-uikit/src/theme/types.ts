@@ -60,6 +60,11 @@ export type Colors = {
   textDisabled: string;
   textSubtle: string;
   disabled: string;
+  buttonSecondary?: string
+  cardHeader: string
+  walletIconBorder: string
+  cardBackground: string
+  backgroundSkeleton: string
 
   // Gradients
   gradients: Gradients;

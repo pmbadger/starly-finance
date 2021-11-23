@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from 'pancakeswap-uikit'
-import { AutoColumn } from 'components/Layout/Column'
+import Column from 'components/Layout/Column'
 import { useAddUserToken } from 'state/user/hooks'
 import { getBlockExplorerLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -27,8 +27,8 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   const inactiveTokenList = useCombinedInactiveList()
 
   return (
-    <AutoColumn gap="lg">
-      <Message variant="warning">
+    <Column>
+      <Message variant="warning" mb="16px">
         <Text>
           {t(
             'Anyone can create a ERC20 token on Ethereum with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.',
@@ -45,7 +45,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
           ? `${token.address.substring(0, 6)}...${token.address.substring(token.address.length - 4)}`
           : null
         return (
-          <Grid key={token.address} gridTemplateRows="1fr 1fr 1fr" gridGap="4px">
+          <Grid key={token.address} gridTemplateRows="1fr 1fr 1fr">
             {list !== undefined ? (
               <Tag
                 variant="success"
@@ -60,14 +60,18 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
                 {t('Unknown Source')}
               </Tag>
             )}
-            <Flex alignItems="center">
+            <Flex alignItems="center" mt="8px">
               <Text mr="8px">{token.name}</Text>
               <Text>({token.symbol})</Text>
             </Flex>
             {chainId && (
-              <Flex justifyContent="space-between" width="100%">
+              <Flex justifyContent="space-between" width="100%" mt="8px">
                 <Text mr="4px">{address}</Text>
-                <Link href={getBlockExplorerLink(token.address, 'address', chainId)} external>
+                <Link
+                  id="btn84-import-token-explorer-link"
+                  href={getBlockExplorerLink(token.address, 'address', chainId)}
+                  external
+                >
                   ({t('View on block explorer')})
                 </Link>
               </Flex>
@@ -76,7 +80,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
         )
       })}
 
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex justifyContent="space-between" alignItems="center" mt="16px">
         <Flex alignItems="center" onClick={() => setConfirmed(!confirmed)}>
           <Checkbox
             scale="sm"
@@ -91,6 +95,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
         </Flex>
         <Button
           variant="danger"
+          id="btn85-import-token"
           disabled={!confirmed}
           onClick={() => {
             tokens.map((token) => addToken(token))
@@ -103,7 +108,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
           {t('Import')}
         </Button>
       </Flex>
-    </AutoColumn>
+    </Column>
   )
 }
 
