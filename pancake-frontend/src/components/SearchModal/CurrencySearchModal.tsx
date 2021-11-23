@@ -87,10 +87,12 @@ export default function CurrencySearchModal({
     <StyledModalContainer minWidth="320px">
       <ModalHeader>
         <ModalTitle>
-          {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
+          {config[modalView].onBack && (
+            <ModalBackButton modalBackButtonId="btn86-modal-back" onBack={config[modalView].onBack} />
+          )}
           <Heading>{config[modalView].title}</Heading>
         </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <ModalCloseButton modalCloseId="btn63-close-currency-search-modal" onDismiss={onDismiss} />
       </ModalHeader>
       <StyledModalBody>
         {modalView === CurrencyModalView.search ? (
@@ -119,6 +121,7 @@ export default function CurrencySearchModal({
         {modalView === CurrencyModalView.search && (
           <Footer>
             <Button
+              id="btn46-manage-tokens"
               scale="sm"
               variant="primary"
               onClick={() => setModalView(CurrencyModalView.manage)}

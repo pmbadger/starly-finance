@@ -71,7 +71,7 @@ const LaunchpoolsHeader: React.FC = () => {
           <br />
           Use your STLY tokens to earn more tokens, for Free.
         </SubTitle>
-        <StyledIconButton endIcon={<img alt="star" src="/images/star.svg" />}>
+        <StyledIconButton id="btn114-add-new-project-pools" endIcon={<img alt="star" src="/images/star.svg" />}>
           <Text>{t('Add New Project')}</Text>
         </StyledIconButton>
       </TitlesContainer>

@@ -36,7 +36,7 @@ const CustomButton = styled.a`
   z-index: 4;
 `
 
-const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond, textBtn, textLink }) => {
+const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond, textBtn, textLink, btnId }) => {
   return (
     <ContentWrapper>
       <TextLine
@@ -61,7 +61,7 @@ const CardMainContent: React.FC<CardMainContentProps> = ({ textFirst, textSecond
       >
         {textSecond.text}
       </TextLine>
-      <Button as={CustomButton} href={textLink}>
+      <Button id={btnId} as={CustomButton} href={textLink}>
         {textBtn}
       </Button>
     </ContentWrapper>

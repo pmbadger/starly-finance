@@ -29,6 +29,7 @@ export interface MenuSubEntry {
 }
 
 export interface MenuEntry {
+  id: string;
   label: string;
   icon: string;
   items?: MenuSubEntry[];

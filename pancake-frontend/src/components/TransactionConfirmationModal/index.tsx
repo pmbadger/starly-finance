@@ -58,11 +58,13 @@ function TransactionSubmittedContent({
   chainId,
   hash,
   currencyToAdd,
+  txSubmittedContentId,
 }: {
   onDismiss: () => void
   hash: string | undefined
   chainId: ChainId
   currencyToAdd?: Currency | undefined
+  txSubmittedContentId?: string | undefined
 }) {
   const { library } = useActiveWeb3React()
 
@@ -80,12 +82,18 @@ function TransactionSubmittedContent({
 
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
-            <Link external small href={getBlockExplorerLink(hash, 'transaction', chainId)}>
+            <Link
+              id={`explorer-link-${txSubmittedContentId}`}
+              external
+              small
+              href={getBlockExplorerLink(hash, 'transaction', chainId)}
+            >
               {t('View on block explorer')}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (
             <Button
+              id={`add-to-metamask-${txSubmittedContentId}`}
               variant="tertiary"
               mt="12px"
               width="fit-content"
@@ -97,7 +105,7 @@ function TransactionSubmittedContent({
               </RowFixed>
             </Button>
           )}
-          <Button onClick={onDismiss} mt="20px">
+          <Button id={`close-${txSubmittedContentId}`} onClick={onDismiss} mt="20px">
             {t('Close')}
           </Button>
         </Column>
@@ -147,6 +155,7 @@ interface ConfirmationModalProps {
   attemptingTxn: boolean
   pendingText: string
   currencyToAdd?: Currency | undefined
+  txSubmittedContentId?: string | undefined
 }
 
 const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationModalProps> = ({
@@ -158,6 +167,8 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   pendingText,
   content,
   currencyToAdd,
+  modalCloseId,
+  txSubmittedContentId,
 }) => {
   const { chainId } = useActiveWeb3React()
 
@@ -171,7 +182,13 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null
 
   return (
-    <Modal title={title} headerBackground="gradients.cardHeader" onDismiss={handleDismiss} maxWidth="700px">
+    <Modal
+      modalCloseId={modalCloseId}
+      title={title}
+      headerBackground="gradients.cardHeader"
+      onDismiss={handleDismiss}
+      maxWidth="700px"
+    >
       {attemptingTxn ? (
         <ConfirmationPendingContent pendingText={pendingText} />
       ) : hash ? (
@@ -180,6 +197,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
           hash={hash}
           onDismiss={onDismiss}
           currencyToAdd={currencyToAdd}
+          txSubmittedContentId={txSubmittedContentId}
         />
       ) : (
         content()

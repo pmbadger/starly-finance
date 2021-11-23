@@ -35,9 +35,10 @@ const FixedHeightRow = styled(RowBetween)`
 interface PositionCardProps extends CardProps {
   pair: Pair
   showUnwrapped?: boolean
+  positionCardId?: string | undefined
 }
 
-export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
+export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardId }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const { t } = useTranslation()
@@ -80,7 +81,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                   </Text>
                 </RowFixed>
               </FixedHeightRow>
-              <FixedHeightRow onClick={() => setShowMore(!showMore)} marginBottom="8px">
+              <FixedHeightRow id={positionCardId} onClick={() => setShowMore(!showMore)} marginBottom="8px">
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
                   <Text small color="textSubtle">
@@ -139,7 +140,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   )
 }
 
-export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
+export default function FullPositionCard({ pair, positionCardId, ...props }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
@@ -169,7 +170,13 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
 
   return (
     <Card style={{ borderRadius: '12px' }} {...props}>
-      <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
+      <Flex
+        id={positionCardId}
+        justifyContent="space-between"
+        role="button"
+        onClick={() => setShowMore(!showMore)}
+        p="16px"
+      >
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
@@ -230,6 +237,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, BIG_INT_ZERO) && (
             <Flex flexDirection="row" width="100%" justifyContent="space-between">
               <Button
+                id="btn39-remove-liquidity"
                 as={Link}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 variant="primary"
@@ -239,6 +247,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 Remove
               </Button>
               <Button
+                id="btn40-add-liquidity-instead"
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                 variant="primary"

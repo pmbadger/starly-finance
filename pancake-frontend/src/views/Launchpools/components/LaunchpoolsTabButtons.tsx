@@ -25,10 +25,10 @@ const LaunchpoolsTabButtons = () => {
   return (
     <Wrapper>
       <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+        <ButtonMenuItem id="btn115-live-tab" as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/archived`}>
+        <ButtonMenuItem id="btn116-archive-tab" as={Link} to={`${url}/archived`}>
           {t('Archive')}
         </ButtonMenuItem>
       </ButtonMenu>

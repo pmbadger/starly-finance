@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints, Text, HelpIcon, Button } from 'pancakeswap-uikit'
+import { useMatchBreakpoints, Text, HelpIcon, Button, useTooltip } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/farms/hooks'
@@ -38,6 +38,10 @@ const cells = {
   multiplier: Multiplier,
   liquidity: Liquidity,
 }
+
+const ReferenceElement = styled.div`
+  display: inline-block;
+`
 
 const CellInner = styled.div`
   padding-bottom: 25px;
@@ -92,7 +96,7 @@ const StyledRow = styled.div<{ actionPanelExpanded: boolean }>`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #82c8f41a;
-  background-color: tarnsparent;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -165,10 +169,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('#'), { placement: 'top-end', tooltipOffset: [20, 10] })
+
   const handleRenderRow = () => {
     if (!isXs) {
       return (
-        <StyledRow onClick={toggleActionPanel} actionPanelExpanded={actionPanelExpanded}>
+        <StyledRow
+          id={`btn93-pid-${details.pid}`}
+          onClick={toggleActionPanel}
+          actionPanelExpanded={actionPanelExpanded}
+        >
           <CellLayout>
             <HotButton>{t('Hot')}</HotButton>
           </CellLayout>
@@ -194,7 +204,10 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                     <CellInner>
                       <CellLayout label={t('APY:')}>
                         <ApyTmpText>{props.apy.value}</ApyTmpText>
-                        <HelpIcon color="textSubtle" />
+                        <ReferenceElement ref={targetRef}>
+                          <HelpIcon color="textSubtle" />
+                        </ReferenceElement>
+                        {tooltipVisible && tooltip}
                       </CellLayout>
                     </CellInner>
                   </div>
@@ -216,7 +229,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
     }
 
     return (
-      <StyledRow onClick={toggleActionPanel} actionPanelExpanded={actionPanelExpanded}>
+      <StyledRow id={`btn93-pid-${details.pid}`} onClick={toggleActionPanel} actionPanelExpanded={actionPanelExpanded}>
         <div>
           <tr>
             <FarmMobileCell>
@@ -233,7 +246,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             </EarnedMobileCell>
             <AprMobileCell>
               <CellLayout label={t('APR')}>
-                <Apr {...props.apr} hideButton />
+                <Apr {...props.apr} hideButton pid={details.pid} />
               </CellLayout>
             </AprMobileCell>
           </tr>

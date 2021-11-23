@@ -59,6 +59,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
 
   return (
     <StyledButton
+      id={`btn109-harvest-${pid}`}
       disabled={earnings.eq(0) || pendingTx || !userDataReady || !account}
       onClick={async () => {
         setPendingTx(true)

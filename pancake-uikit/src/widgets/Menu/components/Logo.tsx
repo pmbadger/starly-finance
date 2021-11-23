@@ -63,17 +63,16 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
 
   return (
     <Flex>
-      <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
-      </MenuButton>
-       {isAbsoluteUrl ? (
-        <StyledLink as="a" href={href} aria-label="Starly home page">
-           {innerLogo}
+      <MenuButton id="btn14-toggle-menu" aria-label="Toggle menu" onClick={togglePush} mr="24px"></MenuButton>
+      {isAbsoluteUrl ? (
+        <StyledLink id='btn15-to-home-page-link' as="a" href={href} aria-label="Starly home page">
+          {innerLogo}
         </StyledLink>
-       ) : (
-        <StyledLink to={href} aria-label="Starly home page">
-           {innerLogo}
+      ) : (
+        <StyledLink id='btn16-to-home-page' to={href} aria-label="Starly home page">
+          {innerLogo}
         </StyledLink>
-       )}
+      )}
       <StarLogoContainer>
         <StarLogo/>
       </StarLogoContainer>

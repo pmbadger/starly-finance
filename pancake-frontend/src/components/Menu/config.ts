@@ -6,26 +6,31 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Home'),
     icon: 'HomeIcon',
     href: '/',
+    id: 'btn9-home-menu-link',
   },
   {
     label: 'Exchange',
     icon: 'ExchangeIcon',
     href: '/swap',
+    id: 'btn10-exchange-menu-link',
   },
   {
     label: 'Farms',
     icon: 'FarmsIcon',
     href: '/farms',
+    id: 'btn11-farms-menu-link',
   },
   {
     label: 'Launchpools',
     icon: 'LaunchpoolsIcon',
     href: '/launchpools',
+    id: 'btn12-launchpool-menu-link',
   },
   {
     label: 'Referral program',
     icon: 'ReferralProgramIcon',
     href: '#',
+    id: 'btn13-referral-program-menu-link',
   },
   // {
   //   label: t('Pools'),

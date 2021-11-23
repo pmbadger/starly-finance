@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text, IconButton, HelpIcon } from 'pancakeswap-uikit'
+import { Text, IconButton, HelpIcon, Link, useTooltip } from 'pancakeswap-uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getAddress } from 'utils/addressHelpers'
 import { getBlockExplorerLink } from 'utils'
-import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
-import CellLayout from '../CellLayout'
+import { BigNumber } from 'bignumber.js'
+import { useWeb3React } from '@web3-react/core'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
+import { BASE_ADD_LIQUIDITY_URL } from '../../../../../config'
+import { getFullDisplayBalance } from '../../../../../utils/formatBalance'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -31,6 +33,10 @@ const expandAnimation = keyframes`
   to {
     max-height: 500px;
   }
+`
+
+const ReferenceElement = styled.div`
+  display: inline-block;
 `
 
 const collapseAnimation = keyframes`
@@ -66,40 +72,15 @@ const Container = styled.div<{ expanded }>`
   }
 `
 
-const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
-`
-
-const StakeContainer = styled.div`
-  color: ${({ theme }) => theme.colors.text};
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
+const StyledLinkExternal = styled(Link)`
+  &:hover {
+    text-decoration: none;
   }
 `
 
-const TagsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 25px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: 16px;
-  }
-
-  > div {
-    height: 24px;
-    padding: 0 6px;
-    font-size: 14px;
-    margin-right: 4px;
-
-    svg {
-      width: 14px;
-    }
-  }
+const StyledArrowNext = styled.img`
+  margin-right: 5%;
+  margin-left: 5%;
 `
 
 const ActionContainer = styled.div`
@@ -113,10 +94,6 @@ const ActionContainer = styled.div`
     flex-grow: 1;
     flex-basis: 0;
   }
-`
-
-const InfoContainer = styled.div`
-  min-width: 200px;
 `
 
 const ValueContainer = styled.div`
@@ -156,6 +133,7 @@ const StyledIconButton = styled(IconButton)`
 const StyledText = styled(Text)`
   font-family: 'Futura PT Bold';
   width: 50px;
+  white-space: nowrap;
 `
 
 const LPContainer = styled.div`
@@ -196,6 +174,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 }) => {
   const farm = details
 
+  const { account } = useWeb3React()
   const { t } = useTranslation()
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, dual } = farm
@@ -207,6 +186,27 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = getAddress(farm.lpAddresses)
   const ethereum = getBlockExplorerLink(lpAddress, 'address')
   const info = `https://pancakeswap.info/pool/${lpAddress}`
+  const getLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('#'), { placement: 'top-end', tooltipOffset: [20, 10] })
+
+  const { tokenBalance: tokenBalanceAsString = 0 } = farm.userData || {}
+
+  const fullBalance = useMemo(() => {
+    const tokenBalance = new BigNumber(tokenBalanceAsString)
+    return getFullDisplayBalance(tokenBalance)
+  }, [tokenBalanceAsString])
+
+  const displayBalance = (balance: string) => {
+    if (balance === '0' || !account) {
+      return '0'
+    }
+    const balanceBigNumber = new BigNumber(balance)
+    if (balanceBigNumber.gt(0) && balanceBigNumber.lt(0.001)) {
+      return '<0.001'
+    }
+    return balanceBigNumber.toFixed(3, BigNumber.ROUND_DOWN)
+  }
 
   return (
     <Container expanded={expanded}>
@@ -241,20 +241,27 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       </ValueContainer>
       <ActionContainer>
         <LPContainer>
-          <StyledIconButton endIcon={<img alt="star" src="/images/star.svg" />}>
-            <Text>{t('Get LP')}</Text>
-          </StyledIconButton>
+          <StyledLinkExternal href={getLiquidityUrl} target="_blank">
+            <StyledIconButton id={`btn94-get-lp-${farm.pid}`} endIcon={<img alt="star" src="/images/star.svg" />}>
+              <Text>{t('Get LP')}</Text>
+            </StyledIconButton>
+          </StyledLinkExternal>
           <div style={{ marginLeft: '24px' }}>
             <Label>{t('Available LP:')}</Label>
             <ContentContainer>
-              <StyledText>{t('0 LP')}</StyledText>
-              <HelpIcon color="textSubtle" />
+              <StyledText>
+                {displayBalance(fullBalance)} {t('LP')}
+              </StyledText>
+              <ReferenceElement ref={targetRef}>
+                <HelpIcon color="textSubtle" style={{ marginLeft: '24px' }} />
+              </ReferenceElement>
+              {tooltipVisible && tooltip}
             </ContentContainer>
           </div>
         </LPContainer>
-        <img src="/images/arrow-next.svg" alt="next" />
+        <StyledArrowNext src="/images/arrow-next.svg" alt="next" />
         <StakedAction {...farm} userDataReady={userDataReady} />
-        <img src="/images/arrow-next.svg" alt="next" />
+        <StyledArrowNext src="/images/arrow-next.svg" alt="next" />
         <HarvestAction {...farm} userDataReady={userDataReady} />
       </ActionContainer>
     </Container>

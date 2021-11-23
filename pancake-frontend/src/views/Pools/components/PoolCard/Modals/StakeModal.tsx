@@ -121,6 +121,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   return (
     <Modal
+      modalCloseId={
+        isRemovingStake ? `btn145-unstake-modal-close-${pool.sousId}` : `btn145-stake-modal-close-${pool.sousId}`
+      }
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
@@ -177,12 +180,33 @@ const StakeModal: React.FC<StakeModalProps> = ({
         step={1}
       />
       <Flex alignItems="center" justifyContent="space-between" mt="8px">
-        <PercentageButton onClick={() => handleChangePercent(25)}>25%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(50)}>50%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
+        <PercentageButton
+          id={isRemovingStake ? `btn146-unstake-${pool.sousId}-25` : `btn146-stake-${pool.sousId}-25`}
+          onClick={() => handleChangePercent(25)}
+        >
+          25%
+        </PercentageButton>
+        <PercentageButton
+          id={isRemovingStake ? `btn147-unstake-${pool.sousId}-50` : `btn147-stake-${pool.sousId}-50`}
+          onClick={() => handleChangePercent(50)}
+        >
+          50%
+        </PercentageButton>
+        <PercentageButton
+          id={isRemovingStake ? `btn148-unstake-${pool.sousId}-75` : `btn148-stake-${pool.sousId}-75`}
+          onClick={() => handleChangePercent(75)}
+        >
+          75%
+        </PercentageButton>
+        <PercentageButton
+          id={isRemovingStake ? `btn149-unstake-${pool.sousId}-max` : `btn149-stake-${pool.sousId}-max`}
+          onClick={() => handleChangePercent(100)}
+        >
+          {t('Max')}
+        </PercentageButton>
       </Flex>
       <Button
+        id={isRemovingStake ? `btn150-unstake-confirm-${pool.sousId}` : `btn149-stake-confirm-${pool.sousId}`}
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
@@ -192,7 +216,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink external href="/swap">
+        <StyledLink id={`btn151-get-token-${pool.sousId}`} external href="/swap">
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
           </Button>

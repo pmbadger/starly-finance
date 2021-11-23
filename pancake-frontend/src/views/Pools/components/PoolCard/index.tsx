@@ -42,7 +42,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
             <CardActions pool={pool} stakedBalance={stakedBalance} />
           ) : (
             <BtnsWrapper>
-              <ConnectWalletBtnWithUnlockAndStar />
+              <ConnectWalletBtnWithUnlockAndStar id={`btn118-unlock-wallet-${pool.sousId}`} />
             </BtnsWrapper>
           )}
         </Flex>

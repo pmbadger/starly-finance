@@ -119,7 +119,7 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <Button onClick={onMax} scale="sm" variant="text">
+                <Button id={`btn-max-${id}`} onClick={onMax} scale="sm" variant="text">
                   MAX
                 </Button>
               )}
@@ -127,6 +127,7 @@ export default function CurrencyInputPanel({
           )}
           <CurrencySelectButton
             selected={!!currency}
+            id={`btn-${id}`}
             className="open-currency-select-button"
             onClick={() => {
               if (!disableCurrencySelect) {

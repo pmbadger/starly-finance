@@ -73,7 +73,20 @@ const TextBorder = styled.div`
 
 const HomeSwiper: React.FC = () => {
   return (
-    <Swiper navigation className="mySwiper">
+    <Swiper
+      navigation
+      className="mySwiper"
+      onSwiper={() => {
+        const swiperPrevBtn = document.getElementsByClassName('swiper-button-prev')
+        if (swiperPrevBtn.length > 0) {
+          swiperPrevBtn[0].setAttribute('id', 'btn29-swiper-prev')
+        }
+        const swiperNextBtn = document.getElementsByClassName('swiper-button-next')
+        if (swiperNextBtn.length > 0) {
+          swiperNextBtn[0].setAttribute('id', 'btn30-swiper-next')
+        }
+      }}
+    >
       <SwiperSlide>
         <SwiperWrapper>
           <CoinBg

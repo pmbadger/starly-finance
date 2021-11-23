@@ -22,14 +22,14 @@ const Nav = () => {
 
   return (
     <TabMenu activeIndex={getActiveIndex(location.pathname)} onItemClick={openTransactionModal}>
-      <Tab to="/swap" as={Link}>
+      <Tab id="btn31-tab-menu-swap" to="/swap" as={Link}>
         Swap
       </Tab>
-      <Tab to="/liquidity" as={Link}>
+      <Tab id="btn32-tab-menu-liquidity" to="/liquidity" as={Link}>
         Liquidity
       </Tab>
-      <Tab>Bridge</Tab>
-      <Tab>Transactions</Tab>
+      <Tab id="btn33-tab-menu-bridge">Bridge</Tab>
+      <Tab id="btn34-tab-menu-transactions">Transactions</Tab>
     </TabMenu>
   )
 }

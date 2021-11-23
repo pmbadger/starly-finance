@@ -72,7 +72,7 @@ const ClaimPrizesModal: React.FC<ClaimPrizesModalModalProps> = ({ onDismiss, rou
         <ModalTitle>
           <Heading>{t('Collect Winnings')}</Heading>
         </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <ModalCloseButton modalCloseId="close-claim-prices-modal" onDismiss={onDismiss} />
       </StyledModalHeader>
       <ModalBody p="24px">
         <ClaimPrizesInner

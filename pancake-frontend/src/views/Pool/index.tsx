@@ -69,6 +69,7 @@ export default function Pool() {
     if (allV2PairsWithLiquidity?.length > 0) {
       return allV2PairsWithLiquidity.map((v2Pair, index) => (
         <FullPositionCard
+          positionCardId="btn77-full-position-card"
           key={v2Pair.liquidityToken.address}
           pair={v2Pair}
           mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}

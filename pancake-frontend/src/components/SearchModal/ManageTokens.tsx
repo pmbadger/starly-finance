@@ -1,7 +1,7 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo } from 'react'
 import { Text, Button, CloseIcon, IconButton, LinkExternal, Input, Link } from 'pancakeswap-uikit'
 import styled from 'styled-components'
-import Row, { AutoRow, RowBetween, RowFixed } from 'components/Layout/Row'
+import Row, { RowBetween, RowFixed } from 'components/Layout/Row'
 import { useToken } from 'hooks/Tokens'
 import { useRemoveUserAddedToken } from 'state/user/hooks'
 import useUserAddedTokens from 'state/user/hooks/useUserAddedTokens'
@@ -73,15 +73,28 @@ export default function ManageTokens({
         <RowBetween key={token.address} width="100%">
           <RowFixed>
             <CurrencyLogo currency={token} size="20px" />
-            <Link external href={getBlockExplorerLink(token.address, 'address', chainId)} color="textSubtle" ml="10px">
+            <Link
+              id="btn50-manage-tokens-explorer-link"
+              external
+              href={getBlockExplorerLink(token.address, 'address', chainId)}
+              color="textSubtle"
+              ml="10px"
+            >
               {token.symbol}
             </Link>
           </RowFixed>
           <RowFixed>
-            <IconButton variant="text" onClick={() => removeToken(chainId, token.address)}>
+            <IconButton
+              id="btn51-manage-tokens-remove"
+              variant="text"
+              onClick={() => removeToken(chainId, token.address)}
+            >
               <CloseIcon />
             </IconButton>
-            <LinkExternal href={getBlockExplorerLink(token.address, 'address', chainId)} />
+            <LinkExternal
+              id="btn87-explorer-link-for-token"
+              href={getBlockExplorerLink(token.address, 'address', chainId)}
+            />
           </RowFixed>
         </RowBetween>
       ))
@@ -120,7 +133,7 @@ export default function ManageTokens({
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('Custom Token') : t('Custom Tokens')}
           </Text>
           {userAddedTokens.length > 0 && (
-            <Button variant="secondary" onClick={handleRemoveAll}>
+            <Button id="btn52-manage-tokens-clear-all" variant="secondary" onClick={handleRemoveAll}>
               {t('Clear all')}
             </Button>
           )}

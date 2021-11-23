@@ -70,7 +70,7 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
             </>
           ) : (
             <BtnsWrapper>
-              <ConnectWalletBtnWithUnlockAndStar />
+              <ConnectWalletBtnWithUnlockAndStar id="btn117-unlock-wallet-auto-pool" />
             </BtnsWrapper>
           )}
         </Flex>

@@ -301,6 +301,7 @@ export interface CardMainContentProps {
   textSecond: TextProps
   textBtn: string
   textLink: string
+  btnId: string
 }
 
 export interface CardMainWrapperProps {

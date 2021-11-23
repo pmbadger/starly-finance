@@ -10,12 +10,14 @@ export interface ApyButtonProps {
   apr?: number
   displayApr?: string
   addLiquidityUrl?: string
+  aryButtonId: string
 }
 
-const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, cakePrice, apr, displayApr, addLiquidityUrl }) => {
+const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, cakePrice, apr, displayApr, addLiquidityUrl, aryButtonId }) => {
   const { t } = useTranslation()
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
+      aryModalId={aryButtonId}
       linkLabel={t('Get %symbol%', { symbol: lpLabel })}
       tokenPrice={cakePrice.toNumber()}
       apr={apr}
@@ -31,7 +33,7 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, cakePrice, apr, displayA
   }
 
   return (
-    <IconButton onClick={handleClickButton} variant="text" scale="sm" ml="4px">
+    <IconButton id={`btn111-${aryButtonId}`} onClick={handleClickButton} variant="text" scale="sm" ml="4px">
       <CalculateIcon width="18px" />
     </IconButton>
   )

@@ -61,12 +61,14 @@ function CurrencyRow({
   isSelected,
   otherSelected,
   style,
+  id,
 }: {
   currency: Currency
   onSelect: () => void
   isSelected: boolean
   otherSelected: boolean
   style: CSSProperties
+  id: string
 }) {
   const { account } = useActiveWeb3React()
   const key = currencyKey(currency)
@@ -83,6 +85,7 @@ function CurrencyRow({
       onClick={() => (isSelected ? null : onSelect())}
       disabled={isSelected}
       selected={otherSelected}
+      id={id}
     >
       <CurrencyLogo currency={currency} size="24px" />
       <Column>
@@ -173,6 +176,7 @@ export default function CurrencyList({
       }
       return (
         <CurrencyRow
+          id={`btn155-token-${currencyKey(currency)}`}
           style={style}
           currency={currency}
           isSelected={isSelected}

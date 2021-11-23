@@ -38,7 +38,7 @@ const StyledText = styled(Text)`
 const CakePrice: React.FC<Props> = (props) => {
   const { registerCakeToken } = props
   return (
-    <AddTokenButton
+    <AddTokenButton id="btn8-add-stly-to-metamask"
       onClick={() => registerCakeToken()}
     >
       <MetamaskIcon width="24px" mr="8px" />

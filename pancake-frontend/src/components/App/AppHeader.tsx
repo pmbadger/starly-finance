@@ -12,6 +12,7 @@ interface Props {
   helper?: string
   backTo?: string
   noConfig?: boolean
+  backId?: string | undefined
 }
 
 const AppHeaderContainer = styled(Flex)`
@@ -31,14 +32,14 @@ const CardTitle = styled(Text)`
   margin-bottom: 20px;
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
+const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false, backId }) => {
   const [expertMode] = useExpertModeManager()
 
   return (
     <AppHeaderContainer>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
         {backTo && (
-          <IconButton as={Link} to={backTo}>
+          <IconButton id={backId} as={Link} to={backTo}>
             <ArrowBackIcon width="32px" />
           </IconButton>
         )}

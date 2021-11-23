@@ -67,7 +67,11 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             {chainId && (
               <Flex justifyContent="space-between" width="100%" mt="8px">
                 <Text mr="4px">{address}</Text>
-                <Link href={getBlockExplorerLink(token.address, 'address', chainId)} external>
+                <Link
+                  id="btn84-import-token-explorer-link"
+                  href={getBlockExplorerLink(token.address, 'address', chainId)}
+                  external
+                >
                   ({t('View on block explorer')})
                 </Link>
               </Flex>
@@ -91,6 +95,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
         </Flex>
         <Button
           variant="danger"
+          id="btn85-import-token"
           disabled={!confirmed}
           onClick={() => {
             tokens.map((token) => addToken(token))

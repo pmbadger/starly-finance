@@ -107,7 +107,11 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
           {blocksRemaining || blocksUntilStart ? (
             <Flex alignItems="center">
-              <Link external href={getBlockExplorerLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
+              <Link
+                id={`btn120-pool-${pool.sousId}-ends`}
+                external
+                href={getBlockExplorerLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}
+              >
                 <Balance small value={blocksToDisplay} decimals={0} color="primary" />
                 <Text small ml="4px" color="primary" textTransform="lowercase">
                   {t('Blocks')}
@@ -135,7 +139,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       )}
       {earningToken?.projectLink && earningToken?.projectLink !== '' && (
         <Flex mb="2px" justifyContent="flex-start">
-          <LinkExternal href={earningToken.projectLink} bold={false} small>
+          <LinkExternal id={`btn121-project-site-${pool.sousId}`} href={earningToken.projectLink} bold={false} small>
             {t('View Project Site')}
           </LinkExternal>
         </Flex>
@@ -143,6 +147,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       {poolContractAddress && (
         <Flex mb="2px" justifyContent="flex-start">
           <LinkExternal
+            id={pool.isAutoVault ? `btn122-view-contract-auto-pool` : `btn122-view-contract-${pool.sousId}`}
             href={`${BASE_BLOCK_EXPLORER_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
             bold={false}
             small
@@ -154,6 +159,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       {account && isMetaMaskInScope && tokenAddress && (
         <Flex justifyContent="flex-end">
           <Button
+            id={pool.isAutoVault ? `btn123-register-token-auto-pool` : `btn123-register-token-${pool.sousId}`}
             variant="text"
             p="0"
             height="auto"

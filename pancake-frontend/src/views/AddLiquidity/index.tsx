@@ -310,6 +310,8 @@ export default function AddLiquidity({
       content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={modalBottom} />}
       pendingText={pendingText}
       currencyToAdd={pair?.liquidityToken}
+      modalCloseId="add-liquidity-modal-close"
+      txSubmittedContentId="add-liquidity"
     />,
     true,
     true,
@@ -319,6 +321,7 @@ export default function AddLiquidity({
   return (
     <Page>
       <AppHeader
+        backId="btn157-back-from-add-liquidity"
         title={t('Add Liquidity')}
         subtitle={t('Add liquidity to receive LP tokens')}
         helper={t(
@@ -398,6 +401,7 @@ export default function AddLiquidity({
             </StyledButton>
           ) : !account ? (
             <StyledConnectWalletButtonExchange
+              id="btn67-connect-add-liquidity"
               text="Unlock Wallet"
               icon={<img alt="lock" src="/images/lock.svg" />}
               iconPosition="start"
@@ -412,6 +416,7 @@ export default function AddLiquidity({
                   <>
                     {approvalA !== ApprovalState.APPROVED && (
                       <StyledButton
+                        id="btn70-add-liquidity-approve-a"
                         onClick={approveACallback}
                         disabled={approvalA === ApprovalState.PENDING}
                         width="48%"
@@ -425,6 +430,7 @@ export default function AddLiquidity({
                     )}
                     {approvalB !== ApprovalState.APPROVED && (
                       <StyledButton
+                        id="btn71-add-liquidity-approve-b"
                         onClick={approveBCallback}
                         disabled={approvalB === ApprovalState.PENDING}
                         width="48%"
@@ -439,6 +445,7 @@ export default function AddLiquidity({
                   </>
                 )}
               <StyledButton
+                id="btn72-supply-liquidity"
                 mt="12px"
                 width={
                   (approvalA !== ApprovalState.APPROVED && approvalB !== ApprovalState.APPROVED) ||
@@ -470,7 +477,11 @@ export default function AddLiquidity({
           pair && !noLiquidity && pairState !== PairState.INVALID ? (
             <StyledCard>
               <Row style={{ display: 'block', width: '100%' }}>
-                <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
+                <MinimalPositionCard
+                  positionCardId="btn68-add-liquidity-position-card"
+                  showUnwrapped={oneCurrencyIsWETH}
+                  pair={pair}
+                />
               </Row>
             </StyledCard>
           ) : null

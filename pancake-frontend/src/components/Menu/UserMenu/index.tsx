@@ -27,11 +27,11 @@ const UserMenu = () => {
   return (
     <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
       <WalletUserMenuItem hasLowEthBalance={hasLowEthBalance} onPresentWalletModal={onPresentWalletModal} />
-      <UserMenuItem as="button" onClick={onPresentTransactionModal}>
+      <UserMenuItem id="btn19-transactions-menu-item" as="button" onClick={onPresentTransactionModal}>
         {t('Transactions')}
       </UserMenuItem>
       <UserMenuDivider />
-      <UserMenuItem as="button" onClick={logout}>
+      <UserMenuItem id="btn20-disconnect-menu-item" as="button" onClick={logout}>
         <Flex alignItems="center" justifyContent="space-between" width="100%">
           {t('Disconnect')}
           <LogoutIcon />

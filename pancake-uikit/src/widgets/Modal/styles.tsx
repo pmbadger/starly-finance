@@ -24,17 +24,17 @@ export const ModalBody = styled(Flex)`
   overflow-y: auto;
 `;
 
-export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
+export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"], modalCloseId: ModalProps['modalCloseId'] }> = ({ onDismiss, modalCloseId }) => {
   return (
-    <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
+    <IconButton id={modalCloseId} variant="text" onClick={onDismiss} aria-label="Close the dialog">
       <CloseIcon color="#2856B8" />
     </IconButton>
   );
 };
 
-export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ onBack }) => {
+export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"], modalBackButtonId: ModalProps["modalBackButtonId"] }> = ({ onBack, modalBackButtonId }) => {
   return (
-    <IconButton variant="text" onClick={onBack} area-label="go back" mr="8px">
+    <IconButton id={modalBackButtonId} variant="text" onClick={onBack} area-label="go back" mr="8px">
       <ArrowBackIcon color="#2856B8" />
     </IconButton>
   );

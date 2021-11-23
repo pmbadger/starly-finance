@@ -103,10 +103,16 @@ export default function PoolFinder() {
 
   return (
     <Page>
-      <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
+      <AppHeader
+        backId="btn158-back-from-pool-finder"
+        title={t('Import Pool')}
+        subtitle={t('Import an existing pool')}
+        backTo="/pool"
+      />
       <CardBody>
         <AutoRow style={{ padding: '37px 0 24px 0px' }} gap="md" justify="center">
           <StyledButton
+            id="btn41-import-pool-token0"
             endIcon={<ChevronDownIcon />}
             onClick={() => {
               onPresentCurrencyModal()
@@ -128,6 +134,7 @@ export default function PoolFinder() {
           </ColumnCenter>
 
           <StyledButton
+            id="btn42-import-pool-token1"
             endIcon={<ChevronDownIcon />}
             onClick={() => {
               onPresentCurrencyModal()
@@ -151,7 +158,7 @@ export default function PoolFinder() {
               style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
             >
               <Text textAlign="center">{t('Pool Found!')}</Text>
-              <StyledInternalLink to="/pool">
+              <StyledInternalLink id="btn43-pool-finder-manage-pool" to="/pool">
                 <Text textAlign="center">{t('Manage this pool.')}</Text>
               </StyledInternalLink>
             </ColumnCenter>
@@ -163,7 +170,7 @@ export default function PoolFinder() {
             hasPosition && pair ? (
               <StyledCard>
                 <Row style={{ display: 'block' }}>
-                  <MinimalPositionCard pair={pair} />
+                  <MinimalPositionCard positionCardId="btn69-pool-finder-position-card" pair={pair} />
                 </Row>
               </StyledCard>
             ) : (
@@ -172,7 +179,10 @@ export default function PoolFinder() {
                   <Text textAlign="center">{t('You don’t have liquidity in this pool yet.')}</Text>
                 </AutoRow>
                 <AutoRow marginTop="16px" justify="center">
-                  <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                  <StyledInternalLink
+                    id="btn44-pool-finder-add-liquidity"
+                    to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                  >
                     <Text textAlign="center">{t('Add Liquidity')}</Text>
                   </StyledInternalLink>
                 </AutoRow>
@@ -184,7 +194,10 @@ export default function PoolFinder() {
                 <Text textAlign="center">{t('No pool found.')}</Text>
               </AutoRow>
               <AutoRow marginTop="16px" justify="center">
-                <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                <StyledInternalLink
+                  id="btn45-pool-finder-create-pool"
+                  to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                >
                   {t('Create pool.')}
                 </StyledInternalLink>
               </AutoRow>

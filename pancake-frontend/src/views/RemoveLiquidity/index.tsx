@@ -385,7 +385,11 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={() => onRemove()}>
+        <Button
+          id="btn78-confirm-remove-liquidity"
+          disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
+          onClick={() => onRemove()}
+        >
           {t('Confirm')}
         </Button>
       </>
@@ -456,6 +460,8 @@ export default function RemoveLiquidity({
       hash={txHash || ''}
       content={() => renderContent()}
       pendingText={pendingText}
+      modalCloseId="remove-liquidity-modal-close"
+      txSubmittedContentId="remove-liquidity"
     />,
     true,
     true,
@@ -465,6 +471,7 @@ export default function RemoveLiquidity({
   return (
     <Page>
       <AppHeader
+        backId="btn156-back-from-remove-liquidity"
         backTo="/pool"
         title={t('Remove %assetA%-%assetB% liquidity', {
           assetA: currencyA?.symbol ?? '',
@@ -478,7 +485,12 @@ export default function RemoveLiquidity({
         <AutoRow>
           <RowBetween>
             <Text>{t('Amount')}</Text>
-            <Button variant="text" scale="sm" onClick={() => setShowDetailed(!showDetailed)}>
+            <Button
+              id={showDetailed ? 'btn54-simple' : 'btn54-detailed'}
+              variant="text"
+              scale="sm"
+              onClick={() => setShowDetailed(!showDetailed)}
+            >
               {showDetailed ? t('Simple') : t('Detailed')}
             </Button>
           </RowBetween>
@@ -496,16 +508,36 @@ export default function RemoveLiquidity({
                 mb="16px"
               />
               <Flex flexWrap="wrap" justifyContent="space-evenly">
-                <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}>
+                <Button
+                  id="btn55-liquidity-percent-25"
+                  variant="tertiary"
+                  scale="sm"
+                  onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
+                >
                   25%
                 </Button>
-                <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}>
+                <Button
+                  id="btn56-liquidity-percent-50"
+                  variant="tertiary"
+                  scale="sm"
+                  onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
+                >
                   50%
                 </Button>
-                <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}>
+                <Button
+                  id="btn57-liquidity-percent-75"
+                  variant="tertiary"
+                  scale="sm"
+                  onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
+                >
                   75%
                 </Button>
-                <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}>
+                <Button
+                  id="btn58-liquidity-percent-max"
+                  variant="tertiary"
+                  scale="sm"
+                  onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
+                >
                   Max
                 </Button>
               </Flex>
@@ -544,6 +576,7 @@ export default function RemoveLiquidity({
                   <RowBetween style={{ justifyContent: 'flex-end', fontSize: '14px' }}>
                     {oneCurrencyIsETH ? (
                       <StyledInternalLink
+                        id="btn59-receive-weth"
                         to={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
                           currencyB === ETHER ? WETH[chainId].address : currencyIdB
                         }`}
@@ -552,6 +585,7 @@ export default function RemoveLiquidity({
                       </StyledInternalLink>
                     ) : oneCurrencyIsWETH ? (
                       <StyledInternalLink
+                        id="btn60-receive-eth"
                         to={`/remove/${currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'ETH' : currencyIdA}/${
                           currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'ETH' : currencyIdB
                         }`}
@@ -639,6 +673,7 @@ export default function RemoveLiquidity({
         <Box position="relative" mt="16px">
           {!account ? (
             <StyledConnectWalletButtonExchange
+              id="btn66-connect-remove-liquidity"
               text="Unlock Wallet"
               icon={<img alt="lock" src="/images/lock.svg" />}
               iconPosition="start"
@@ -646,6 +681,7 @@ export default function RemoveLiquidity({
           ) : (
             <RowBetween>
               <StyledButton
+                id="btn61-enable-remove-liquidity"
                 variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
                 onClick={() => {
                   onAttemptToApprove()
@@ -663,6 +699,7 @@ export default function RemoveLiquidity({
                 )}
               </StyledButton>
               <StyledButton
+                id="btn62-remove-liquidity"
                 variant={
                   !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
                     ? 'danger'
@@ -683,7 +720,11 @@ export default function RemoveLiquidity({
         <StyledCard>
           {pair ? (
             <Row style={{ display: 'block', width: '100%' }}>
-              <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
+              <MinimalPositionCard
+                positionCardId="btn76-remove-liquidity-position-card"
+                showUnwrapped={oneCurrencyIsWETH}
+                pair={pair}
+              />
             </Row>
           ) : null}
         </StyledCard>

@@ -18,10 +18,6 @@ interface Props {
   displayCount?: number;
 }
 
-const WalletWrapper = styled(Box)`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
-`;
-
 /**
  * Checks local storage if we have saved the last wallet the user connected with
  * If we find something we put it at the top of the list
@@ -60,10 +56,10 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
         <ModalTitle>
           <Heading>Connect Wallet</Heading>
         </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <ModalCloseButton modalCloseId="btn53-close-connect-wallet-modal" onDismiss={onDismiss} />
       </ModalHeader>
       <ModalBody width={["320px", null, "340px"]}>
-        <WalletWrapper py="24px" maxHeight="453px" overflowY="auto">
+        <Box py="24px" maxHeight="453px" overflowY="auto">
           <Grid gridTemplateColumns="1fr 1fr">
             {displayListConfig.map((wallet) => (
               <Box key={wallet.title}>
@@ -72,7 +68,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
             ))}
             {/* {!showMore && <MoreWalletCard onClick={() => setShowMore(true)} />} */}
           </Grid>
-        </WalletWrapper>
+        </Box>
         {/* <Box p="24px"> */}
         {/*  <Text textAlign="center" color="textSubtle" as="p" mb="16px"> */}
         {/*    Haven&#39;t got a crypto wallet yet? */}

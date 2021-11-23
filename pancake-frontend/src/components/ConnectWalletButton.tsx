@@ -116,6 +116,7 @@ const StyledConnectWalletButton = styled(ConnectWalletButton)`
 export const ConnectWalletButtonWithStar = () => {
   return (
     <StyledConnectWalletButton
+      id="btn17-connect-wallet-global"
       text="Connect wallet"
       icon={<img alt="star" src="/images/star.svg" />}
       iconPosition="end"
@@ -138,11 +139,12 @@ export const StyledConnectWalletButtonExchange = styled(ConnectWalletButton)`
   }
 `
 
-export const ConnectWalletBtnWithUnlockAndStar = () => {
+export const ConnectWalletBtnWithUnlockAndStar = (props) => {
+  const { id } = props
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
   return (
-    <CustomButton onClick={onPresentConnectModal} startIcon={<UnlockIcon />}>
+    <CustomButton id={id} onClick={onPresentConnectModal} startIcon={<UnlockIcon />}>
       Unlock Wallet
       <StarXS />
     </CustomButton>

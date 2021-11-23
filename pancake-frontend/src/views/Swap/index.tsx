@@ -292,6 +292,7 @@ export default function Swap({ history }: RouteComponentProps) {
           />
           <ArrowWrapper clickable style={{ padding: '33px 50px 0px 50px' }}>
             <SwapArrowsIcon
+              id="btn35-swap-arrows"
               width="16px"
               onClick={() => {
                 setApprovalSubmitted(false) // reset 2 step UI for approvals
@@ -363,12 +364,13 @@ export default function Swap({ history }: RouteComponentProps) {
             </StyledButton>
           ) : !account ? (
             <StyledConnectWalletButtonExchange
+              id="btn36-connect-wallet-swap"
               text="Unlock Wallet"
               icon={<img alt="lock" src="/images/lock.svg" />}
               iconPosition="start"
             />
           ) : showWrap ? (
-            <StyledButton width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
+            <StyledButton id="btn37-wrap-or-unwrap" width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
               {wrapInputError ?? (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
             </StyledButton>
           ) : noRoute && userHasSpecifiedInputOutput ? (

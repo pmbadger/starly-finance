@@ -43,6 +43,7 @@ export default function CommonBases({
       </AutoRow>
       <AutoRow gap="auto">
         <BaseWrapper
+          id="btn153-common-bases-eth"
           onClick={() => {
             if (!selectedCurrency || !currencyEquals(selectedCurrency, ETHER)) {
               onSelect(ETHER)
@@ -56,7 +57,12 @@ export default function CommonBases({
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
           return (
-            <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
+            <BaseWrapper
+              id={`btn154-common-bases-${token.address}`}
+              onClick={() => !selected && onSelect(token)}
+              disable={selected}
+              key={token.address}
+            >
               <CurrencyLogo size="24px" currency={token} style={{ marginRight: 8 }} />
               <Text>{token.symbol}</Text>
             </BaseWrapper>

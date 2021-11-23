@@ -92,6 +92,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
 
   return (
     <Modal
+      modalCloseId={`btn140-collect-modal-close-${sousId}`}
       title={`${earningToken.symbol} ${isCompoundPool ? t('Collect') : t('Harvest')}`}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
@@ -104,10 +105,10 @@ const CollectModal: React.FC<CollectModalProps> = ({
             variant="subtle"
             onItemClick={(index) => setShouldCompound(!index)}
           >
-            <ButtonMenuItem as="button" width="50%">
+            <ButtonMenuItem id={`btn136-compound-tab-${sousId}`} as="button" width="50%">
               {t('Compound')}
             </ButtonMenuItem>
-            <ButtonMenuItem as="button" width="50%">
+            <ButtonMenuItem id={`btn139-harvest-tab-${sousId}`} as="button" width="50%">
               {t('Harvest')}
             </ButtonMenuItem>
           </ButtonMenu>
@@ -131,6 +132,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       </Flex>
 
       <Button
+        id={shouldCompound ? `btn137-confirm-compound-${sousId}` : `btn137-confirm-harvest-${sousId}`}
         mt="8px"
         onClick={handleHarvestConfirm}
         isLoading={pendingTx}
@@ -138,7 +140,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
-      <Button variant="text" onClick={onDismiss} pb="0px">
+      <Button id={`btn138-close-window-${sousId}`} variant="text" onClick={onDismiss} pb="0px">
         {t('Close Window')}
       </Button>
     </Modal>
