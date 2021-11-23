@@ -47,7 +47,6 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
-const Launchpools = lazy(() => import('./views/Launchpools'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -55,7 +54,7 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
-const ConnectWalletButtonContainer = styled.div`
+const WalletButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -172,9 +171,9 @@ const App: React.FC = () => {
         </SuspenseWithChunkError>
       </Menu>
       <Container>
-        <ConnectWalletButtonContainer>
+        <WalletButtonContainer>
           <UserMenu />
-        </ConnectWalletButtonContainer>
+        </WalletButtonContainer>
       </Container>
       <EasterEgg iterations={2} />
       <ToastListener />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button, Toggle } from 'pancakeswap-uikit'
+import { Text, Toggle } from 'pancakeswap-uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import SearchInput from 'components/SearchInput'
@@ -15,18 +15,6 @@ interface Props {
   setSortOption: (value: string) => void
 }
 
-const HarvestButton = styled(Button)`
-  background: #255aba33;
-  width: 140px;
-  height: 54px;
-  border-radius: 12px;
-  font-family: 'Futura PT';
-  color: #82c8f4;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  margin-bottom: 20px;
-`
 const ViewControls = styled.div`
   flex-wrap: wrap;
   display: flex;

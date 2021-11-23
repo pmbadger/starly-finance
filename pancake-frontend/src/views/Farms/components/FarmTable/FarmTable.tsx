@@ -38,6 +38,7 @@ const TableWrapper = styled.div`
 const TableContainer = styled.div`
   position: relative;
   border-radius: 32px;
+  max-width: 1193px;
   width: 80%;
 `
 

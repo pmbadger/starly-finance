@@ -9,7 +9,6 @@ const StyledInput = styled(Input)`
   margin-left: auto;
   width: 270px;
   height: 54px;
-  background-color: transparent;
   color: white;
   border: 1px solid #455381;
   background: url(images/search.svg) no-repeat scroll 21px 17px;
