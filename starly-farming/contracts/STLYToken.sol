@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
 contract Context {
@@ -498,7 +499,7 @@ library Address {
 }
 
 contract BEP20 is Context, IBEP20, Ownable {
-    uint256 private constant _preMineSupply = 10000000 * 1e18;
+    uint256 private constant _preMineSupply = 20000000 * 1e18;
     uint256 private constant _maxSupply = 777000000 * 1e18;
 
     using SafeMath for uint256;
@@ -1013,8 +1014,8 @@ library EnumerableSet {
         return uint256(_at(set._inner, index));
     }
 }
-// Biswap token with Governance.
-contract BSWToken is BEP20('Starly', 'STLY') {
+// Starly token with Governance.
+contract STLYToken is BEP20('Starly', 'STLY') {
     using EnumerableSet for EnumerableSet.AddressSet;
     EnumerableSet.AddressSet private _minters;
 
@@ -1127,9 +1128,9 @@ contract BSWToken is BEP20('Starly', 'STLY') {
         );
 
         address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "BSW::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "BSW::delegateBySig: invalid nonce");
-        require(now <= expiry, "BSW::delegateBySig: signature expired");
+        require(signatory != address(0), "STLY::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "STLY::delegateBySig: invalid nonce");
+        require(now <= expiry, "STLY::delegateBySig: signature expired");
         return _delegate(signatory, delegatee);
     }
 
@@ -1159,7 +1160,7 @@ contract BSWToken is BEP20('Starly', 'STLY') {
         view
         returns (uint256)
     {
-        require(blockNumber < block.number, "BSW::getPriorVotes: not yet determined");
+        require(blockNumber < block.number, "STLY::getPriorVotes: not yet determined");
 
         uint32 nCheckpoints = numCheckpoints[account];
         if (nCheckpoints == 0) {
@@ -1196,7 +1197,7 @@ contract BSWToken is BEP20('Starly', 'STLY') {
         internal
     {
         address currentDelegate = _delegates[delegator];
-        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying BSWs (not scaled);
+        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying STLYs (not scaled);
         _delegates[delegator] = delegatee;
 
         emit DelegateChanged(delegator, currentDelegate, delegatee);
@@ -1232,7 +1233,7 @@ contract BSWToken is BEP20('Starly', 'STLY') {
     )
         internal
     {
-        uint32 blockNumber = safe32(block.number, "BSW::_writeCheckpoint: block number exceeds 32 bits");
+        uint32 blockNumber = safe32(block.number, "STLY::_writeCheckpoint: block number exceeds 32 bits");
 
         if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
             checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;
@@ -1257,12 +1258,12 @@ contract BSWToken is BEP20('Starly', 'STLY') {
 
 
     function addMinter(address _addMinter) public onlyOwner returns (bool) {
-        require(_addMinter != address(0), "BSW: _addMinter is the zero address");
+        require(_addMinter != address(0), "STLY: _addMinter is the zero address");
         return EnumerableSet.add(_minters, _addMinter);
     }
 
     function delMinter(address _delMinter) public onlyOwner returns (bool) {
-        require(_delMinter != address(0), "BSW: _delMinter is the zero address");
+        require(_delMinter != address(0), "STLY: _delMinter is the zero address");
         return EnumerableSet.remove(_minters, _delMinter);
     }
 
@@ -1275,7 +1276,7 @@ contract BSWToken is BEP20('Starly', 'STLY') {
     }
 
     function getMinter(uint256 _index) public view onlyOwner returns (address){
-        require(_index <= getMinterLength() - 1, "BSW: index out of bounds");
+        require(_index <= getMinterLength() - 1, "STLY: index out of bounds");
         return EnumerableSet.at(_minters, _index);
     }
 
