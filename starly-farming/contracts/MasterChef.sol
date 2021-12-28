@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 library SafeBEP20 {
     using SafeMath for uint256;
@@ -83,16 +84,16 @@ library SafeBEP20 {
         }
     }
 }
-import "./BSWToken.sol";
+import "./STLYToken.sol";
 
 interface IMigratorChef {
     function migrate(IBEP20 token) external returns (IBEP20);
 }
 
-// MasterChef is the master of BSW. He can make BSW and he is a fair guy.
+// MasterChef is the master of STLY. He can make STLY and he is a fair guy.
 //
 // Note that it's ownable and the owner wields tremendous power. The ownership
-// will be transferred to a governance smart contract once BSW is sufficiently
+// will be transferred to a governance smart contract once STLY is sufficiently
 // distributed and the community can show to govern itself.
 //
 // Have fun reading it. Hopefully it's bug-free. God bless.
@@ -104,13 +105,13 @@ contract MasterChef is Ownable {
         uint256 amount; // How many LP tokens the user has provided.
         uint256 rewardDebt; // Reward debt. See explanation below.
         //
-        // We do some fancy math here. Basically, any point in time, the amount of BSWs
+        // We do some fancy math here. Basically, any point in time, the amount of STLYs
         // entitled to a user but is pending to be distributed is:
         //
-        //   pending reward = (user.amount * pool.accBSWPerShare) - user.rewardDebt
+        //   pending reward = (user.amount * pool.accSTLYPerShare) - user.rewardDebt
         //
         // Whenever a user deposits or withdraws LP tokens to a pool. Here's what happens:
-        //   1. The pool's `accBSWPerShare` (and `lastRewardBlock`) gets updated.
+        //   1. The pool's `accSTLYPerShare` (and `lastRewardBlock`) gets updated.
         //   2. User receives the pending reward sent to his/her address.
         //   3. User's `amount` gets updated.
         //   4. User's `rewardDebt` gets updated.
@@ -118,12 +119,12 @@ contract MasterChef is Ownable {
     // Info of each pool.
     struct PoolInfo {
         IBEP20 lpToken; // Address of LP token contract.
-        uint256 allocPoint; // How many allocation points assigned to this pool. BSWs to distribute per block.
-        uint256 lastRewardBlock; // Last block number that BSWs distribution occurs.
-        uint256 accBSWPerShare; // Accumulated BSWs per share, times 1e12. See below.
+        uint256 allocPoint; // How many allocation points assigned to this pool. STLYs to distribute per block.
+        uint256 lastRewardBlock; // Last block number that STLYs distribution occurs.
+        uint256 accSTLYPerShare; // Accumulated STLYs per share, times 1e12. See below.
     }
-    // The BSW TOKEN!
-    BSWToken public BSW;
+    // The STLY TOKEN!
+    STLYToken public STLY;
     //Pools, Farms, Dev, Refs percent decimals
     uint256 public percentDec = 1000000;
     //Pools and Farms percent from token per block
@@ -142,9 +143,9 @@ contract MasterChef is Ownable {
     address public refAddr;
     // Last block then develeper withdraw dev and ref fee
     uint256 public lastBlockDevWithdraw;
-    // BSW tokens created per block.
-    uint256 public BSWPerBlock;
-    // Bonus muliplier for early BSW makers.
+    // STLY tokens created per block.
+    uint256 public STLYPerBlock;
+    // Bonus multiplier for early STLY makers.
     uint256 public BONUS_MULTIPLIER = 1;
     // The migrator contract. It has a lot of power. Can only be set through governance (owner).
     IMigratorChef public migrator;
@@ -154,10 +155,10 @@ contract MasterChef is Ownable {
     mapping(uint256 => mapping(address => UserInfo)) public userInfo;
     // Total allocation poitns. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
-    // The block number when BSW mining starts.
+    // The block number when STLY mining starts.
     uint256 public startBlock;
-    // Deposited amount BSW in MasterChef
-    uint256 public depositedBsw;
+    // Deposited amount STLY in MasterChef
+    uint256 public depositedStly;
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
@@ -168,22 +169,22 @@ contract MasterChef is Ownable {
     );
 
     constructor(
-        BSWToken _BSW,
+        STLYToken _STLY,
         address _devaddr,
         address _refAddr,
         address _safuaddr,
-        uint256 _BSWPerBlock,
+        uint256 _STLYPerBlock,
         uint256 _startBlock,
         uint256 _stakingPercent,
         uint256 _devPercent,
         uint256 _refPercent,
         uint256 _safuPercent
     ) public {
-        BSW = _BSW;
+        STLY = _STLY;
         devaddr = _devaddr;
         refAddr = _refAddr;
         safuaddr = _safuaddr;
-        BSWPerBlock = _BSWPerBlock;
+        STLYPerBlock = _STLYPerBlock;
         startBlock = _startBlock;
         stakingPercent = _stakingPercent;
         devPercent = _devPercent;
@@ -194,10 +195,10 @@ contract MasterChef is Ownable {
         
         // staking pool
         poolInfo.push(PoolInfo({
-            lpToken: _BSW,
+            lpToken: _STLY,
             allocPoint: 1000,
             lastRewardBlock: startBlock,
-            accBSWPerShare: 0
+            accSTLYPerShare: 0
         }));
 
         totalAllocPoint = 1000;
@@ -215,10 +216,10 @@ contract MasterChef is Ownable {
     function withdrawDevAndRefFee() public{
         require(lastBlockDevWithdraw < block.number, 'wait for new block');
         uint256 multiplier = getMultiplier(lastBlockDevWithdraw, block.number);
-        uint256 BSWReward = multiplier.mul(BSWPerBlock);
-        BSW.mint(devaddr, BSWReward.mul(devPercent).div(percentDec));
-        BSW.mint(safuaddr, BSWReward.mul(safuPercent).div(percentDec));
-        BSW.mint(refAddr, BSWReward.mul(refPercent).div(percentDec));
+        uint256 STLYReward = multiplier.mul(STLYPerBlock);
+        STLY.mint(devaddr, STLYReward.mul(devPercent).div(percentDec));
+        STLY.mint(safuaddr, STLYReward.mul(safuPercent).div(percentDec));
+        STLY.mint(refAddr, STLYReward.mul(refPercent).div(percentDec));
         lastBlockDevWithdraw = block.number;
     }
 
@@ -235,12 +236,12 @@ contract MasterChef is Ownable {
                 lpToken: _lpToken,
                 allocPoint: _allocPoint,
                 lastRewardBlock: lastRewardBlock,
-                accBSWPerShare: 0
+                accSTLYPerShare: 0
             })
         );
     }
 
-    // Update the given pool's BSW allocation point. Can only be called by the owner.
+    // Update the given pool's STLY allocation point. Can only be called by the owner.
     function set( uint256 _pid, uint256 _allocPoint, bool _withUpdate) public onlyOwner {
         if (_withUpdate) {
             massUpdatePools();
@@ -271,21 +272,21 @@ contract MasterChef is Ownable {
          return _to.sub(_from).mul(BONUS_MULTIPLIER);
     }
 
-    // View function to see pending BSWs on frontend.
-    function pendingBSW(uint256 _pid, address _user) external view returns (uint256){
+    // View function to see pending STLYs on frontend.
+    function pendingSTLY(uint256 _pid, address _user) external view returns (uint256){
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
-        uint256 accBSWPerShare = pool.accBSWPerShare;
+        uint256 accSTLYPerShare = pool.accSTLYPerShare;
         uint256 lpSupply = pool.lpToken.balanceOf(address(this));
         if (_pid == 0){
-            lpSupply = depositedBsw;
+            lpSupply = depositedStly;
         }
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
-            uint256 BSWReward = multiplier.mul(BSWPerBlock).mul(pool.allocPoint).div(totalAllocPoint).mul(stakingPercent).div(percentDec);
-            accBSWPerShare = accBSWPerShare.add(BSWReward.mul(1e12).div(lpSupply));
+            uint256 STLYReward = multiplier.mul(STLYPerBlock).mul(pool.allocPoint).div(totalAllocPoint).mul(stakingPercent).div(percentDec);
+            accSTLYPerShare = accSTLYPerShare.add(STLYReward.mul(1e12).div(lpSupply));
         }
-        return user.amount.mul(accBSWPerShare).div(1e12).sub(user.rewardDebt);
+        return user.amount.mul(accSTLYPerShare).div(1e12).sub(user.rewardDebt);
     }
 
     // Update reward vairables for all pools. Be careful of gas spending!
@@ -304,90 +305,90 @@ contract MasterChef is Ownable {
         }
         uint256 lpSupply = pool.lpToken.balanceOf(address(this));
         if (_pid == 0){
-            lpSupply = depositedBsw;
+            lpSupply = depositedStly;
         }
         if (lpSupply <= 0) {
             pool.lastRewardBlock = block.number;
             return;
         }
         uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
-        uint256 BSWReward = multiplier.mul(BSWPerBlock).mul(pool.allocPoint).div(totalAllocPoint).mul(stakingPercent).div(percentDec);
-        BSW.mint(address(this), BSWReward);
-        pool.accBSWPerShare = pool.accBSWPerShare.add(BSWReward.mul(1e12).div(lpSupply));
+        uint256 STLYReward = multiplier.mul(STLYPerBlock).mul(pool.allocPoint).div(totalAllocPoint).mul(stakingPercent).div(percentDec);
+        STLY.mint(address(this), STLYReward);
+        pool.accSTLYPerShare = pool.accSTLYPerShare.add(STLYReward.mul(1e12).div(lpSupply));
         pool.lastRewardBlock = block.number;
     }
 
-    // Deposit LP tokens to MasterChef for BSW allocation.
+    // Deposit LP tokens to MasterChef for STLY allocation.
     function deposit(uint256 _pid, uint256 _amount) public {
 
-        require (_pid != 0, 'deposit BSW by staking');
+        require (_pid != 0, 'deposit STLY by staking');
 
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         updatePool(_pid);
         if (user.amount > 0) {
-            uint256 pending = user.amount.mul(pool.accBSWPerShare).div(1e12).sub(user.rewardDebt);
-            safeBSWTransfer(msg.sender, pending);
+            uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
+            safeSTLYTransfer(msg.sender, pending);
         }
         pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
         user.amount = user.amount.add(_amount);
-        user.rewardDebt = user.amount.mul(pool.accBSWPerShare).div(1e12);
+        user.rewardDebt = user.amount.mul(pool.accSTLYPerShare).div(1e12);
         emit Deposit(msg.sender, _pid, _amount);
     }
 
     // Withdraw LP tokens from MasterChef.
     function withdraw(uint256 _pid, uint256 _amount) public {
 
-        require (_pid != 0, 'withdraw BSW by unstaking');
+        require (_pid != 0, 'withdraw STLY by unstaking');
 
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.amount >= _amount, "withdraw: not good");
         updatePool(_pid);
-        uint256 pending = user.amount.mul(pool.accBSWPerShare).div(1e12).sub(user.rewardDebt);
-        safeBSWTransfer(msg.sender, pending);
+        uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
+        safeSTLYTransfer(msg.sender, pending);
         user.amount = user.amount.sub(_amount);
-        user.rewardDebt = user.amount.mul(pool.accBSWPerShare).div(1e12);
+        user.rewardDebt = user.amount.mul(pool.accSTLYPerShare).div(1e12);
         pool.lpToken.safeTransfer(address(msg.sender), _amount);
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
-        // Stake BSW tokens to MasterChef
+        // Stake STLY tokens to MasterChef
     function enterStaking(uint256 _amount) public {
         PoolInfo storage pool = poolInfo[0];
         UserInfo storage user = userInfo[0][msg.sender];
         updatePool(0);
         if (user.amount > 0) {
-            uint256 pending = user.amount.mul(pool.accBSWPerShare).div(1e12).sub(user.rewardDebt);
+            uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
             if(pending > 0) {
-                safeBSWTransfer(msg.sender, pending);
+                safeSTLYTransfer(msg.sender, pending);
             }
         }
         if(_amount > 0) {
             pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
             user.amount = user.amount.add(_amount);
-            depositedBsw = depositedBsw.add(_amount);
+            depositedStly = depositedStly.add(_amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accBSWPerShare).div(1e12);
+        user.rewardDebt = user.amount.mul(pool.accSTLYPerShare).div(1e12);
         emit Deposit(msg.sender, 0, _amount);
     }
 
-    // Withdraw BSW tokens from STAKING.
+    // Withdraw STLY tokens from STAKING.
     function leaveStaking(uint256 _amount) public {
         PoolInfo storage pool = poolInfo[0];
         UserInfo storage user = userInfo[0][msg.sender];
         require(user.amount >= _amount, "withdraw: not good");
         updatePool(0);
-        uint256 pending = user.amount.mul(pool.accBSWPerShare).div(1e12).sub(user.rewardDebt);
+        uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
         if(pending > 0) {
-            safeBSWTransfer(msg.sender, pending);
+            safeSTLYTransfer(msg.sender, pending);
         }
         if(_amount > 0) {
             user.amount = user.amount.sub(_amount);
             pool.lpToken.safeTransfer(address(msg.sender), _amount);
-            depositedBsw = depositedBsw.sub(_amount);
+            depositedStly = depositedStly.sub(_amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accBSWPerShare).div(1e12);
+        user.rewardDebt = user.amount.mul(pool.accSTLYPerShare).div(1e12);
         emit Withdraw(msg.sender, 0, _amount);
     }
 
@@ -401,13 +402,13 @@ contract MasterChef is Ownable {
         user.rewardDebt = 0;
     }
 
-    // Safe BSW transfer function, just in case if rounding error causes pool to not have enough BSWs.
-    function safeBSWTransfer(address _to, uint256 _amount) internal {
-        uint256 BSWBal = BSW.balanceOf(address(this));
-        if (_amount > BSWBal) {
-            BSW.transfer(_to, BSWBal);
+    // Safe STLY transfer function, just in case if rounding error causes pool to not have enough STLYs.
+    function safeSTLYTransfer(address _to, uint256 _amount) internal {
+        uint256 STLYBal = STLY.balanceOf(address(this));
+        if (_amount > STLYBal) {
+            STLY.transfer(_to, STLYBal);
         } else {
-            BSW.transfer(_to, _amount);
+            STLY.transfer(_to, _amount);
         }
     }
 
@@ -421,9 +422,9 @@ contract MasterChef is Ownable {
     function setSafuAddress(address _safuaddr) public onlyOwner{
         safuaddr = _safuaddr;
     }
-    function updateBswPerBlock(uint256 newAmount) public onlyOwner {
-        require(newAmount <= 21 * 1e18, 'Max per block 21 BSW');
-        require(newAmount >= 0 * 1e18, 'Min per block 0 BSW');
-        BSWPerBlock = newAmount;
+    function updateStlyPerBlock(uint256 newAmount) public onlyOwner {
+        require(newAmount <= 21 * 1e18, 'Max per block 21 STLY');
+        require(newAmount >= 0 * 1e18, 'Min per block 0 STLY');
+        STLYPerBlock = newAmount;
     }
 }
