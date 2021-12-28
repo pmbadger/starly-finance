@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, Link } from 'pancakeswap-uikit'
+import { Text } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/Layout/Column'
 import { RowBetween } from '../../../components/Layout/Row'
-import { getBlockExplorerLink } from '../../../utils'
 
 const InputPanel = styled.div`
   display: flex;
@@ -23,7 +22,7 @@ const ContainerRow = styled.div<{ error: boolean }>`
   justify-content: center;
   align-items: center;
   border-radius: 1.25rem;
-  border: 1px solid ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.background)};
+  border: 1px solid ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.cardBorder)};
   transition: border-color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')},
     color 500ms ${({ error }) => (error ? 'step-end' : 'step-start')};
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
@@ -39,8 +38,7 @@ const Input = styled.input<{ error?: boolean }>`
   outline: none;
   border: none;
   flex: 1 1 auto;
-  width: 0;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  background-color: ${({ theme }) => theme.colors.background};
   transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
   color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.primary)};
   overflow: hidden;
@@ -102,11 +100,11 @@ export default function AddressInputPanel({
           <AutoColumn gap="md">
             <RowBetween>
               <Text>{t('Recipient')}</Text>
-              {address && chainId && (
-                <Link external small href={getBlockExplorerLink(name ?? address, 'address', chainId)}>
-                  ({t('View on block explorer')})
-                </Link>
-              )}
+              {/* {address && chainId && ( */}
+              {/*  <Link external small href={getBlockExplorerLink(name ?? address, 'address', chainId)}> */}
+              {/*    ({t('View on block explorer')}) */}
+              {/*  </Link> */}
+              {/* )} */}
             </RowBetween>
             <Input
               className="recipient-address-input"

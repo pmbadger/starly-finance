@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NJ3DGTH');
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <!-- Links -->
     <link rel="preconnect" href="%REACT_APP_NODE%" />
@@ -24,32 +33,73 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Starly - A next evolution DeFi exchange on Ethereum" />
-    <!-- GTAG -->
-    <script>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
-    </script>
+    <style>
+      @font-face {
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        src: url('/fonts/SFProDisplay-Regular.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'HelveticaNeueCyr';
+        font-style: normal;
+        src: url('/fonts/HelveticaNeueCyr-Roman.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'Futura PT Bold';
+        font-style: normal;
+        src: url('/fonts/FuturaPT-Bold.woff') format('woff')
+      }
+      @font-face {
+        font-family: 'Futura PT';
+        font-style: normal;
+        src: url('/fonts/FuturaPT-Medium.woff') format('woff')
+      }
+      #root{
+        background-image: url(/images/stars.png)!important;
+        background-repeat: repeat;
+        background-size: cover;
+        overflow: hidden;
+      }
+
+      #pink-circle, #blue-circle{
+        position: fixed;
+        border-radius: 50%;
+        width: 1294px;
+        height: 1255px;
+        opacity: 0.6;
+        filter: blur(256px);
+        z-index: -1;
+      }
+
+      #pink-circle{
+        background: #B03C66;
+        left: -797px;
+        top: 508px;
+      }
+
+      #blue-circle{
+        background: #3C72B0;
+        left: 1288px;
+        top: -628px;
+      }
+    </style>
   </head>
   <body>
-    <!-- GTAG (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=%REACT_APP_GTAG%"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </noscript>
+    <!-- Google Tag Manager (noscript) -->
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-NJ3DGTH"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        >
+        </iframe>
+      </noscript>
+      <!-- End Google Tag Manager (noscript) -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="portal-root"></div>
+    <div id="pink-circle"></div>
+    <div id="blue-circle"></div>
   </body>
 </html>

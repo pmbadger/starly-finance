@@ -5,15 +5,31 @@ import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import styled from 'styled-components'
 
 interface WithdrawModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
+  pid: number
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
+const StyledButton = styled(Button)`
+  border: 1px solid #455381;
+  color: #82c8f4;
+  background-color: #1f3258;
+  font-family: 'Futura PT';
+
+  &:disabled,
+  &[disabled] {
+    background: #151b2d;
+    color: #82c8f4;
+    font-family: 'Futura PT';
+  }
+`
+
+const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '', pid }) => {
   const [val, setVal] = useState('')
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
@@ -39,7 +55,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Unstake LP tokens')} onDismiss={onDismiss}>
+    <Modal modalCloseId={`btn106-withdraw-modal-close-${pid}`} title={t('Unstake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
@@ -47,12 +63,21 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         max={fullBalance}
         symbol={tokenName}
         inputTitle={t('Unstake')}
+        inputId={`withdraw-${pid}`}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+        <StyledButton
+          id={`btn107-withdraw-cancel-${pid}`}
+          variant="secondary"
+          onClick={onDismiss}
+          width="100%"
+          disabled={pendingTx}
+        >
           {t('Cancel')}
-        </Button>
+        </StyledButton>
         <Button
+          id={`btn108-withdraw-confirm-${pid}`}
+          variant="primary"
           disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           onClick={async () => {
             setPendingTx(true)

@@ -14,7 +14,6 @@ import {
   useTooltip,
   Button,
   Link,
-  HelpIcon,
 } from 'pancakeswap-uikit'
 import { BASE_BLOCK_EXPLORER_URL } from 'config'
 import { useBlock } from 'state/block/hooks'
@@ -83,30 +82,18 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
 
-  const {
-    targetRef: totalStakedTargetRef,
-    tooltip: totalStakedTooltip,
-    tooltipVisible: totalStakedTooltipVisible,
-  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }), {
-    placement: 'bottom',
-  })
-
   return (
-    <ExpandedWrapper flexDirection="column">
+    <ExpandedWrapper flexDirection="column" mt="17px">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Total staked')}:</Text>
         <Flex alignItems="flex-start">
           {totalStaked && totalStaked.gte(0) ? (
             <>
               <Balance small value={getTotalStakedBalance()} decimals={0} unit={` ${stakingToken.symbol}`} />
-              <span ref={totalStakedTargetRef}>
-                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-              </span>
             </>
           ) : (
             <Skeleton width="90px" height="21px" />
           )}
-          {totalStakedTooltipVisible && totalStakedTooltip}
         </Flex>
       </Flex>
       {stakingLimit && stakingLimit.gt(0) && (
@@ -120,7 +107,11 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
           {blocksRemaining || blocksUntilStart ? (
             <Flex alignItems="center">
-              <Link external href={getBlockExplorerLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
+              <Link
+                id={`btn120-pool-${pool.sousId}-ends`}
+                external
+                href={getBlockExplorerLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}
+              >
                 <Balance small value={blocksToDisplay} decimals={0} color="primary" />
                 <Text small ml="4px" color="primary" textTransform="lowercase">
                   {t('Blocks')}
@@ -146,19 +137,17 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           </Flex>
         </Flex>
       )}
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false} small>
-          {t('See Token Info')}
-        </LinkExternal>
-      </Flex>
-      <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={earningToken.projectLink} bold={false} small>
-          {t('View Project Site')}
-        </LinkExternal>
-      </Flex>
+      {earningToken?.projectLink && earningToken?.projectLink !== '' && (
+        <Flex mb="2px" justifyContent="flex-start">
+          <LinkExternal id={`btn121-project-site-${pool.sousId}`} href={earningToken.projectLink} bold={false} small>
+            {t('View Project Site')}
+          </LinkExternal>
+        </Flex>
+      )}
       {poolContractAddress && (
-        <Flex mb="2px" justifyContent="flex-end">
+        <Flex mb="2px" justifyContent="flex-start">
           <LinkExternal
+            id={pool.isAutoVault ? `btn122-view-contract-auto-pool` : `btn122-view-contract-${pool.sousId}`}
             href={`${BASE_BLOCK_EXPLORER_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
             bold={false}
             small
@@ -170,6 +159,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       {account && isMetaMaskInScope && tokenAddress && (
         <Flex justifyContent="flex-end">
           <Button
+            id={pool.isAutoVault ? `btn123-register-token-auto-pool` : `btn123-register-token-${pool.sousId}`}
             variant="text"
             p="0"
             height="auto"

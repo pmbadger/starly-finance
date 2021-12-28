@@ -30,7 +30,7 @@ interface WalletModalProps extends InjectedModalProps {
 export const LOW_ETH_BALANCE = new BigNumber('2000000000') // 2 Gwei
 
 const ModalHeader = styled(UIKitModalHeader)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.cardHeader};
 `
 
 const Tabs = styled.div`
@@ -55,14 +55,14 @@ const WalletModal: React.FC<WalletModalProps> = ({ initialView = WalletView.WALL
         <ModalTitle>
           <Heading>{t('Your Wallet')}</Heading>
         </ModalTitle>
-        <IconButton variant="text" onClick={onDismiss}>
+        <IconButton id="btn21-wallet-modal-close" variant="text" onClick={onDismiss}>
           <CloseIcon width="24px" color="text" />
         </IconButton>
       </ModalHeader>
       <Tabs>
         <ButtonMenu scale="sm" variant="subtle" onItemClick={handleClick} activeIndex={view} fullWidth>
-          <ButtonMenuItem>{t('Wallet')}</ButtonMenuItem>
-          <ButtonMenuItem>{t('Transactions')}</ButtonMenuItem>
+          <ButtonMenuItem id="btn22-wallet-modal-wallet-tab">{t('Wallet')}</ButtonMenuItem>
+          <ButtonMenuItem id="btn23-wallet-modal-transactions-tab">{t('Transactions')}</ButtonMenuItem>
         </ButtonMenu>
       </Tabs>
       <ModalBody p="24px" maxWidth="400px" width="100%">

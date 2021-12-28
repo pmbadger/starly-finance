@@ -68,7 +68,7 @@ const ExpiredRoundCard: React.FC<ExpiredRoundCardProps> = ({
           status="expired"
           icon={<BlockIcon mr="4px" width="21px" color="textDisabled" />}
           title={t('Expired')}
-          blockNumber={endBlock}
+          // blockNumber={endBlock}
           epoch={round.epoch}
         />
         <CardBody p="16px" style={{ position: 'relative' }}>

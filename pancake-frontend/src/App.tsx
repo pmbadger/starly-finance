@@ -1,6 +1,7 @@
 import React, { lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'pancakeswap-uikit'
+import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
@@ -14,7 +15,6 @@ import PageLoader from './components/Loader/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 // Views included in the main bundle
-import Pools from './views/Pools'
 import Swap from './views/Swap'
 import {
   RedirectDuplicateTokenIds,
@@ -23,24 +23,26 @@ import {
 } from './views/AddLiquidity/redirects'
 import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
+import UserMenu from './components/Menu/UserMenu'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const FarmAuction = lazy(() => import('./views/FarmAuction'))
-const Lottery = lazy(() => import('./views/Lottery'))
-const Ifos = lazy(() => import('./views/Ifos'))
+const Pools = lazy(() => import('./views/Pools'))
+// const FarmAuction = lazy(() => import('./views/FarmAuction'))
+// const Lottery = lazy(() => import('./views/Lottery'))
+// const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
-const Collectibles = lazy(() => import('./views/Collectibles'))
-const Teams = lazy(() => import('./views/Teams'))
-const Team = lazy(() => import('./views/Teams/Team'))
-const Profile = lazy(() => import('./views/Profile'))
-const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
-const Predictions = lazy(() => import('./views/Predictions'))
-const Voting = lazy(() => import('./views/Voting'))
-const Proposal = lazy(() => import('./views/Voting/Proposal'))
-const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
+// const Collectibles = lazy(() => import('./views/Collectibles'))
+// const Teams = lazy(() => import('./views/Teams'))
+// const Team = lazy(() => import('./views/Teams/Team'))
+// const Profile = lazy(() => import('./views/Profile'))
+// const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
+// const Predictions = lazy(() => import('./views/Predictions'))
+// const Voting = lazy(() => import('./views/Voting'))
+// const Proposal = lazy(() => import('./views/Voting/Proposal'))
+// const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
@@ -51,6 +53,26 @@ BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 })
+
+const WalletButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
+  width: 75%;
+  max-width: 1192px;
+`
+
+const Container = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 55px;
+  padding-left: 226px;
+`
 
 const App: React.FC = () => {
   usePollBlockNumber()
@@ -67,12 +89,15 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            {/* <Route exact path="/farms/auction"> */}
-            {/*  <FarmAuction /> */}
-            {/* </Route> */}
             <Route path="/farms">
               <Farms />
             </Route>
+            <Route path="/launchpools">
+              <Pools />
+            </Route>
+            {/* <Route exact path="/farms/auction"> */}
+            {/*  <FarmAuction /> */}
+            {/* </Route> */}
             {/* <Route path="/pools"> */}
             {/*  <Pools /> */}
             {/* </Route> */}
@@ -145,6 +170,11 @@ const App: React.FC = () => {
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
+      <Container>
+        <WalletButtonContainer>
+          <UserMenu />
+        </WalletButtonContainer>
+      </Container>
       <EasterEgg iterations={2} />
       <ToastListener />
       <DatePickerPortal />

@@ -108,6 +108,8 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
       content={confirmationContent}
       pendingText={pendingText}
       currencyToAdd={trade?.outputAmount.currency}
+      modalCloseId="confirm-swap-modal-close"
+      txSubmittedContentId="confirm-swap"
     />
   )
 }

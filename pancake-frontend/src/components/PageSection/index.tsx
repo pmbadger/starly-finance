@@ -38,8 +38,8 @@ const ChildrenWrapper = styled(Container)`
   padding-bottom: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 54px;
+    padding-bottom: 54px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -85,7 +85,7 @@ const PageSection: React.FC<PageSectionProps> = ({
     <Box {...containerProps}>
       {hasCurvedDivider && dividerPosition === 'top' && (
         <CurvedDivider
-          svgFill={svgFill}
+          // svgFill={svgFill}
           index={index}
           concave={concaveDivider}
           dividerPosition={dividerPosition}
@@ -99,7 +99,7 @@ const PageSection: React.FC<PageSectionProps> = ({
       </BackgroundColor>
       {hasCurvedDivider && dividerPosition === 'bottom' && (
         <CurvedDivider
-          svgFill={svgFill}
+          // svgFill={svgFill}
           index={index}
           concave={concaveDivider}
           dividerPosition={dividerPosition}

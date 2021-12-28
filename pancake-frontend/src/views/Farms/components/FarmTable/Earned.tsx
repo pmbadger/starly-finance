@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Skeleton } from 'pancakeswap-uikit'
+import { useWeb3React } from '@web3-react/core'
 
 export interface EarnedProps {
   earnings: number
@@ -11,18 +12,21 @@ interface EarnedPropsWithLoading extends EarnedProps {
   userDataReady: boolean
 }
 
-const Amount = styled.span<{ earned: number }>`
-  color: ${({ earned, theme }) => (earned ? theme.colors.text : theme.colors.textDisabled)};
+const Amount = styled.span<{ earned: number | string }>`
+  color: white;
   display: flex;
   align-items: center;
+  font-family: 'Futura PT Bold';
 `
 
 const Earned: React.FunctionComponent<EarnedPropsWithLoading> = ({ earnings, userDataReady }) => {
+  const { account } = useWeb3React()
+
   if (userDataReady) {
-    return <Amount earned={earnings}>{earnings.toLocaleString()}</Amount>
+    return <Amount earned={earnings}>{earnings && account ? earnings.toLocaleString() : '–'}</Amount>
   }
   return (
-    <Amount earned={0}>
+    <Amount earned="-">
       <Skeleton width={60} />
     </Amount>
   )

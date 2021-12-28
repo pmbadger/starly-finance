@@ -8,6 +8,7 @@ export type Handler = () => void;
 
 export interface InjectedProps {
   onDismiss?: Handler;
+  modalCloseId?: string | undefined
 }
 
 export interface ModalProps extends InjectedProps, BoxProps {
@@ -17,4 +18,5 @@ export interface ModalProps extends InjectedProps, BoxProps {
   bodyPadding?: string;
   headerBackground?: string;
   minWidth?: string;
+  modalBackButtonId?: string
 }

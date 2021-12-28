@@ -10,7 +10,7 @@ import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import Dots from '../../components/Loader/Dots'
-import { AppHeader, AppBody } from '../../components/App'
+import { AppHeader } from '../../components/App'
 import Page from '../Page'
 
 const Body = styled(CardBody)`
@@ -69,6 +69,7 @@ export default function Pool() {
     if (allV2PairsWithLiquidity?.length > 0) {
       return allV2PairsWithLiquidity.map((v2Pair, index) => (
         <FullPositionCard
+          positionCardId="btn77-full-position-card"
           key={v2Pair.liquidityToken.address}
           pair={v2Pair}
           mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}
@@ -84,27 +85,32 @@ export default function Pool() {
 
   return (
     <Page>
-      <AppBody>
-        <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
-        <Body>
-          {renderBody()}
-          {account && !v2IsLoading && (
-            <Flex flexDirection="column" alignItems="center" mt="24px">
-              <Text color="textSubtle" mb="8px">
-                {t("Don't see a pool you joined?")}
-              </Text>
-              <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
-                {t('Find other LP tokens')}
-              </Button>
-            </Flex>
-          )}
-        </Body>
-        <CardFooter style={{ textAlign: 'center' }}>
-          <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
-            {t('Add Liquidity')}
-          </Button>
-        </CardFooter>
-      </AppBody>
+      <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+      <Body>
+        {renderBody()}
+        {account && !v2IsLoading && (
+          <Flex flexDirection="column" alignItems="center" mt="24px">
+            <Text color="textSubtle" mb="8px">
+              {t("Don't see a pool you joined?")}
+            </Text>
+            <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
+              {t('Find other LP tokens')}
+            </Button>
+          </Flex>
+        )}
+      </Body>
+      <CardFooter style={{ textAlign: 'center' }}>
+        <Button
+          style={{ height: '74px' }}
+          id="join-pool-button"
+          as={Link}
+          to="/add"
+          width="100%"
+          startIcon={<AddIcon color="white" />}
+        >
+          {t('Add Liquidity')}
+        </Button>
+      </CardFooter>
     </Page>
   )
 }

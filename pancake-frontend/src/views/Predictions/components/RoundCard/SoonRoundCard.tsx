@@ -30,7 +30,7 @@ const SoonRoundCard: React.FC<SoonRoundCardProps> = ({ round }) => {
         icon={<WaitIcon mr="4px" width="21px" />}
         title={t('Later')}
         epoch={round.epoch}
-        blockNumber={estimatedEndBlock}
+        // blockNumber={estimatedEndBlock}
       />
       <CardBody p="16px">
         <MultiplierArrow isDisabled />

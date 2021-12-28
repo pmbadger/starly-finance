@@ -16,6 +16,7 @@ export interface AprProps {
   cakePrice: BigNumber
   originalValue: number
   hideButton?: boolean
+  pid: number
 }
 
 const Container = styled.div`
@@ -29,7 +30,7 @@ const Container = styled.div`
 
     svg {
       path {
-        fill: ${({ theme }) => theme.colors.textSubtle};
+        fill: #82c8f4;
       }
     }
   }
@@ -38,6 +39,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   min-width: 60px;
   text-align: left;
+  font-family: 'Futura PT Bold';
 `
 
 const Apr: React.FC<AprProps> = ({
@@ -48,6 +50,7 @@ const Apr: React.FC<AprProps> = ({
   cakePrice,
   originalValue,
   hideButton = false,
+  pid,
 }) => {
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
@@ -59,6 +62,7 @@ const Apr: React.FC<AprProps> = ({
           <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
             <ApyButton
+              aryButtonId={`apr-${pid}`}
               lpLabel={lpLabel}
               cakePrice={cakePrice}
               apr={originalValue}

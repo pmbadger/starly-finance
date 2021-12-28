@@ -28,7 +28,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowEthBalance, onDismiss }) 
 
   return (
     <>
-      <Text color="secondary" fontSize="12px" textTransform="uppercase" fontWeight="bold" mb="8px">
+      <Text color="secondary" fontSize="12px" fontWeight="bold" mb="8px">
         {t('Your Address')}
       </Text>
       <CopyAddress account={account} mb="24px" />
@@ -49,9 +49,11 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowEthBalance, onDismiss }) 
         <Text>{getFullDisplayBalance(cakeBalance, 18, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="end" mb="24px">
-        <LinkExternal href={getBlockExplorerLink(account, 'address')}>{t('View on block explorer')}</LinkExternal>
+        <LinkExternal id="btn25-wallet-info-view-on-explorer" href={getBlockExplorerLink(account, 'address')}>
+          {t('View on block explorer')}
+        </LinkExternal>
       </Flex>
-      <Button variant="secondary" width="100%" onClick={handleLogout}>
+      <Button id="btn26-wallet-info-disconnect-wallet" variant="secondary" width="100%" onClick={handleLogout}>
         {t('Disconnect Wallet')}
       </Button>
     </>

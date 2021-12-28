@@ -4,7 +4,6 @@ import Flex from "../Box/Flex";
 import { TabMenuProps } from "./types";
 
 const Wrapper = styled(Flex)`
-  border-bottom: 2px solid ${({ theme }) => theme.colors.textSubtle};
   overflow-x: scroll;
 
   ::-webkit-scrollbar {
@@ -18,10 +17,6 @@ const Inner = styled(Flex)`
   justify-content: space-between;
   flex-grow: 1;
 
-  & > button + button {
-    margin-left: 4px;
-  }
-
   ${({ theme }) => theme.mediaQueries.md} {
     flex-grow: 0;
   }
@@ -29,15 +24,15 @@ const Inner = styled(Flex)`
 
 const ButtonMenu: React.FC<TabMenuProps> = ({ activeIndex = 0, onItemClick, children }) => {
   return (
-    <Wrapper p={["0 4px", "0 16px"]}>
+    <Wrapper>
       <Inner>
         {Children.map(children, (child: ReactElement, index) => {
           const isActive = activeIndex === index;
           return cloneElement(child, {
             isActive,
             onClick: onItemClick ? () => onItemClick(index) : undefined,
-            color: isActive ? "backgroundAlt" : "textSubtle",
-            backgroundColor: isActive ? "textSubtle" : "input",
+            color: isActive ? "white" : "#82C8F4",
+            backgroundColor: "transparent",
           });
         })}
       </Inner>

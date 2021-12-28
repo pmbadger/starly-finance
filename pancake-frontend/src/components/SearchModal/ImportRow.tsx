@@ -85,6 +85,7 @@ export default function ImportRow({
       </AutoColumn>
       {!isActive && !isAdded ? (
         <Button
+          id="btn83-import-by-search-modal"
           width="fit-content"
           onClick={() => {
             if (setImportToken) {

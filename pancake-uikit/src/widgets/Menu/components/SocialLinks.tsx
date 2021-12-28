@@ -12,7 +12,7 @@ const SocialLinks: React.FC = () => (
   <Flex>
     {socials.map((social, index) => {
       const Icon = Icons[social.icon];
-      const iconProps = { width: "24px", color: "textSubtle", style: { cursor: "pointer" } };
+      const iconProps = { width: "24px", color: "#4699C6", style: { cursor: "pointer" } };
       const mr = index < socials.length - 1 ? "24px" : 0;
       // if (social.items) {
       //   return (
@@ -26,7 +26,7 @@ const SocialLinks: React.FC = () => (
       //   );
       // }
       return (
-        <Link external key={social.label} href={social.href} aria-label={social.label} mr={mr}>
+        <Link id={social.id} external key={social.label} href={social.href} aria-label={social.label} mr={mr}>
           <Icon {...iconProps} />
         </Link>
       );

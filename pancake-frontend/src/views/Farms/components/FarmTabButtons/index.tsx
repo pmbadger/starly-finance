@@ -18,11 +18,8 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
     case '/farms':
       activeIndex = 0
       break
-    case '/farms/history':
-      activeIndex = 1
-      break
     case '/farms/archived':
-      activeIndex = 2
+      activeIndex = 1
       break
     default:
       activeIndex = 0
@@ -32,14 +29,14 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
   return (
     <Wrapper>
       <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+        <ButtonMenuItem id="btn91-live-tab" as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
-        <NotificationDot show={hasStakeInFinishedFarms}>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {t('Finished')}
-          </ButtonMenuItem>
-        </NotificationDot>
+        {/* <NotificationDot show={hasStakeInFinishedFarms}> */}
+        <ButtonMenuItem id="btn92-archived-tab" as={Link} to={`${url}/archived`}>
+          {t('Archive')}
+        </ButtonMenuItem>
+        {/* </NotificationDot> */}
       </ButtonMenu>
     </Wrapper>
   )
@@ -51,13 +48,12 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 
   a {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 16px;
+    padding: 0 44px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    line-height: 21px;
   }
 `

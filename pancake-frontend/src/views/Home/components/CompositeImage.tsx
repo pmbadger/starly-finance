@@ -71,7 +71,6 @@ export interface CompositeImageProps {
 }
 
 interface ComponentProps extends CompositeImageProps {
-  animate?: boolean
   maxHeight?: string
 }
 

@@ -8,30 +8,32 @@ interface StyledButtonMenuProps extends ButtonMenuProps {
   theme: DefaultTheme;
 }
 
-const getBackgroundColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "input" : "tertiary"];
-};
-
-const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
-  return theme.colors[variant === variants.SUBTLE ? "inputSecondary" : "disabled"];
+const getBackgroundColor = ({ variant }: StyledButtonMenuProps) => {
+  return variant === variants.SUBTLE ? "input" : "transparent";
 };
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
+  font-family: 'Futura PT';
   background-color: ${getBackgroundColor};
-  border-radius: 16px;
+  border-radius: 12px;
   display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};
-  border: 1px solid ${getBorderColor};
-  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
+  border: 1px solid #455381;
+
+  button {
+    border-radius: 0;
+  }
+
+  button:first-child, a:first-child{
+    border-radius: 12px 0 0 12px;
+  }
+
+  button:last-child, a:last-child {
+    border-radius: 0 12px 12px 0;
+  }
 
   & > button,
   & > a {
-    margin-left: ${({ fullWidth }) => (fullWidth ? "0px" : "2px")}; // To avoid focus shadow overlap
     flex: ${({ fullWidth }) => (fullWidth ? 1 : "auto")};
-  }
-
-  & > button + button,
-  & > a + a {
-    margin-left: 2px; // To avoid focus shadow overlap
   }
 
   & > button,

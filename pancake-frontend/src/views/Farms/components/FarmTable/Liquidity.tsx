@@ -13,14 +13,21 @@ export interface LiquidityProps {
 }
 
 const LiquidityWrapper = styled.div`
-  min-width: 110px;
+  max-width: 150px;
   font-weight: 600;
   text-align: right;
-  margin-right: 14px;
+  margin-right: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 19px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: left;
-    margin-right: 0;
+    margin-right: 8px;
+  }
+
+  ${Text} {
+    font-family: 'Futura PT Bold';
   }
 `
 

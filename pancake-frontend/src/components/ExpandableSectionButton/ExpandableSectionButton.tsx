@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 
-export interface ExpandableSectionButtonProps {
+interface ExpandableSectionButtonProps {
   onClick?: () => void
   expanded?: boolean
 }

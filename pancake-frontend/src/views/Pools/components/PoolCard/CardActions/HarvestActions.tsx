@@ -33,6 +33,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const hasEarnings = earnings.toNumber() > 0
   const isCompoundPool = sousId === 0
+  const buttonId = isCompoundPool ? `btn135-collect-${sousId}` : `btn135-harvest-${sousId}`
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -70,7 +71,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
+                <Heading>0</Heading>
                 <Text fontSize="12px" color="textDisabled">
                   0 USD
                 </Text>
@@ -79,7 +80,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           </>
         )}
       </Flex>
-      <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+      <Button id={buttonId} disabled={!hasEarnings} onClick={onPresentCollect}>
         {isCompoundPool ? t('Collect') : t('Harvest')}
       </Button>
     </Flex>

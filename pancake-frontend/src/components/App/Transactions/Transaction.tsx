@@ -34,7 +34,9 @@ export default function Transaction({ tx }: { tx: TransactionDetails }) {
 
   return (
     <TransactionState pending={pending} success={success}>
-      <LinkExternal href={getBlockExplorerLink(tx.hash, 'transaction', chainId)}>{summary ?? tx.hash}</LinkExternal>
+      <LinkExternal id="btn152-recent-transaction" href={getBlockExplorerLink(tx.hash, 'transaction', chainId)}>
+        {summary ?? tx.hash}
+      </LinkExternal>
       <IconWrapper pending={pending} success={success}>
         {pending ? <CircleLoader /> : success ? <CheckmarkIcon color="success" /> : <CloseIcon color="failure" />}
       </IconWrapper>

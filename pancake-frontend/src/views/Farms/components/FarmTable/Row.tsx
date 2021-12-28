@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints } from 'pancakeswap-uikit'
+import { useMatchBreakpoints, Text, HelpIcon, Button, useTooltip } from 'pancakeswap-uikit'
 import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/farms/hooks'
@@ -19,6 +19,7 @@ import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 export interface RowProps {
   apr: AprProps
   farm: FarmProps
+  apy: any
   earned: EarnedProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
@@ -38,34 +39,113 @@ const cells = {
   liquidity: Liquidity,
 }
 
+const ReferenceElement = styled.div`
+  display: inline-block;
+`
+
 const CellInner = styled.div`
-  padding: 24px 0px;
+  padding-bottom: 25px;
+  padding-top: 20px;
   display: flex;
   width: 100%;
   align-items: center;
   padding-right: 8px;
+`
 
-  ${({ theme }) => theme.mediaQueries.xl} {
-    padding-right: 32px;
+const expandAnimation = keyframes`
+  from {
+    background: transparent;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+  }
+  to {
+    background: #152340;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 `
 
-const StyledTr = styled.tr`
-  cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+const collapseAnimation = keyframes`
+  from {
+    background: #152340;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  to {
+    background: transparent;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+  }
 `
 
-const EarnedMobileCell = styled.td`
+const StyledRow = styled.div<{ actionPanelExpanded: boolean }>`
+  cursor: pointer;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  background: ${({ actionPanelExpanded }) => (actionPanelExpanded ? '#152340' : 'transparent')};
+  animation: ${({ actionPanelExpanded }) =>
+    actionPanelExpanded
+      ? css`
+          ${expandAnimation} 200ms ease forwards
+        `
+      : css`
+          ${collapseAnimation} 1500ms ease forwards
+        `};
+
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #82c8f41a;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  &:last-child {
+    border-bottom: none;
+  }
+`
+
+const EarnedMobileCell = styled.div`
   padding: 16px 0 24px 16px;
 `
 
-const AprMobileCell = styled.td`
+const AprMobileCell = styled.div`
   padding-top: 16px;
   padding-bottom: 24px;
 `
 
-const FarmMobileCell = styled.td`
+const FarmMobileCell = styled.div`
   padding-top: 24px;
+`
+
+const ApyTmpText = styled(Text)`
+  font-family: 'Futura PT Bold';
+  margin-right: 8px;
+`
+
+const StyledActionsTr = styled.div`
+  background: transparent;
+  margin-top: -10px !important;
+  background: #152340;
+  width: 100%;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+`
+
+const HotButton = styled(Button)`
+  width: 48px;
+  height: 30px;
+  margin-top: 31px;
+  margin-left: 20px;
+
+  background: #d33b3b;
+  border-radius: 50px;
+
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 450;
+  font-size: 11px;
+  line-height: 14px;
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
@@ -89,56 +169,68 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('#'), { placement: 'top-end', tooltipOffset: [20, 10] })
+
   const handleRenderRow = () => {
     if (!isXs) {
       return (
-        <StyledTr onClick={toggleActionPanel}>
+        <StyledRow
+          id={`btn93-pid-${details.pid}`}
+          onClick={toggleActionPanel}
+          actionPanelExpanded={actionPanelExpanded}
+        >
+          <CellLayout>
+            <HotButton>{t('Hot')}</HotButton>
+          </CellLayout>
           {Object.keys(props).map((key) => {
             const columnIndex = columnNames.indexOf(key)
             if (columnIndex === -1) {
               return null
             }
-
             switch (key) {
               case 'details':
                 return (
-                  <td key={key}>
+                  <div key={key}>
                     <CellInner>
                       <CellLayout>
                         <Details actionPanelToggled={actionPanelExpanded} />
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </div>
                 )
-              case 'apr':
+              case 'apy':
                 return (
-                  <td key={key}>
+                  <div key={key}>
                     <CellInner>
-                      <CellLayout label={t('APR')}>
-                        <Apr {...props.apr} hideButton={isMobile} />
+                      <CellLayout label={t('APY:')}>
+                        <ApyTmpText>{props.apy.value}</ApyTmpText>
+                        <ReferenceElement ref={targetRef}>
+                          <HelpIcon color="textSubtle" />
+                        </ReferenceElement>
+                        {tooltipVisible && tooltip}
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </div>
                 )
               default:
                 return (
-                  <td key={key}>
+                  <div key={key}>
                     <CellInner>
                       <CellLayout label={t(tableSchema[columnIndex].label)}>
                         {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
                     </CellInner>
-                  </td>
+                  </div>
                 )
             }
           })}
-        </StyledTr>
+        </StyledRow>
       )
     }
 
     return (
-      <StyledTr onClick={toggleActionPanel}>
-        <td>
+      <StyledRow id={`btn93-pid-${details.pid}`} onClick={toggleActionPanel} actionPanelExpanded={actionPanelExpanded}>
+        <div>
           <tr>
             <FarmMobileCell>
               <CellLayout>
@@ -154,19 +246,19 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             </EarnedMobileCell>
             <AprMobileCell>
               <CellLayout label={t('APR')}>
-                <Apr {...props.apr} hideButton />
+                <Apr {...props.apr} hideButton pid={details.pid} />
               </CellLayout>
             </AprMobileCell>
           </tr>
-        </td>
-        <td>
+        </div>
+        <div>
           <CellInner>
             <CellLayout>
               <Details actionPanelToggled={actionPanelExpanded} />
             </CellLayout>
           </CellInner>
-        </td>
-      </StyledTr>
+        </div>
+      </StyledRow>
     )
   }
 
@@ -174,11 +266,9 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
     <>
       {handleRenderRow()}
       {shouldRenderChild && (
-        <tr>
-          <td colSpan={6}>
-            <ActionPanel {...props} expanded={actionPanelExpanded} />
-          </td>
-        </tr>
+        <StyledActionsTr>
+          <ActionPanel {...props} expanded={actionPanelExpanded} />
+        </StyledActionsTr>
       )}
     </>
   )

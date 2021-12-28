@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Heading, Skeleton, Text } from 'pancakeswap-uikit'
+import { Button, Skeleton } from 'pancakeswap-uikit'
+import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import Balance from 'components/Balance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { useAppDispatch } from 'state'
@@ -12,8 +12,6 @@ import { usePriceCakeBusd } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import useHarvestFarm from '../../../hooks/useHarvestFarm'
-
-import { ActionContainer, ActionTitles, ActionContent } from './styles'
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
@@ -40,50 +38,52 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
 
+  const StyledButton = styled(Button)`
+    width: 113px;
+    height: 45px;
+    background: linear-gradient(260.3deg, #058fca -29.78%, #2e4bb5 118.84%);
+    color: white;
+    font-family: 'Futura PT';
+    padding: 12px 32px;
+    font-weight: 450;
+    font-size: 16px;
+    line-height: 21px;
+    border-radius: 12px;
+
+    &:disabled,
+    &[disabled] {
+      background: #151b2d;
+      color: #82c8f4;
+    }
+  `
+
   return (
-    <ActionContainer>
-      <ActionTitles>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          STLY
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Earned')}
-        </Text>
-      </ActionTitles>
-      <ActionContent>
-        <div>
-          <Heading>{displayBalance}</Heading>
-          {earningsBusd > 0 && (
-            <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
-          )}
-        </div>
-        <Button
-          disabled={earnings.eq(0) || pendingTx || !userDataReady}
-          onClick={async () => {
-            setPendingTx(true)
-            try {
-              await onReward()
-              toastSuccess(
-                `${t('Harvested')}!`,
-                t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'STLY' }),
-              )
-            } catch (e) {
-              toastError(
-                t('Error'),
-                t('Please try again. Confirm the transaction and make sure you are paying enough gas!'),
-              )
-              console.error(e)
-            } finally {
-              setPendingTx(false)
-            }
-            dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
-          }}
-          ml="4px"
-        >
-          {t('Harvest')}
-        </Button>
-      </ActionContent>
-    </ActionContainer>
+    <StyledButton
+      id={`btn109-harvest-${pid}`}
+      disabled={earnings.eq(0) || pendingTx || !userDataReady || !account}
+      onClick={async () => {
+        setPendingTx(true)
+        try {
+          await onReward()
+          toastSuccess(
+            `${t('Harvested')}!`,
+            t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'STLY' }),
+          )
+        } catch (e) {
+          toastError(
+            t('Error'),
+            t('Please try again. Confirm the transaction and make sure you are paying enough gas!'),
+          )
+          console.error(e)
+        } finally {
+          setPendingTx(false)
+        }
+        dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
+      }}
+      ml="4px"
+    >
+      {t('Harvest')}
+    </StyledButton>
   )
 }
 

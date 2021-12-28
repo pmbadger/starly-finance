@@ -37,7 +37,12 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
   const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens()
 
   return (
-    <Modal title="Unsupported Assets" maxWidth="420px" onDismiss={onDismiss}>
+    <Modal
+      modalCloseId="btn74-unsupported-assets-modal-close"
+      title="Unsupported Assets"
+      maxWidth="420px"
+      onDismiss={onDismiss}
+    >
       <AutoColumn gap="lg">
         {tokens.map((token) => {
           return (
@@ -51,6 +56,7 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
                 </AutoRow>
                 {chainId && (
                   <Link
+                    id="btn75-unsupported-assets-explorer"
                     external
                     small
                     color="primaryDark"
@@ -79,7 +85,7 @@ export default function UnsupportedCurrencyFooter({ currencies }: { currencies: 
 
   return (
     <DetailsFooter>
-      <Button variant="text" onClick={onPresentModal}>
+      <Button id="btn73-read-about-unsupported-assets" variant="text" onClick={onPresentModal}>
         Read more about unsupported assets
       </Button>
     </DetailsFooter>

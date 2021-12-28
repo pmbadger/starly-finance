@@ -5,7 +5,6 @@ import { useTranslation } from 'contexts/Localization'
 import { ChainId, Currency, currencyEquals, ETHER, Token } from 'pancakeswap-sdk'
 
 import { SUGGESTED_BASES } from '../../config/constants'
-import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
 import { AutoRow } from '../Layout/Row'
 import { CurrencyLogo } from '../Logo'
@@ -37,13 +36,14 @@ export default function CommonBases({
 }) {
   const { t } = useTranslation()
   return (
-    <AutoColumn gap="md">
+    <AutoRow gap="md" marginTop="16px">
       <AutoRow>
         <Text fontSize="14px">{t('Common bases')}</Text>
         <QuestionHelper text={t('These tokens are commonly paired with other tokens.')} ml="4px" />
       </AutoRow>
       <AutoRow gap="auto">
         <BaseWrapper
+          id="btn153-common-bases-eth"
           onClick={() => {
             if (!selectedCurrency || !currencyEquals(selectedCurrency, ETHER)) {
               onSelect(ETHER)
@@ -51,19 +51,24 @@ export default function CommonBases({
           }}
           disable={selectedCurrency === ETHER}
         >
-          <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
+          <CurrencyLogo size="24px" currency={ETHER} style={{ marginRight: 8 }} />
           <Text>ETH</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
           return (
-            <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
-              <CurrencyLogo currency={token} style={{ marginRight: 8 }} />
+            <BaseWrapper
+              id={`btn154-common-bases-${token.address}`}
+              onClick={() => !selected && onSelect(token)}
+              disable={selected}
+              key={token.address}
+            >
+              <CurrencyLogo size="24px" currency={token} style={{ marginRight: 8 }} />
               <Text>{token.symbol}</Text>
             </BaseWrapper>
           )
         })}
       </AutoRow>
-    </AutoColumn>
+    </AutoRow>
   )
 }

@@ -22,10 +22,9 @@ import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 
 import { LightCard } from '../Card'
-import { AutoColumn } from '../Layout/Column'
 import CurrencyLogo from '../Logo/CurrencyLogo'
 import { DoubleCurrencyLogo } from '../Logo'
-import { RowBetween, RowFixed } from '../Layout/Row'
+import { AutoRow, RowBetween, RowFixed } from '../Layout/Row'
 import { BIG_INT_ZERO } from '../../config/constants'
 import Dots from '../Loader/Dots'
 
@@ -36,9 +35,10 @@ const FixedHeightRow = styled(RowBetween)`
 interface PositionCardProps extends CardProps {
   pair: Pair
   showUnwrapped?: boolean
+  positionCardId?: string | undefined
 }
 
-export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
+export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardId }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const { t } = useTranslation()
@@ -73,15 +73,15 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
         <Card>
           <CardBody>
-            <AutoColumn gap="16px">
+            <Flex flexDirection="column">
               <FixedHeightRow>
-                <RowFixed>
+                <RowFixed marginBottom="32px">
                   <Text color="secondary" bold>
                     {t('LP tokens in your wallet')}
                   </Text>
                 </RowFixed>
               </FixedHeightRow>
-              <FixedHeightRow onClick={() => setShowMore(!showMore)}>
+              <FixedHeightRow id={positionCardId} onClick={() => setShowMore(!showMore)} marginBottom="8px">
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
                   <Text small color="textSubtle">
@@ -92,14 +92,14 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                   <Text>{userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}</Text>
                 </RowFixed>
               </FixedHeightRow>
-              <AutoColumn gap="4px">
-                <FixedHeightRow>
+              <AutoRow>
+                <FixedHeightRow margin="8px 0">
                   <Text color="textSubtle" small>
                     {t('Share of Pool')}:
                   </Text>
                   <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </FixedHeightRow>
-                <FixedHeightRow>
+                <FixedHeightRow margin="8px 0">
                   <Text color="textSubtle" small>
                     {t('Pooled %asset%', { asset: currency0.symbol })}:
                   </Text>
@@ -111,7 +111,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                     '-'
                   )}
                 </FixedHeightRow>
-                <FixedHeightRow>
+                <FixedHeightRow margin="8px 0">
                   <Text color="textSubtle" small>
                     {t('Pooled %asset%', { asset: currency1.symbol })}:
                   </Text>
@@ -123,8 +123,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                     '-'
                   )}
                 </FixedHeightRow>
-              </AutoColumn>
-            </AutoColumn>
+              </AutoRow>
+            </Flex>
           </CardBody>
         </Card>
       ) : (
@@ -140,7 +140,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   )
 }
 
-export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
+export default function FullPositionCard({ pair, positionCardId, ...props }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
@@ -170,7 +170,13 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
 
   return (
     <Card style={{ borderRadius: '12px' }} {...props}>
-      <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
+      <Flex
+        id={positionCardId}
+        justifyContent="space-between"
+        role="button"
+        onClick={() => setShowMore(!showMore)}
+        p="16px"
+      >
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
@@ -186,8 +192,8 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       </Flex>
 
       {showMore && (
-        <AutoColumn gap="8px" style={{ padding: '16px' }}>
-          <FixedHeightRow>
+        <Flex flexDirection="column" style={{ padding: '16px' }}>
+          <FixedHeightRow marginBottom="8px">
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency0} />
               <Text color="textSubtle" ml="4px">
@@ -203,7 +209,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
             )}
           </FixedHeightRow>
 
-          <FixedHeightRow>
+          <FixedHeightRow marginBottom="8px">
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency1} />
               <Text color="textSubtle" ml="4px">
@@ -219,8 +225,8 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
             )}
           </FixedHeightRow>
 
-          <FixedHeightRow>
-            <Text color="textSubtle">Share of pool</Text>
+          <FixedHeightRow marginBottom="8px">
+            <Text color="textSubtle">Share of Pool</Text>
             <Text>
               {poolTokenPercentage
                 ? `${poolTokenPercentage.toFixed(2) === '0.00' ? '<0.01' : poolTokenPercentage.toFixed(2)}%`
@@ -229,28 +235,31 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
 
           {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, BIG_INT_ZERO) && (
-            <Flex flexDirection="column">
+            <Flex flexDirection="row" width="100%" justifyContent="space-between">
               <Button
+                id="btn39-remove-liquidity"
                 as={Link}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 variant="primary"
-                width="100%"
-                mb="8px"
+                width="48%"
+                style={{ height: '74px' }}
               >
                 Remove
               </Button>
               <Button
+                id="btn40-add-liquidity-instead"
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
-                variant="text"
+                variant="primary"
                 startIcon={<AddIcon color="primary" />}
-                width="100%"
+                width="48%"
+                style={{ height: '74px' }}
               >
                 Add liquidity instead
               </Button>
             </Flex>
           )}
-        </AutoColumn>
+        </Flex>
       )}
     </Card>
   )

@@ -272,7 +272,7 @@ function ManageLists({
                   <Text>{t('Loaded')}</Text>
                 </RowFixed>
               ) : (
-                <Button width="fit-content" onClick={handleImport}>
+                <Button id="btn49-manage-lists-import" width="fit-content" onClick={handleImport}>
                   {t('Import')}
                 </Button>
               )}

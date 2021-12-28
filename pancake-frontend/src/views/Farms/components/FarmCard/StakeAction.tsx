@@ -67,10 +67,16 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   }, [stakedBalance])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal
+      max={tokenBalance}
+      onConfirm={handleStake}
+      tokenName={tokenName}
+      addLiquidityUrl={addLiquidityUrl}
+      pid={pid}
+    />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} pid={pid} />,
   )
 
   const renderStakingButtons = () => {
@@ -96,8 +102,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       </IconButtonWrapper>
     )
   }
-  // console.log('stakedBalance: ', stakedBalance.toNumber())
-  // console.log('displayBalance: ', displayBalance())
+
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Flex flexDirection="column" alignItems="flex-start">

@@ -19,13 +19,13 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { ChainId, Currency, Token } from 'pancakeswap-sdk'
 import { RowFixed } from '../Layout/Row'
-import { AutoColumn, ColumnCenter } from '../Layout/Column'
+import Column, { ColumnCenter } from '../Layout/Column'
 import { getBlockExplorerLink } from '../../utils'
 
 const Wrapper = styled.div`
   width: 100%;
 `
-const Section = styled(AutoColumn)`
+const Section = styled(Column)`
   padding: 24px;
 `
 
@@ -40,17 +40,15 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
       <ConfirmedIcon>
         <Spinner />
       </ConfirmedIcon>
-      <AutoColumn gap="12px" justify="center">
+      <Column style={{ alignItems: 'center' }}>
         <Text fontSize="20px">{t('Waiting For Confirmation')}</Text>
-        <AutoColumn gap="12px" justify="center">
-          <Text bold small textAlign="center">
-            {pendingText}
-          </Text>
-        </AutoColumn>
-        <Text small color="textSubtle" textAlign="center">
+        <Text bold small textAlign="center" pt="16px">
+          {pendingText}
+        </Text>
+        <Text small color="textSubtle" textAlign="center" pt="16px">
           {t('Confirm this transaction in your wallet')}
         </Text>
-      </AutoColumn>
+      </Column>
     </Wrapper>
   )
 }
@@ -60,11 +58,13 @@ function TransactionSubmittedContent({
   chainId,
   hash,
   currencyToAdd,
+  txSubmittedContentId,
 }: {
   onDismiss: () => void
   hash: string | undefined
   chainId: ChainId
   currencyToAdd?: Currency | undefined
+  txSubmittedContentId?: string | undefined
 }) {
   const { library } = useActiveWeb3React()
 
@@ -75,18 +75,25 @@ function TransactionSubmittedContent({
   return (
     <Wrapper>
       <Section>
-        <ConfirmedIcon>
-          <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
-        </ConfirmedIcon>
-        <AutoColumn gap="12px" justify="center">
+        <Column style={{ alignItems: 'center' }}>
+          <ConfirmedIcon>
+            <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
+          </ConfirmedIcon>
+
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>
           {chainId && hash && (
-            <Link external small href={getBlockExplorerLink(hash, 'transaction', chainId)}>
+            <Link
+              id={`explorer-link-${txSubmittedContentId}`}
+              external
+              small
+              href={getBlockExplorerLink(hash, 'transaction', chainId)}
+            >
               {t('View on block explorer')}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (
             <Button
+              id={`add-to-metamask-${txSubmittedContentId}`}
               variant="tertiary"
               mt="12px"
               width="fit-content"
@@ -98,10 +105,10 @@ function TransactionSubmittedContent({
               </RowFixed>
             </Button>
           )}
-          <Button onClick={onDismiss} mt="20px">
+          <Button id={`close-${txSubmittedContentId}`} onClick={onDismiss} mt="20px">
             {t('Close')}
           </Button>
-        </AutoColumn>
+        </Column>
       </Section>
     </Wrapper>
   )
@@ -126,12 +133,12 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
   const { t } = useTranslation()
   return (
     <Wrapper>
-      <AutoColumn justify="center">
+      <Column style={{ alignItems: 'center' }}>
         <ErrorIcon color="failure" width="64px" />
         <Text color="failure" style={{ textAlign: 'center', width: '85%' }}>
           {message}
         </Text>
-      </AutoColumn>
+      </Column>
 
       <Flex justifyContent="center" pt="24px">
         <Button onClick={onDismiss}>{t('Dismiss')}</Button>
@@ -148,6 +155,7 @@ interface ConfirmationModalProps {
   attemptingTxn: boolean
   pendingText: string
   currencyToAdd?: Currency | undefined
+  txSubmittedContentId?: string | undefined
 }
 
 const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationModalProps> = ({
@@ -159,6 +167,8 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   pendingText,
   content,
   currencyToAdd,
+  modalCloseId,
+  txSubmittedContentId,
 }) => {
   const { chainId } = useActiveWeb3React()
 
@@ -172,7 +182,13 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null
 
   return (
-    <Modal title={title} headerBackground="gradients.cardHeader" onDismiss={handleDismiss}>
+    <Modal
+      modalCloseId={modalCloseId}
+      title={title}
+      headerBackground="gradients.cardHeader"
+      onDismiss={handleDismiss}
+      maxWidth="700px"
+    >
       {attemptingTxn ? (
         <ConfirmationPendingContent pendingText={pendingText} />
       ) : hash ? (
@@ -181,6 +197,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
           hash={hash}
           onDismiss={onDismiss}
           currencyToAdd={currencyToAdd}
+          txSubmittedContentId={txSubmittedContentId}
         />
       ) : (
         content()

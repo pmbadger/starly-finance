@@ -25,7 +25,7 @@ it("renders correctly", () => {
       width: 100%;
       height: 100%;
       overflow: inherit;
-      background: #FFFFFF;
+      background: transparent;
       border-radius: 24px;
     }
 

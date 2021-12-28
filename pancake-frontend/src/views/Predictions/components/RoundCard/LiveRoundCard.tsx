@@ -71,7 +71,7 @@ const LiveRoundCard: React.FC<LiveRoundCardProps> = ({
         icon={<PlayCircleOutlineIcon mr="4px" width="24px" color="secondary" />}
         title={t('Live')}
         epoch={round.epoch}
-        blockNumber={estimatedEndBlockPlusPadding}
+        // {estimatedEndBlockPlusPadding}
       />
       <BlockProgress variant="flat" scale="sm" startBlock={lockBlock} endBlock={estimatedEndBlockPlusPadding} />
       <CardBody p="16px">

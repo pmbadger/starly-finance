@@ -127,7 +127,7 @@ const OpenRoundCard: React.FC<OpenRoundCardProps> = ({
         <CardHeader
           status="next"
           epoch={round.epoch}
-          blockNumber={estimatedLockBlock}
+          // blockNumber={estimatedLockBlock}
           icon={<PlayCircleOutlineIcon color="white" mr="4px" width="21px" />}
           title={t('Next')}
         />

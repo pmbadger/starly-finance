@@ -16,6 +16,7 @@ interface ApyCalculatorModalProps {
   compoundFrequency?: number
   performanceFee?: number
   isFarm?: boolean
+  aryModalId: string
 }
 
 const Grid = styled.div`
@@ -64,6 +65,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   compoundFrequency = 1,
   performanceFee = 0,
   isFarm = false,
+  aryModalId,
 }) => {
   const { t } = useTranslation()
   const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
@@ -102,7 +104,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal title={t('ROI')} onDismiss={onDismiss}>
+    <Modal modalCloseId={`btn112-modal-close-${aryModalId}`} title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
         <Box>
           <Flex mb="8px" justifyContent="space-between">
@@ -247,7 +249,9 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </Box>
       </Flex>
       <Flex justifyContent="center">
-        <LinkExternal href={linkHref}>{linkLabel}</LinkExternal>
+        <LinkExternal id={`btn113-link-${aryModalId}`} href={linkHref}>
+          {linkLabel}
+        </LinkExternal>
       </Flex>
     </Modal>
   )

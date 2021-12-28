@@ -16,3 +16,10 @@ export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
 `
 
 export default StyledCard
+
+export const CardContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: -202px;
+  padding: 21px 25px;
+`

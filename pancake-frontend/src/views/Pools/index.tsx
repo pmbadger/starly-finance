@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from 'pancakeswap-uikit'
+import { Flex, Text } from 'pancakeswap-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -11,69 +11,78 @@ import usePersistState from 'hooks/usePersistState'
 import { useFetchPublicPoolsData, usePools, useFetchCakeVault, useCakeVault } from 'state/pools/hooks'
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
-import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
-import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import Loading from 'components/Loading'
-import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
-import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
-import HelpButton from './components/HelpButton'
-import PoolsTable from './components/PoolsTable/PoolsTable'
-import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
+import LaunchpoolsHeader from '../Launchpools/components/LaunchpoolsHeader'
+import ViewsControlsPanel from '../Launchpools/components/LaunchpoolsControlsPanel'
+import { BasePoolCard } from './components/BasePoolCard'
 
-const CardLayout = styled(FlexLayout)`
+const ControlContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-bottom: 32px;
+  padding: 15px 0;
   justify-content: center;
 `
 
-const PoolControls = styled.div`
-  display: flex;
+const ContentContainer = styled.div`
   width: 100%;
-  align-items: center;
-  position: relative;
-
-  justify-content: space-between;
-  flex-direction: column;
-  margin-bottom: 32px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 32px;
-    margin-bottom: 0;
-  }
+  background: #111522;
+  border-top: 1px solid rgba(130, 200, 244, 0.1);
+  height: 100vh;
 `
 
-const FilterContainer = styled.div`
+const CardsContainer = styled.div`
   display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
+  justify-content: space-evenly;
+  background: rgba(23, 29, 48, 0.8);
+  border-radius: 32px;
+  border: 1px solid;
+  border-image-source: linear-gradient(180deg, rgba(83, 205, 229, 0.24) 0%, rgba(54, 89, 162, 0.24) 100%);
+  padding: 40px 27px;
+  margin: auto;
+  width: 80%;
+  flex-wrap: wrap;
+  margin-bottom: 54px;
+  max-width: 1193px;
 `
 
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
+const RocketContainer = styled.div`
+  position: absolute;
+  z-index: -1;
+  top: 120px;
+  right: 33%;
+  background: #ff7043;
+  opacity: 0.2;
+  filter: blur(512px);
+  width: 381px;
+  height: 359px;
 `
 
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
-  }
+const Rocket = styled.img`
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  right: 30%;
 `
 
-const NUMBER_OF_POOLS_VISIBLE = 12
+const Comet = styled.img<{ right; top }>`
+  position: fixed;
+  z-index: -1;
+  right: ${({ right }) => right};
+  top: ${({ top }) => top};
+`
+
+const Coin = styled.img<{ left; top; blur; width }>`
+  position: fixed;
+  z-index: -3;
+  width: ${({ width }) => width || 'inner'};
+  left: ${({ left }) => left};
+  top: ${({ top }) => top};
+  filter: blur(${({ blur }) => blur || '0px'});
+`
 
 const Pools: React.FC = () => {
   const location = useLocation()
@@ -81,10 +90,6 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
-  const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
-  const [observerIsSet, setObserverIsSet] = useState(false)
-  const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_pool_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
@@ -125,44 +130,12 @@ const Pools: React.FC = () => {
       }),
     [openPools, accountHasVaultShares],
   )
-  const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
   useFetchCakeVault()
   useFetchPublicPoolsData()
 
-  useEffect(() => {
-    const showMorePools = (entries) => {
-      const [entry] = entries
-      if (entry.isIntersecting) {
-        setNumberOfPoolsVisible((poolsCurrentlyVisible) => {
-          if (poolsCurrentlyVisible <= chosenPoolsLength.current) {
-            return poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE
-          }
-          return poolsCurrentlyVisible
-        })
-      }
-    }
-
-    if (!observerIsSet) {
-      const loadMoreObserver = new IntersectionObserver(showMorePools, {
-        rootMargin: '0px',
-        threshold: 1,
-      })
-      loadMoreObserver.observe(loadMoreRef.current)
-      setObserverIsSet(true)
-    }
-  }, [observerIsSet])
-
-  const showFinishedPools = location.pathname.includes('history')
-
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
-
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
+  const showFinishedPools = location.pathname.includes('archived')
 
   const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
@@ -217,112 +190,50 @@ const Pools: React.FC = () => {
     )
   }
 
-  chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  chosenPools = sortPools(chosenPools)
   chosenPoolsLength.current = chosenPools.length
 
-  const cardLayout = (
-    <CardLayout>
-      {chosenPools.map((pool) =>
-        pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
-        ) : (
-          <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
-      )}
-    </CardLayout>
-  )
-
-  const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
-
   return (
-    <>
-      <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
-          </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
-            <BountyCard />
-          </Flex>
-        </Flex>
-      </PageHeader>
-      <Page>
-        <PoolControls>
-          <PoolTabButtons
+    <Page>
+      <RocketContainer />
+      <Rocket alt="rocket" src="/images/rocket.png" />
+      <Comet alt="comet" src="/images/comet.png" right="30px" top="158px" />
+      <Comet alt="comet" src="/images/comet.png" right="55%" top="-50px" />
+      <Coin alt="coin" src="/images/coin3.png" top="238px" left="53%" blur="2px" width />
+      <Coin alt="coin" src="/images/coin4.png" top="-20px" left="40%" blur width />
+      <Coin alt="coin" src="/images/coin.png" top="100px" left="65%" blur="1px" width="138px" />
+      <LaunchpoolsHeader />
+      <ContentContainer>
+        <ControlContainer>
+          <ViewsControlsPanel
+            isArchived={showFinishedPools}
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
+            setQuery={setSearchQuery}
+            setSortOption={setSortOption}
           />
-          <FilterContainer>
-            <LabelWrapper>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
-          </FilterContainer>
-        </PoolControls>
+        </ControlContainer>
+
         {showFinishedPools && (
-          <Text fontSize="20px" color="failure" pb="32px">
+          <Text fontSize="20px" color="failure" pb="32px" textAlign="center">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
           </Text>
         )}
-        {account && !userDataLoaded && stakedOnly && (
-          <Flex justifyContent="center" mb="4px">
-            <Loading />
-          </Flex>
+
+        {chosenPools.length > 0 && (
+          <CardsContainer>
+            {chosenPools.map((pool) => (
+              <BasePoolCard pool={pool} stakedOnly={stakedOnly} account={account} />
+            ))}
+          </CardsContainer>
         )}
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={loadMoreRef} />
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/decorations/3d-syrup-bunnies.png"
-          alt="Starly illustration"
-          width={192}
-          height={184.5}
-        />
-      </Page>
-    </>
+      </ContentContainer>
+      {account && !userDataLoaded && stakedOnly && (
+        <Flex justifyContent="center" mb="4px">
+          <Loading />
+        </Flex>
+      )}
+    </Page>
   )
 }
 

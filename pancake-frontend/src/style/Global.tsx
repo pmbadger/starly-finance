@@ -8,16 +8,20 @@ declare module 'styled-components' {
 }
 
 const GlobalStyle = createGlobalStyle`
-  * {
-    font-family: 'Kanit', sans-serif;
-  }
   body {
     background-color: ${({ theme }) => theme.colors.background};
+    overflow-x: hidden;
 
     img {
       height: auto;
       max-width: 100%;
     }
+  }
+  .swiper-button-next {
+    right: 25px !important;
+  } 
+  .swiper-button-prev {
+    left: 25px !important;
   }
 `
 

@@ -95,7 +95,7 @@ const CopyAddress: React.FC<CopyAddressProps> = ({ account, ...props }) => {
         <Address title={account}>
           <input type="text" readOnly value={account} />
         </Address>
-        <IconButton variant="text" onClick={copyAddress}>
+        <IconButton id="btn24-wallet-info-copy-address" variant="text" onClick={copyAddress}>
           <CopyIcon color="primary" width="24px" />
         </IconButton>
       </Wrapper>
