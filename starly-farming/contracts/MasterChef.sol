@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
+
 library SafeBEP20 {
     using SafeMath for uint256;
     using Address for address;
@@ -85,6 +86,7 @@ library SafeBEP20 {
     }
 }
 import "./STLYToken.sol";
+import "./libs/IStarlyReferral.sol";
 
 interface IMigratorChef {
     function migrate(IBEP20 token) external returns (IBEP20);
@@ -141,8 +143,10 @@ contract MasterChef is Ownable {
     address public safuaddr;
     // Refferals commision address.
     address public refAddr;
-    // Last block then develeper withdraw dev and ref fee
+    // Last block when developer withdraw dev fee
     uint256 public lastBlockDevWithdraw;
+    // Last block when withdraw ref fee
+    uint256 public lastBlockRefWithdraw;
     // STLY tokens created per block.
     uint256 public STLYPerBlock;
     // Bonus multiplier for early STLY makers.
@@ -159,9 +163,16 @@ contract MasterChef is Ownable {
     uint256 public startBlock;
     // Deposited amount STLY in MasterChef
     uint256 public depositedStly;
+    // Starly referral contract address.
+    IStarlyReferral public starlyReferral;
+    // Referral commission rate in basis points.
+    uint16 public referralCommissionRate = 100;
+    // Max referral commission rate: 10%.
+    uint16 public constant MAXIMUM_REFERRAL_COMMISSION_RATE = 1000;
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
+    event ReferralCommissionPaid(address indexed user, address indexed referrer, uint256 commissionAmount);
     event EmergencyWithdraw(
         address indexed user,
         uint256 indexed pid,
@@ -213,13 +224,21 @@ contract MasterChef is Ownable {
         return poolInfo.length;
     }
 
-    function withdrawDevAndRefFee() public{
+    function withdrawRefFee() public {
+        if (lastBlockRefWithdraw < block.number) {
+            uint256 multiplier = getMultiplier(lastBlockRefWithdraw, block.number);
+            uint256 STLYReward = multiplier.mul(STLYPerBlock);
+            STLY.mint(refAddr, STLYReward.mul(refPercent).div(percentDec));
+            lastBlockRefWithdraw = block.number;
+        }
+    }
+
+    function withdrawDevFee() public{
         require(lastBlockDevWithdraw < block.number, 'wait for new block');
         uint256 multiplier = getMultiplier(lastBlockDevWithdraw, block.number);
         uint256 STLYReward = multiplier.mul(STLYPerBlock);
         STLY.mint(devaddr, STLYReward.mul(devPercent).div(percentDec));
         STLY.mint(safuaddr, STLYReward.mul(safuPercent).div(percentDec));
-        STLY.mint(refAddr, STLYReward.mul(refPercent).div(percentDec));
         lastBlockDevWithdraw = block.number;
     }
 
@@ -319,16 +338,20 @@ contract MasterChef is Ownable {
     }
 
     // Deposit LP tokens to MasterChef for STLY allocation.
-    function deposit(uint256 _pid, uint256 _amount) public {
+    function deposit(uint256 _pid, uint256 _amount, address _referrer) public {
 
         require (_pid != 0, 'deposit STLY by staking');
 
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         updatePool(_pid);
+        if (_amount > 0 && address(starlyReferral) != address(0) && _referrer != address(0) && _referrer != msg.sender) {
+            starlyReferral.recordReferral(msg.sender, _referrer);
+        }
         if (user.amount > 0) {
             uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
             safeSTLYTransfer(msg.sender, pending);
+            payReferralCommission(msg.sender, pending);
         }
         pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
         user.amount = user.amount.add(_amount);
@@ -347,13 +370,14 @@ contract MasterChef is Ownable {
         updatePool(_pid);
         uint256 pending = user.amount.mul(pool.accSTLYPerShare).div(1e12).sub(user.rewardDebt);
         safeSTLYTransfer(msg.sender, pending);
+        payReferralCommission(msg.sender, pending);
         user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accSTLYPerShare).div(1e12);
         pool.lpToken.safeTransfer(address(msg.sender), _amount);
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
-        // Stake STLY tokens to MasterChef
+    // Stake STLY tokens to MasterChef
     function enterStaking(uint256 _amount) public {
         PoolInfo storage pool = poolInfo[0];
         UserInfo storage user = userInfo[0][msg.sender];
@@ -426,5 +450,39 @@ contract MasterChef is Ownable {
         require(newAmount <= 21 * 1e18, 'Max per block 21 STLY');
         require(newAmount >= 0 * 1e18, 'Min per block 0 STLY');
         STLYPerBlock = newAmount;
+    }
+
+     // Update the starly referral contract address by the owner
+    function setStarlyReferral(IStarlyReferral _starlyReferral) public onlyOwner {
+        starlyReferral = _starlyReferral;
+    }
+
+    // Update referral commission rate by the owner
+    function setReferralCommissionRate(uint16 _referralCommissionRate) public onlyOwner {
+        require(_referralCommissionRate <= MAXIMUM_REFERRAL_COMMISSION_RATE, "setReferralCommissionRate: invalid referral commission rate basis points");
+        referralCommissionRate = _referralCommissionRate;
+    }
+
+    // Pay referral commission to the referrer who referred this user.
+    function payReferralCommission(address _user, uint256 _pending) internal {
+        if (address(starlyReferral) != address(0) && referralCommissionRate > 0) {
+            address referrer = starlyReferral.getReferrer(_user);
+            uint256 commissionAmount = _pending.mul(referralCommissionRate).div(10000);
+            if (referrer != address(0) && commissionAmount > 0) {
+                if (STLY.balanceOf(refAddr) < commissionAmount) {
+                    withdrawRefFee();
+                }
+                uint256 refSTLYBal = STLY.balanceOf(refAddr);
+                uint256 actualCommissionAmount = commissionAmount;
+                if (commissionAmount > refSTLYBal) {
+                    STLY.transferFrom(refAddr, referrer, refSTLYBal);
+                    actualCommissionAmount = refSTLYBal;
+                } else {
+                    STLY.transferFrom(refAddr, referrer, commissionAmount);
+                }
+                starlyReferral.recordReferralCommission(referrer, actualCommissionAmount);
+                emit ReferralCommissionPaid(_user, referrer, actualCommissionAmount);
+            }
+        }
     }
 }
