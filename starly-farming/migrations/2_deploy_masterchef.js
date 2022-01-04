@@ -1,5 +1,6 @@
 const STLYToken = artifacts.require("STLYToken");
 const MastefChef = artifacts.require('MasterChef');
+const StarlyReferral = artifacts.require('StarlyReferral');
 
 
 module.exports = async function(deployer){
@@ -10,7 +11,7 @@ module.exports = async function(deployer){
     process.env.DEV_ADDRESS,
     process.env.REF_ADDRESS,
     process.env.SAFU_ADDRESS,
-    process.env.BSW_PER_BLOCK,
+    process.env.STLY_PER_BLOCK,
     process.env.START_BLOCK,
     process.env.STAKING_PERCENT,
     process.env.DEV_PERCENT,
@@ -18,6 +19,12 @@ module.exports = async function(deployer){
     process.env.SAFU_PERCENT,
   );
 
-  const masterChef = await MastefChef.deployed()
-  await stlyToken.addMinter(masterChef.address)
+  const masterChef = await MastefChef.deployed();
+  await stlyToken.addMinter(masterChef.address);
+  
+  await deployer.deploy(StarlyReferral);
+  const starlyReferral = await StarlyReferral.deployed();
+  
+  await starlyReferral.updateOperator(masterChef.address, true);
+  await masterChef.setStarlyReferral(starlyReferral.address);
 }
