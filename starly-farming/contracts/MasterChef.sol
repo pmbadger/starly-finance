@@ -202,7 +202,7 @@ contract MasterChef is Ownable {
         refPercent = _refPercent;
         safuPercent = _safuPercent;
         lastBlockDevWithdraw = _startBlock;
-        
+        lastBlockRefWithdraw = _startBlock;
         
         // staking pool
         poolInfo.push(PoolInfo({
