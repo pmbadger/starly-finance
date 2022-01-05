@@ -125,7 +125,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Biswap LPs',
+      name: 'Starly LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

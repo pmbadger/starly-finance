@@ -11,7 +11,7 @@ const fetchVaultUser = async (account: string) => {
       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
       lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
       lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
-      cakeAtLastUserAction: new BigNumber(userContractResponse.BswAtLastUserAction.toString()).toJSON(),
+      cakeAtLastUserAction: new BigNumber(userContractResponse.StlyAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
     return {

@@ -88,7 +88,7 @@ export const fetchUserPendingRewards = async (account) => {
   )
 
   // Stly / Stly pool
-  const pendingReward = await masterChefContract.pendingBSW('0', account)
+  const pendingReward = await masterChefContract.pendingSTLY('0', account)
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
 }

@@ -2,8 +2,8 @@
     {
       "inputs": [
         {
-          "internalType": "contract BSWToken",
-          "name": "_BSW",
+          "internalType": "contract STLYToken",
+          "name": "_STLY",
           "type": "address"
         },
         {
@@ -23,7 +23,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_BSWPerBlock",
+          "name": "_STLYPerBlock",
           "type": "uint256"
         },
         {
@@ -165,10 +165,10 @@
     },
     {
       "inputs": [],
-      "name": "BSW",
+      "name": "STLY",
       "outputs": [
         {
-          "internalType": "contract BSWToken",
+          "internalType": "contract STLYToken",
           "name": "",
           "type": "address"
         }
@@ -179,7 +179,7 @@
     },
     {
       "inputs": [],
-      "name": "BSWPerBlock",
+      "name": "STLYPerBlock",
       "outputs": [
         {
           "internalType": "uint256",
@@ -193,7 +193,7 @@
     },
     {
       "inputs": [],
-      "name": "depositedBsw",
+      "name": "depositedStly",
       "outputs": [
         {
           "internalType": "uint256",
@@ -316,7 +316,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "accBSWPerShare",
+          "name": "accSTLYPerShare",
           "type": "uint256"
         }
       ],
@@ -616,7 +616,7 @@
           "type": "address"
         }
       ],
-      "name": "pendingBSW",
+      "name": "pendingSTLY",
       "outputs": [
         {
           "internalType": "uint256",
@@ -770,7 +770,7 @@
           "type": "uint256"
         }
       ],
-      "name": "updateBswPerBlock",
+      "name": "updateStlyPerBlock",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

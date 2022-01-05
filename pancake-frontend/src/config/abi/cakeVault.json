@@ -401,7 +401,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "BswAtLastUserAction",
+        "name": "StlyAtLastUserAction",
         "type": "uint256"
       },
       {
@@ -583,7 +583,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestBswRewards",
+    "name": "calculateHarvestStlyRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -597,7 +597,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendingBswRewards",
+    "name": "calculateTotalPendingStlyRewards",
     "outputs": [
       {
         "internalType": "uint256",
