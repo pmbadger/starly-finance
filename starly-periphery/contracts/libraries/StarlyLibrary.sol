@@ -22,7 +22,7 @@ library StarlyLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'40188588942fc0477536ec3c27a36bbc584410c0e3e6fda8909af0b63c362a84' // init code hash
+                hex'66d4b6af6954a29200924521f7b78b1887b7ca5454233adb7c6b715072cf884a' // init code hash
             ))));
     }
 

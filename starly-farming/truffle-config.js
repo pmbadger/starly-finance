@@ -27,6 +27,15 @@ module.exports = {
       gas: 3000000,
       gasPrice: 5000000000
     },
+    bsc_testnet: {
+      provider: () => new HDWalletProvider(
+          process.env.PRIVATE_KEY,
+          "https://data-seed-prebsc-1-s1.binance.org:8545/"
+      ),
+      network_id: 97,
+      gas: 3000000,
+      gasPrice: 5000000000
+    },
   },
   compilers: {
     solc: {

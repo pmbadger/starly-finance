@@ -4,6 +4,8 @@ const StarlyReferral = artifacts.require('StarlyReferral');
 
 
 module.exports = async function(deployer){
+  
+  // STLY is already deployed!
   const stlyToken = await STLYToken.deployed()
 
   await deployer.deploy(MastefChef,
@@ -22,9 +24,9 @@ module.exports = async function(deployer){
   const masterChef = await MastefChef.deployed();
   await stlyToken.addMinter(masterChef.address);
   
-  await deployer.deploy(StarlyReferral);
-  const starlyReferral = await StarlyReferral.deployed();
-  
-  await starlyReferral.updateOperator(masterChef.address, true);
-  await masterChef.setStarlyReferral(starlyReferral.address);
+  // await deployer.deploy(StarlyReferral);
+  // const starlyReferral = await StarlyReferral.deployed();
+  //
+  // await starlyReferral.updateOperator(masterChef.address, true);
+  // await masterChef.setStarlyReferral(starlyReferral.address);
 }
