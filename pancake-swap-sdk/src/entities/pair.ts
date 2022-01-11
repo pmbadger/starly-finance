@@ -55,8 +55,8 @@ export class Pair {
       tokenAmounts[0].token.chainId,
       Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token),
       18,
-      'STLY-LP',    // This value must match what is specified in the folder with Core contacts: core/contracts/StarlyERC20.sol on line 9-10.
-      'Starly LPs'  // In the future it may be called differently (Starly LPs, STLY-LP)
+      'STLY-LP',
+      'Starly LPs'
     )
     this.tokenAmounts = tokenAmounts as [TokenAmount, TokenAmount]
   }

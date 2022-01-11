@@ -10045,7 +10045,7 @@ pako@~1.0.5:
 
 "pancakeswap-sdk@file:./src/libs/pancakeswap-sdk-v2.3.2.tgz":
   version "2.3.2"
-  resolved "file:./src/libs/pancakeswap-sdk-v2.3.2.tgz#258552ae39342d3ca7141697e047a87039299baf"
+  resolved "file:./src/libs/pancakeswap-sdk-v2.3.2.tgz#a0f6e96deb49a26b86572040a4de5168084c57e3"
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
