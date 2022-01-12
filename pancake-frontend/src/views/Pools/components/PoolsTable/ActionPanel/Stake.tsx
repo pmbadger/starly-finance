@@ -58,7 +58,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
   const requestedApproval = isAutoVault ? requestedVaultApproval : requestedPoolApproval
 
-  const isEthPool = poolCategory === PoolCategory.ETHEREUM
+  const isEthPool = poolCategory === PoolCategory.BINANCE
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isNotVaultAndHasStake = !isAutoVault && stakedBalance.gt(0)

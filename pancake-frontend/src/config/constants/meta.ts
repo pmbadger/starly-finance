@@ -4,8 +4,8 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'Starly',
   description:
-    'The most popular AMM on Ethereum by user count! Earn STLY through yield farming, then stake it in Pools to earn more tokens!',
-  image: 'https://pancakeswap.finance/images/hero.png',
+    'The most popular AMM on BSC by user count! Earn STLY through yield farming, then stake it in Pools to earn more tokens!',
+  image: 'https://starly.finance/images/hero.png',
 }
 
 export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {

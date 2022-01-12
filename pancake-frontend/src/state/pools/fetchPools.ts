@@ -4,7 +4,7 @@ import sousChefABI from 'config/abi/sousChef.json'
 import cakeABI from 'config/abi/cake.json'
 import wethABI from 'config/abi/weth.json'
 import multicall from 'utils/multicall'
-import { getAddress, getWethAddress } from 'utils/addressHelpers'
+import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getSouschefV2Contract } from 'utils/contractHelpers'
 
@@ -38,8 +38,8 @@ export const fetchPoolsBlockLimits = async () => {
 }
 
 export const fetchPoolsTotalStaking = async () => {
-  const nonEthPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH')
-  const ethPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH')
+  const nonEthPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
+  const ethPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 
   const callsNonEthPools = nonEthPools.map((poolConfig) => {
     return {
@@ -51,7 +51,7 @@ export const fetchPoolsTotalStaking = async () => {
 
   const callsEthPools = ethPool.map((poolConfig) => {
     return {
-      address: getWethAddress(),
+      address: getWbnbAddress(),
       name: 'balanceOf',
       params: [getAddress(poolConfig.contractAddress)],
     }
@@ -86,7 +86,7 @@ export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
 ): Promise<{ [key: string]: BigNumber }> => {
   const validPools = poolsConfig
-    .filter((p) => p.stakingToken.symbol !== 'ETH' && !p.isFinished)
+    .filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
     .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
   // Get the staking limit for each valid pool

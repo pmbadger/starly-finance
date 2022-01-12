@@ -131,7 +131,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
             {t('Net results')}
           </Text>
           <Text bold fontSize="24px" lineHeight="1" color={netResultIsPositive ? 'success' : 'failure'}>
-            {`${netResultIsPositive ? '+' : ''}${formatEth(netResultAmount)} ETH`}
+            {`${netResultIsPositive ? '+' : ''}${formatEth(netResultAmount)} BNB`}
           </Text>
           <Text small color="textSubtle">
             {`~$${formatEth(ethBusdPrice.times(netResultAmount).toNumber())}`}
@@ -143,7 +143,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
           {t('Average return / round')}
         </Text>
         <Text bold color={avgEthWonIsPositive ? 'success' : 'failure'}>
-          {`${avgEthWonIsPositive ? '+' : ''}${formatEth(avgEthWonPerRound)} ETH`}
+          {`${avgEthWonIsPositive ? '+' : ''}${formatEth(avgEthWonPerRound)} BNB`}
         </Text>
         <Text small color="textSubtle">
           {`~$${formatEth(ethBusdPrice.times(avgEthWonPerRound).toNumber())}`}
@@ -155,7 +155,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
               {t('Best round: #%roundId%', { roundId: summary.won.bestRound.id })}
             </Text>
             <Flex alignItems="flex-end">
-              <Text bold color="success">{`+${formatEth(summary.won.bestRound.payout)} ETH`}</Text>
+              <Text bold color="success">{`+${formatEth(summary.won.bestRound.payout)} BNB`}</Text>
               <Text ml="4px" small color="textSubtle">
                 ({summary.won.bestRound.multiplier.toFixed(2)}x)
               </Text>
@@ -169,7 +169,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
         <Text mt="16px" bold color="textSubtle">
           {t('Average position entered / round')}
         </Text>
-        <Text bold>{`${formatEth(avgPositionEntered)} ETH`}</Text>
+        <Text bold>{`${formatEth(avgPositionEntered)} BNB`}</Text>
         <Text small color="textSubtle">
           {`~$${formatEth(ethBusdPrice.times(avgPositionEntered).toNumber())}`}
         </Text>

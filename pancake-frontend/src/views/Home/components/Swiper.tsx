@@ -107,7 +107,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative ETH Launchpools
+                Lucrative BNB Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"
@@ -166,7 +166,7 @@ const HomeSwiper: React.FC = () => {
                 letterSpacing="0.02em"
                 color="#FFFFFF"
               >
-                Lucrative ETH Launchpools
+                Lucrative BNB Launchpools
               </TextLine>
               <TextLine
                 fontFamily="HelveticaNeueCyr"

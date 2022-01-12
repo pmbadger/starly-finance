@@ -150,12 +150,12 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
         </Flex>
         <Flex alignItems="center" justifyContent="space-between" mb="16px">
           <Text>{t('Your position')}</Text>
-          <Text>{`${formatEth(bet.amount)} ETH`}</Text>
+          <Text>{`${formatEth(bet.amount)} BNB`}</Text>
         </Flex>
         <Flex alignItems="start" justifyContent="space-between">
           <Text bold>{isWinner ? t('Your winnings') : t('Your Result')}:</Text>
           <Box style={{ textAlign: 'right' }}>
-            <Text bold color={getResultColor()}>{`${isWinner ? '+' : '-'}${formatEth(payout)} ETH`}</Text>
+            <Text bold color={getResultColor()}>{`${isWinner ? '+' : '-'}${formatEth(payout)} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
               {`~$${formatEth(ethBusdPrice.times(payout).toNumber())}`}
             </Text>
@@ -169,7 +169,7 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
                 {t('Amount to collect')}:
               </Text>
               <Flex justifyContent="end">
-                <Text fontSize="14px" color="textSubtle">{`${formatEth(returned)} ETH`}</Text>
+                <Text fontSize="14px" color="textSubtle">{`${formatEth(returned)} BNB`}</Text>
                 <span ref={targetRef}>
                   <InfoIcon color="textSubtle" ml="4px" />
                 </span>

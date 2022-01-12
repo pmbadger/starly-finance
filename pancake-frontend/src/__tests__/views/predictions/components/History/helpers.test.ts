@@ -22,11 +22,11 @@ describe('formatEth', () => {
     [265.22, '265.220'],
     [689.889, '689.889'],
     [10.8829, '10.883'],
-  ])('format %i ETH correctly with 3 decimals', (value, expected) => {
+  ])('format %i BNB correctly with 3 decimals', (value, expected) => {
     expect(formatEth(value)).toEqual(expected)
   })
 
-  it('returns 0 if ETH is undefined', () => {
+  it('returns 0 if BNB is undefined', () => {
     expect(formatEth(undefined)).toEqual('0')
   })
 })

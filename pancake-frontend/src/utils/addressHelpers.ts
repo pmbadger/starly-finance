@@ -17,8 +17,8 @@ export const getMasterChefAddress = () => {
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
-export const getWethAddress = () => {
-  return getAddress(tokens.weth.address)
+export const getWbnbAddress = () => {
+  return getAddress(tokens.wbnb.address)
 }
 export const getLotteryV2Address = () => {
   return getAddress(addresses.lotteryV2)

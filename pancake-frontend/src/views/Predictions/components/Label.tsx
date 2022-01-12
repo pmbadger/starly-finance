@@ -96,7 +96,7 @@ export const PricePairLabel: React.FC = () => {
       </Token>
       <Label dir="left">
         <Title bold textTransform="uppercase">
-          ETHUSDT
+          BNBUSDT
         </Title>
         <Price fontSize="12px">{`$${countUp}`}</Price>
       </Label>

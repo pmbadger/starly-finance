@@ -112,7 +112,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
         <Flex alignItems="start" justifyContent="space-between" mb="8px">
           <Text>{t('Your position')}</Text>
           <Box style={{ textAlign: 'right' }}>
-            <Text>{`${betAmount} ETH`}</Text>
+            <Text>{`${betAmount} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
               {`~$${ethBusdPrice.times(betAmountAsFloat).toFormat(2)}`}
             </Text>
@@ -121,7 +121,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
         <Flex alignItems="start" justifyContent="space-between" mb="24px">
           <Text>{t('Your winnings')}</Text>
           <Box style={{ textAlign: 'right' }}>
-            <Text>{`${payout} ETH`}</Text>
+            <Text>{`${payout} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
               {`~$${ethBusdPrice.times(payoutAsFloat).toFormat(2)}`}
             </Text>

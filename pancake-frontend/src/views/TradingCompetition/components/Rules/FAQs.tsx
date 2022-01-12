@@ -36,7 +36,7 @@ const FAQ = () => {
           <FoldableText title={t('Eligible trading pairs')} mt="24px">
             <Text fontSize="14px" color="textSubtle">
               {t(
-                'Only trades on ETH/BUSD, STLY/ETH, ETH/ETH and BTCB/ETH pairs will be included in volume calculations.',
+                'Only trades on BNB/BUSD, STLY/BNB, BNB/BNB and BTCB/BNB pairs will be included in volume calculations.',
               )}
             </Text>
           </FoldableText>

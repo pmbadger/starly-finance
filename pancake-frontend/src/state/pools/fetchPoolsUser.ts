@@ -8,9 +8,9 @@ import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Stly / Stly is a different kind of contract (master chef)
-// ETH pools use the native ETH token (wrapping ? unwrapping is done at the contract level)
-const nonEthPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH')
-const ethPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'ETH')
+// BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
+const nonEthPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
+const ethPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const masterChefContract = getMasterchefContract()
 
@@ -29,7 +29,7 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non ETH pools
+  // Non BNB pools
   const calls = nonEthPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'balanceOf',
@@ -41,7 +41,7 @@ export const fetchUserBalances = async (account) => {
     {},
   )
 
-  // ETH pools
+  // BNB pools
   const ethBalance = await simpleRpcProvider.getBalance(account)
   const ethBalances = ethPools.reduce(
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(ethBalance.toString()).toJSON() }),

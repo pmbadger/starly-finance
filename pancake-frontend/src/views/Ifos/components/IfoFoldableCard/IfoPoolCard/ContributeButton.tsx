@@ -31,7 +31,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
     await Promise.all([publicIfoData.fetchIfoData(), walletIfoData.fetchIfoData()])
     toastSuccess(
       t('Success!'),
-      t('You have contributed %amount% STLY-ETH LP tokens to this IFO!', { amount: getBalanceNumber(amount) }),
+      t('You have contributed %amount% STLY-BNB LP tokens to this IFO!', { amount: getBalanceNumber(amount) }),
     )
   }
 

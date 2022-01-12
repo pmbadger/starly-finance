@@ -22,7 +22,7 @@ const PredictionCardContent = () => {
   const [ethWonInUsd, setEthWonInUsd] = useState(0)
 
   const localisedEthUsdString = formatLocalisedCompactNumber(ethWonInUsd)
-  const ethWonText = t('$%ethWonInUsd% in ETH won so far', { ethWonInUsd: localisedEthUsdString })
+  const ethWonText = t('$%ethWonInUsd% in BNB won so far', { ethWonInUsd: localisedEthUsdString })
   const [pretext, wonSoFar] = ethWonText.split(localisedEthUsdString)
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const PredictionCardContent = () => {
           {wonSoFar}
         </Text>
         <Text color="#280D5F" mb="40px">
-          {t('Will ETH price rise or fall? guess correctly to win!')}
+          {t('Will BNB price rise or fall? guess correctly to win!')}
         </Text>
       </Flex>
       <Flex alignItems="center" justifyContent="center">

@@ -50,7 +50,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, ethBusdPrice }) 
         </Flex>
         <Flex flex="3" flexDirection="column">
           <Text bold fontSize="20px" color={color}>
-            {`${summaryTypeSigns[type]}${formatEth(displayAmount)} ETH`}
+            {`${summaryTypeSigns[type]}${formatEth(displayAmount)} BNB`}
           </Text>
           <Text fontSize="12px" color="textSubtle">
             {`~$${formatEth(ethBusdPrice.times(displayAmount).toNumber())}`}

@@ -39,7 +39,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isCompoundPool = sousId === 0
-  const isEthPool = poolCategory === PoolCategory.ETHEREUM
+  const isEthPool = poolCategory === PoolCategory.BINANCE
 
   // Auto STLY vault calculations
   const {

@@ -61,7 +61,7 @@ const HomeHeader: React.FC = () => {
   return (
     <Row>
       <TitlesContainer>
-        <Title>The First DEX on Ethereum network</Title>
+        <Title>The First DEX on BSC network</Title>
         <Title>with a three-type referral system</Title>
         <SubTitle>
           Enjoy profitable yield farming and exchanges

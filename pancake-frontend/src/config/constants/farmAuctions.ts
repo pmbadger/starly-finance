@@ -16,7 +16,7 @@ export const whitelistedBidders: FarmAuctionBidderConfig[] = [].map((bidderConfi
 const UNKNOWN_BIDDER: FarmAuctionBidderConfig = {
   account: '',
   tokenAddress: '',
-  quoteToken: tokens.weth,
+  quoteToken: tokens.wbnb,
   farmName: 'Unknown',
   tokenName: 'Unknown',
 }
