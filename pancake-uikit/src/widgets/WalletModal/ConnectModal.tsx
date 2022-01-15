@@ -45,10 +45,11 @@ const getPreferredConfig = (walletConfig: Config[]) => {
 };
 
 const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayCount = 3 }) => {
-  const [showMore, setShowMore] = useState(false);
+  // const [showMore, setShowMore] = useState(false);
   const theme = useTheme();
-  const sortedConfig = getPreferredConfig(config);
-  const displayListConfig = showMore ? sortedConfig : sortedConfig.slice(0, displayCount);
+  // const sortedConfig = getPreferredConfig(config);
+  // const displayListConfig = showMore ? sortedConfig : sortedConfig.slice(0, displayCount);
+  const displayListConfig = getPreferredConfig(config);
 
   return (
     <ModalContainer minWidth="320px">

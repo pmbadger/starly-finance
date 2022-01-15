@@ -1,15 +1,17 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { ConnectorNames } from 'pancakeswap-uikit'
+import { BscConnector } from '@binance-chain/bsc-connector'
 import { ethers } from 'ethers'
 import getNodeUrl from './getRpcUrl'
 
-const POLLING_INTERVAL = 4000
-const rpcUrl = getNodeUrl()
+const POLLING_INTERVAL = 12000
+
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [chainId] })
 
+const rpcUrl = getNodeUrl()
 const walletconnect = new WalletConnectConnector({
   rpc: { [chainId]: rpcUrl },
   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
@@ -17,10 +19,12 @@ const walletconnect = new WalletConnectConnector({
   // pollingInterval: POLLING_INTERVAL,
 })
 
+const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
+
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.BSC]: null,
+  [ConnectorNames.BSC]: bscConnector,
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
@@ -29,7 +33,16 @@ export const getLibrary = (provider): ethers.providers.Web3Provider => {
   return library
 }
 
+/**
+ * BSC Wallet requires a different sign method
+ * @see https://docs.binance.org/smart-chain/wallet/wallet_api.html#binancechainbnbsignaddress-string-message-string-promisepublickey-string-signature-string
+ */
 export const signMessage = async (provider: any, account: string, message: string): Promise<string> => {
+  if (window.BinanceChain) {
+    const { signature } = await window.BinanceChain.bnbSign(account, message)
+    return signature
+  }
+
   /**
    * Wallet Connect does not sign the message correctly unless you use their method
    * @see https://github.com/WalletConnect/walletconnect-monorepo/issues/462

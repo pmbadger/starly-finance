@@ -7,6 +7,7 @@ import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
+import useEagerConnect from 'hooks/useEagerConnect'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -76,6 +77,7 @@ const Container = styled.div`
 
 const App: React.FC = () => {
   usePollBlockNumber()
+  useEagerConnect()
   useFetchProfile()
   usePollCoreFarmData()
 
