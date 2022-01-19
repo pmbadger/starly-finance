@@ -460,6 +460,8 @@ export default function RemoveLiquidity({
       hash={txHash || ''}
       content={() => renderContent()}
       pendingText={pendingText}
+      setSignatureData={setSignatureData}
+      setTxHash={setTxHash}
       modalCloseId="remove-liquidity-modal-close"
       txSubmittedContentId="remove-liquidity"
     />,

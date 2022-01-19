@@ -307,6 +307,7 @@ export default function AddLiquidity({
       customOnDismiss={handleDismissConfirmation}
       attemptingTxn={attemptingTxn}
       hash={txHash}
+      setTxHash={setTxHash}
       content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={modalBottom} />}
       pendingText={pendingText}
       currencyToAdd={pair?.liquidityToken}
@@ -446,7 +447,13 @@ export default function AddLiquidity({
                 )}
               <StyledButton
                 id="btn72-supply-liquidity"
-                mt="12px"
+                mt={
+                  (approvalA !== ApprovalState.APPROVED && approvalB !== ApprovalState.APPROVED) ||
+                  (approvalA === ApprovalState.APPROVED && approvalB === ApprovalState.APPROVED) ||
+                  !isValid
+                    ? '12px'
+                    : '0px'
+                }
                 width={
                   (approvalA !== ApprovalState.APPROVED && approvalB !== ApprovalState.APPROVED) ||
                   (approvalA === ApprovalState.APPROVED && approvalB === ApprovalState.APPROVED) ||

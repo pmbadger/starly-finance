@@ -59,14 +59,28 @@ function TransactionSubmittedContent({
   hash,
   currencyToAdd,
   txSubmittedContentId,
+  setSignatureData,
+  setTxHash,
 }: {
   onDismiss: () => void
   hash: string | undefined
   chainId: ChainId
   currencyToAdd?: Currency | undefined
   txSubmittedContentId?: string | undefined
+  setSignatureData?: React.Dispatch<React.SetStateAction<any>>
+  setTxHash?: React.Dispatch<React.SetStateAction<string>>
 }) {
   const { library } = useActiveWeb3React()
+
+  const customOnDismiss = () => {
+    onDismiss()
+    if (setSignatureData) {
+      setSignatureData(null)
+    }
+    if (setTxHash) {
+      setTxHash('')
+    }
+  }
 
   const { t } = useTranslation()
 
@@ -105,7 +119,7 @@ function TransactionSubmittedContent({
               </RowFixed>
             </Button>
           )}
-          <Button id={`close-${txSubmittedContentId}`} onClick={onDismiss} mt="20px">
+          <Button id={`close-${txSubmittedContentId}`} onClick={customOnDismiss} mt="20px">
             {t('Close')}
           </Button>
         </Column>
@@ -156,6 +170,8 @@ interface ConfirmationModalProps {
   pendingText: string
   currencyToAdd?: Currency | undefined
   txSubmittedContentId?: string | undefined
+  setSignatureData?: React.Dispatch<React.SetStateAction<any>>
+  setTxHash?: React.Dispatch<React.SetStateAction<string>>
 }
 
 const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationModalProps> = ({
@@ -169,6 +185,8 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   currencyToAdd,
   modalCloseId,
   txSubmittedContentId,
+  setSignatureData,
+  setTxHash,
 }) => {
   const { chainId } = useActiveWeb3React()
 
@@ -198,6 +216,8 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
           onDismiss={onDismiss}
           currencyToAdd={currencyToAdd}
           txSubmittedContentId={txSubmittedContentId}
+          setSignatureData={setSignatureData}
+          setTxHash={setTxHash}
         />
       ) : (
         content()
