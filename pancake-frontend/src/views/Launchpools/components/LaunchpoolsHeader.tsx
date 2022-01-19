@@ -22,7 +22,8 @@ const SubTitle = styled(Text)`
   line-height: 140%;
   letter-spacing: 0.02em;
   color: #82c8f4;
-  margin-bottom: 66px;
+  margin-bottom: 163px;
+  //margin-bottom: 66px;
   margin-top: 16px;
   z-index: 2;
 `
@@ -71,9 +72,9 @@ const LaunchpoolsHeader: React.FC = () => {
           <br />
           Use your STLY tokens to earn more tokens, for Free.
         </SubTitle>
-        <StyledIconButton id="btn114-add-new-project-pools" endIcon={<img alt="star" src="/images/star.svg" />}>
-          <Text>{t('Add New Project')}</Text>
-        </StyledIconButton>
+        {/* <StyledIconButton id="btn114-add-new-project-pools" endIcon={<img alt="star" src="/images/star.svg" />}> */}
+        {/*  <Text>{t('Add New Project')}</Text> */}
+        {/* </StyledIconButton> */}
       </TitlesContainer>
     </Row>
   )

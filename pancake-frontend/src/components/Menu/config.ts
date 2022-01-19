@@ -26,12 +26,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/launchpools',
     id: 'btn12-launchpool-menu-link',
   },
-  {
-    label: 'Referral program',
-    icon: 'ReferralProgramIcon',
-    href: '#',
-    id: 'btn13-referral-program-menu-link',
-  },
+  // {
+  //   label: 'Referral program',
+  //   icon: 'ReferralProgramIcon',
+  //   href: '#',
+  //   id: 'btn13-referral-program-menu-link',
+  // },
   // {
   //   label: t('Pools'),
   //   icon: 'PoolIcon',

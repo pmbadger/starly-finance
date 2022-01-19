@@ -24,7 +24,7 @@ import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import { getApy } from '../../utils/compoundApyHelpers'
+import { getApy, getRoi, tokenEarnedPerThousandDollarsCompounding } from '../../utils/compoundApyHelpers'
 import HarvestAllFarms from '../Home/components/UserBanner/HarvestCard'
 
 const ControlContainer = styled.div`
@@ -98,7 +98,8 @@ const SubTitle = styled(Text)`
   line-height: 140%;
   letter-spacing: 0.02em;
   color: #82c8f4;
-  margin-bottom: 25px;
+  margin-bottom: 122px;
+  //margin-bottom: 25px;
   margin-top: 16px;
   z-index: 2;
 `
@@ -197,6 +198,30 @@ const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
   return null
 }
 
+const getAPY = (cakePrice, farmApr, isActive) => {
+  const oneThousandDollarsWorthOfToken = 1000 / Number(cakePrice.toNumber())
+  const isHighValueToken = Math.round(Number(cakePrice.toNumber()) / 1000) > 0
+  const roundingDecimals = isHighValueToken ? 4 : 2
+  const compoundFrequency = 288
+  const performanceFee = 0
+
+  const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
+    numberOfDays: 365,
+    farmApr,
+    tokenPrice: cakePrice.toNumber(),
+    roundingDecimals,
+    compoundFrequency,
+    performanceFee,
+  })
+
+  const apy = getRoi({
+    amountEarned: tokenEarnedPerThousand365D,
+    amountInvested: oneThousandDollarsWorthOfToken,
+  })
+
+  return apy && isActive ? `${apy.toFixed(2)}%` : '-'
+}
+
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
@@ -246,7 +271,8 @@ const Farms: React.FC = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
         const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.TESTNET])
+          ? // TODO: correct to Mainnet
+            getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.TESTNET])
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
         return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
@@ -483,9 +509,9 @@ const Farms: React.FC = () => {
               rewards by staking your LP tokens in return for additional STLY tokens <br />
               and earning high income from swap transactions.
             </SubTitle>
-            <StyledIconButton id="btn90-add-new-project-farms" endIcon={<img alt="star" src="/images/star.svg" />}>
-              <StyledText>{t('Add New Project')}</StyledText>
-            </StyledIconButton>
+            {/* <StyledIconButton id="btn90-add-new-project-farms" endIcon={<img alt="star" src="/images/star.svg" />}> */}
+            {/* <StyledText>{t('Add New Project')}</StyledText> */}
+            {/* </StyledIconButton> */}
           </TitlesContainer>
         </Row>
         <TableContainer>

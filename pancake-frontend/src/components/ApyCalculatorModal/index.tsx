@@ -209,44 +209,44 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           <Text textAlign="right">{tokenEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
-      <Flex justifyContent="center">
-        <Box mb="28px" maxWidth="280px" p="4px">
-          <BulletList>
-            <li>
-              <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                {t('Calculated based on current rates.')}
-              </Text>
-            </li>
-            <li>
-              <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                {t('Compounding %freq%x daily.', { freq: compoundFrequency.toLocaleString() })}
-              </Text>
-            </li>
-            {isFarm && (
-              <li>
-                <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                  {t('LP rewards: 0.05% trading fees, distributed proportionally among LP token holders.')}
-                </Text>
-              </li>
-            )}
-            <li>
-              <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                {t(
-                  'All figures are estimates provided for your convenience only, and by no means represent guaranteed returns.',
-                )}
-              </Text>
-            </li>
-            {performanceFee > 0 && (
-              <li>
-                <Text mt="14px" fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                  {t('All estimated rates take into account this pool’s %fee%% performance fee', {
-                    fee: performanceFee,
-                  })}
-                </Text>
-              </li>
-            )}
-          </BulletList>
-        </Box>
+      <Flex justifyContent="center" mb="28px" p="4px">
+        {/* <Box mb="28px" maxWidth="280px" p="4px"> */}
+        {/* <BulletList> */}
+        {/*  <li> */}
+        {/*    <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline"> */}
+        {/*      {t('Calculated based on current rates.')} */}
+        {/*    </Text> */}
+        {/*  </li> */}
+        {/*  <li> */}
+        {/*    <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline"> */}
+        {/*      {t('Compounding %freq%x daily.', { freq: compoundFrequency.toLocaleString() })} */}
+        {/*    </Text> */}
+        {/*  </li> */}
+        {/*  {isFarm && ( */}
+        {/*    <li> */}
+        {/*      <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline"> */}
+        {/*        {t('LP rewards: 0.05% trading fees, distributed proportionally among LP token holders.')} */}
+        {/*      </Text> */}
+        {/*    </li> */}
+        {/*  )} */}
+        {/*  <li> */}
+        <Text fontSize="13px" textAlign="center" color="textSubtle" display="inline">
+          {t(
+            'All figures are estimates provided for your convenience only, and by no means represent guaranteed returns.',
+          )}
+        </Text>
+        {/*  </li> */}
+        {/*  {performanceFee > 0 && (  */}
+        {/*    <li> */}
+        {/*      <Text mt="14px" fontSize="12px" textAlign="center" color="textSubtle" display="inline"> */}
+        {/*        {t('All estimated rates take into account this pool’s %fee%% performance fee', { */}
+        {/*          fee: performanceFee, */}
+        {/*        })} */}
+        {/*      </Text> */}
+        {/*    </li> */}
+        {/*  )} */}
+        {/* </BulletList> */}
+        {/* </Box> */}
       </Flex>
       <Flex justifyContent="center">
         <LinkExternal id={`btn113-link-${aryModalId}`} href={linkHref}>

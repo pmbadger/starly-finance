@@ -252,10 +252,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <StyledText>
                 {displayBalance(fullBalance)} {t('LP')}
               </StyledText>
-              <ReferenceElement ref={targetRef}>
-                <HelpIcon color="textSubtle" style={{ marginLeft: '24px' }} />
-              </ReferenceElement>
-              {tooltipVisible && tooltip}
+              {/* <ReferenceElement ref={targetRef}> */}
+              {/*  <HelpIcon color="textSubtle" style={{ marginLeft: '24px' }} /> */}
+              {/* </ReferenceElement> */}
+              {/* {tooltipVisible && tooltip} */}
             </ContentContainer>
           </div>
         </LPContainer>
