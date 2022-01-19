@@ -16,10 +16,10 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
   return (
-    <AutoColumn style={{ padding: '0 16px' }}>
+    <AutoColumn style={{ flexDirection: 'column' }}>
       <RowBetween>
-        <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+        <RowFixed margin="8px 0">
+          <Text fontSize="16px" color="textSubtle">
             {isExactIn ? 'Minimum received' : 'Maximum sold'}
           </Text>
           <QuestionHelper
@@ -27,8 +27,8 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             ml="4px"
           />
         </RowFixed>
-        <RowFixed>
-          <Text fontSize="14px">
+        <RowFixed margin="8px 0">
+          <Text fontSize="16px">
             {isExactIn
               ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
                 '-'
@@ -37,8 +37,8 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+        <RowFixed margin="8px 0">
+          <Text fontSize="16px" color="textSubtle">
             Price Impact
           </Text>
           <QuestionHelper
@@ -50,8 +50,8 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
       </RowBetween>
 
       <RowBetween>
-        <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+        <RowFixed margin="8px 0">
+          <Text fontSize="16px" color="textSubtle">
             Liquidity Provider Fee
           </Text>
           <QuestionHelper
@@ -66,7 +66,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             ml="4px"
           />
         </RowFixed>
-        <Text fontSize="14px">
+        <Text fontSize="16px">
           {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
         </Text>
       </RowBetween>
@@ -84,15 +84,15 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
   return (
-    <AutoColumn gap="0px">
+    <AutoColumn style={{ flexDirection: 'column' }} gap="0px">
       {trade && (
         <>
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
           {showRoute && (
             <>
-              <RowBetween style={{ padding: '0 16px' }}>
+              <RowBetween style={{ margin: '8px 0' }}>
                 <span style={{ display: 'flex', alignItems: 'center' }}>
-                  <Text fontSize="14px" color="textSubtle">
+                  <Text fontSize="16px" color="textSubtle">
                     Route
                   </Text>
                   <QuestionHelper

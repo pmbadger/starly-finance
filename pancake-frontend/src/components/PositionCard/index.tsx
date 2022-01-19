@@ -75,7 +75,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardI
           <CardBody>
             <Flex flexDirection="column">
               <FixedHeightRow>
-                <RowFixed marginBottom="32px">
+                <RowFixed marginBottom="32px" marginTop="10px">
                   <Text color="secondary" bold>
                     {t('LP tokens in your wallet')}
                   </Text>
@@ -84,7 +84,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardI
               <FixedHeightRow id={positionCardId} onClick={() => setShowMore(!showMore)} marginBottom="8px">
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
-                  <Text small color="textSubtle">
+                  <Text fontSize="16px" color="textSubtle">
                     {currency0.symbol}-{currency1.symbol} LP
                   </Text>
                 </RowFixed>
@@ -94,13 +94,13 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardI
               </FixedHeightRow>
               <AutoRow>
                 <FixedHeightRow margin="8px 0">
-                  <Text color="textSubtle" small>
+                  <Text fontSize="16px" color="textSubtle" small>
                     {t('Share of Pool')}:
                   </Text>
                   <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </FixedHeightRow>
                 <FixedHeightRow margin="8px 0">
-                  <Text color="textSubtle" small>
+                  <Text fontSize="16px" color="textSubtle" small>
                     {t('Pooled %asset%', { asset: currency0.symbol })}:
                   </Text>
                   {token0Deposited ? (
@@ -112,7 +112,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardI
                   )}
                 </FixedHeightRow>
                 <FixedHeightRow margin="8px 0">
-                  <Text color="textSubtle" small>
+                  <Text fontSize="16px" color="textSubtle" small>
                     {t('Pooled %asset%', { asset: currency1.symbol })}:
                   </Text>
                   {token1Deposited ? (
@@ -129,7 +129,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, positionCardI
         </Card>
       ) : (
         <LightCard>
-          <Text fontSize="14px" style={{ textAlign: 'center' }}>
+          <Text fontSize="16px" style={{ textAlign: 'center' }}>
             {t(
               "By adding liquidity you'll earn 0.05% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
             )}

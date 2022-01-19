@@ -34,10 +34,12 @@ import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
 import Page from '../Page'
+import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
+import UnsupportedCurrencyFooter from '../../components/UnsupportedCurrencyFooter'
 
 const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
+  //font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
 
@@ -348,9 +350,7 @@ export default function Swap({ history }: RouteComponentProps) {
               {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                 <RowBetween align="center">
                   <Label>{t('Slippage Tolerance')}</Label>
-                  <Text bold color="primary">
-                    {allowedSlippage / 100}%
-                  </Text>
+                  <Text color="primary">{allowedSlippage / 100}%</Text>
                 </RowBetween>
               )}
             </AutoRow>
@@ -463,6 +463,12 @@ export default function Swap({ history }: RouteComponentProps) {
           {/* )} */}
           {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
         </Box>
+
+        {!swapIsUnsupported ? (
+          <AdvancedSwapDetailsDropdown trade={trade} />
+        ) : (
+          <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
+        )}
       </Page>
     </>
   )
