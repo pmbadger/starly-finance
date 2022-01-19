@@ -16,7 +16,6 @@ interface WithdrawModalProps {
 }
 
 const StyledButton = styled(Button)`
-  border: 1px solid #455381;
   color: #82c8f4;
   background-color: #1f3258;
   font-family: 'Futura PT';

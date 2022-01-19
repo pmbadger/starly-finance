@@ -32,7 +32,6 @@ const ButtonMenu: React.FC<TabMenuProps> = ({ activeIndex = 0, onItemClick, chil
             isActive,
             onClick: onItemClick ? () => onItemClick(index) : undefined,
             color: isActive ? "white" : "#82C8F4",
-            backgroundColor: "transparent",
           });
         })}
       </Inner>

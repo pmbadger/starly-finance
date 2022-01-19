@@ -51,7 +51,7 @@ const TransactionsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
       headerBackground="gradients.cardHeader"
       onDismiss={onDismiss}
     >
-      {account && (
+      {account ? (
         <ModalBody>
           {!!pending.length || !!confirmed.length ? (
             <>
@@ -73,6 +73,8 @@ const TransactionsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
             <Text>{t('No recent transactions')}</Text>
           )}
         </ModalBody>
+      ) : (
+        <Text>{t('Please connect your wallet to view recent transactions')}</Text>
       )}
     </Modal>
   )

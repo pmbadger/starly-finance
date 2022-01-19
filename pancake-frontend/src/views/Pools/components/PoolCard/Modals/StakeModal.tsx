@@ -23,6 +23,10 @@ interface StakeModalProps {
 
 const StyledLink = styled(Link)`
   width: 100%;
+
+  :hover {
+    text-decoration: none;
+  }
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
@@ -43,6 +47,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [stakeAmount, setStakeAmount] = useState('')
   const [hasReachedStakeLimit, setHasReachedStakedLimit] = useState(false)
   const [percent, setPercent] = useState(0)
+  const getTokenLink = stakingToken.address
+    ? `/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
+    : '/swap'
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance
@@ -216,7 +223,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink id={`btn151-get-token-${pool.sousId}`} external href="/swap">
+        <StyledLink id={`btn151-get-token-${pool.sousId}`} external href={getTokenLink}>
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
           </Button>

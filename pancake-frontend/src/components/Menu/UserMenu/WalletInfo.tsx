@@ -28,7 +28,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowEthBalance, onDismiss }) 
 
   return (
     <>
-      <Text color="secondary" fontSize="12px" fontWeight="bold" mb="8px">
+      <Text color="secondary" fontSize="13px" fontWeight="bold" mb="8px">
         {t('Your Address')}
       </Text>
       <CopyAddress account={account} mb="24px" />

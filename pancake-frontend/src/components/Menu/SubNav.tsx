@@ -28,8 +28,18 @@ const Nav = () => {
       <Tab id="btn32-tab-menu-liquidity" to="/liquidity" as={Link}>
         Liquidity
       </Tab>
-      <Tab id="btn33-tab-menu-bridge">Bridge</Tab>
-      <Tab id="btn34-tab-menu-transactions">Transactions</Tab>
+      <Tab
+        id="btn33-tab-menu-bridge"
+        target="_blank"
+        rel="noopener noreferrer"
+        to={{ pathname: 'https://www.binance.org/en/bridge' }}
+        as={Link}
+      >
+        Bridge
+      </Tab>
+      <Tab id="btn34-tab-menu-transactions" backgroundColor="transparent">
+        Transactions
+      </Tab>
     </TabMenu>
   )
 }

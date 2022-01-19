@@ -169,7 +169,12 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(t('#'), { placement: 'top-end', tooltipOffset: [20, 10] })
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
+    t(
+      'APY is based on your one-year income if Harvest and Compound are made once a day. Provided APY calculations depend on current APR rates.',
+    ),
+    { placement: 'top-end', tooltipOffset: [20, 10] },
+  )
 
   const handleRenderRow = () => {
     if (!isXs) {

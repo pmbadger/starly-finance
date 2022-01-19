@@ -64,13 +64,13 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
 
   return (
     <Wrapper>
-      <AutoColumn gap="md">
-        <AutoColumn gap="md">
+      <AutoColumn style={{ flexDirection: 'column' }} gap="md">
+        <AutoColumn style={{ flexDirection: 'column' }} gap="md">
           <Card padding="12px 20px">
             <RowBetween>
-              <RowFixed>
+              <RowFixed style={{ overflow: 'hidden' }}>
                 {list.logoURI && <ListLogo logoURI={list.logoURI} size="40px" />}
-                <AutoColumn gap="sm" style={{ marginLeft: '20px' }}>
+                <AutoColumn gap="sm" style={{ marginLeft: '20px', flexDirection: 'column' }}>
                   <RowFixed>
                     <Text bold mr="6px">
                       {list.name}
@@ -94,7 +94,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
             </RowBetween>
           </Card>
 
-          <Message variant="danger">
+          <Message variant="danger" mb="16px" mt="16px">
             <Flex flexDirection="column">
               <Text fontSize="20px" textAlign="center" color={theme.colors.failure} mb="16px">
                 {t('Import at your own risk')}

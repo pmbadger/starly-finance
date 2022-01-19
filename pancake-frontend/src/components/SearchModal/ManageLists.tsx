@@ -35,6 +35,7 @@ const RowWrapper = styled(Row)<{ active: boolean }>`
   transition: 200ms;
   align-items: center;
   padding: 1rem;
+  margin-bottom: 15px;
   border-radius: 20px;
 `
 
@@ -255,7 +256,7 @@ function ManageLists({
       </AutoColumn>
       {tempList && (
         <AutoColumn style={{ paddingTop: 0 }}>
-          <Card padding="12px 20px">
+          <Card padding="12px 20px" marginTop="15px">
             <RowBetween>
               <RowFixed>
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
@@ -281,7 +282,7 @@ function ManageLists({
         </AutoColumn>
       )}
       <ListContainer>
-        <AutoColumn gap="md">
+        <AutoColumn style={{ flexDirection: 'column' }} gap="md">
           {sortedLists.map((listUrl) => (
             <ListRow key={listUrl} listUrl={listUrl} />
           ))}
