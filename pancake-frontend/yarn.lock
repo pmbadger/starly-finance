@@ -10054,7 +10054,7 @@ pako@~1.0.5:
 
 "pancakeswap-sdk@file:./src/libs/pancakeswap-sdk-v2.3.2.tgz":
   version "2.3.2"
-  resolved "file:./src/libs/pancakeswap-sdk-v2.3.2.tgz#a0f6e96deb49a26b86572040a4de5168084c57e3"
+  resolved "file:./src/libs/pancakeswap-sdk-v2.3.2.tgz#786322c7c05ec4d10923a18c0a740def3900f821"
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
@@ -10065,7 +10065,7 @@ pako@~1.0.5:
 
 "pancakeswap-uikit@file:./src/libs/pancakeswap-uikit-v0.46.0.tgz":
   version "0.46.0"
-  resolved "file:./src/libs/pancakeswap-uikit-v0.46.0.tgz#ef0df33e4df03133563043330c6b26c81158bcae"
+  resolved "file:./src/libs/pancakeswap-uikit-v0.46.0.tgz#2ad47427cbc8403d80727ed505741668d13ce69a"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

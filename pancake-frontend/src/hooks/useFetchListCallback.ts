@@ -17,6 +17,8 @@ function useFetchListCallback(): (listUrl: string, sendDispatch?: boolean) => Pr
 
   const ensResolver = useCallback(
     (ensName: string) => {
+      // TODO: correct to Mainnet
+      // if (chainId !== ChainId.MAINNET) {
       if (chainId !== ChainId.TESTNET) {
         throw new Error('Could not construct mainnet ENS resolver')
       }

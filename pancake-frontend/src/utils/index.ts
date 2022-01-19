@@ -21,7 +21,7 @@ export function isAddress(value: any): string | false {
 export function getBlockExplorerLink(
   data: string | number,
   type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
-  chainId: ChainId = ChainId.TESTNET,
+  chainId: ChainId = ChainId.MAINNET,
 ): string {
   switch (type) {
     case 'transaction': {

@@ -76,16 +76,16 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
         return (
           <CardBody>
             <Heading as="h4" color="secondary" mb="16px">
-              {t('Get STLY-ETH LP Tokens')}
+              {t('Get STLY-BNB LP Tokens')}
             </Heading>
             <Text color="textSubtle" small>
-              {t('Stake STLY and ETH in the liquidity pool to get LP tokens.')} <br />
+              {t('Stake STLY and BNB in the liquidity pool to get LP tokens.')} <br />
               {t('You’ll spend them to buy IFO sale tokens.')}
             </Text>
             <Button
               as={Link}
               external
-              href={`${BASE_ADD_LIQUIDITY_URL}/ETH/0x67C6c150914e6363F746796744636B7485B0A775`}
+              href={`${BASE_ADD_LIQUIDITY_URL}/BNB/0xbB29617Df3ba3Cc197B54BD8075f7504fB9F41f4`}
               endIcon={<OpenNewIcon color="white" />}
               mt="16px"
             >
@@ -113,7 +113,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent STLY-ETH LP tokens will be returned to your wallet.',
+                'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent STLY-BNB LP tokens will be returned to your wallet.',
               )}
             </Text>
           </CardBody>

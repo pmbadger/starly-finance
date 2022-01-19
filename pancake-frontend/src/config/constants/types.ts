@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
 import { SerializedBigNumber, TranslatableText } from 'state/types'
-import { StringLiteral } from 'typescript'
 
 export interface Address {
-  3: string
+  97?: string
+  56?: string
 }
 
 export interface Token {
@@ -47,7 +47,7 @@ export interface Ifo {
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
-  'ETHEREUM' = 'Ethereum', // Pools using native ETH behave differently than pools using a token
+  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
   'AUTO' = 'Auto',
 }
 

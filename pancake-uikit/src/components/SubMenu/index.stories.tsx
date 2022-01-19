@@ -22,7 +22,7 @@ export const Default: React.FC = () => {
           component={<EllipsisIcon height="16px" width="16px" />}
           options={{ placement: "right", offset: [0, 15], padding: { top: 20 } }}
         >
-          <SubMenuItem as={LinkExternal} href="https://ropsten.etherscan.io" bold={false} color="text">
+          <SubMenuItem as={LinkExternal} href="https://bscscan.com/" bold={false} color="text">
             View on block explorer
           </SubMenuItem>
           <SubMenuItem as={LinkExternal} href="https://pancakeswap.info" bold={false} color="text" target="blank">
@@ -43,7 +43,7 @@ export const Default: React.FC = () => {
             </Text>
           }
         >
-          <SubMenuItem as={LinkExternal} href="https://ropsten.etherscan.io" bold={false} color="text">
+          <SubMenuItem as={LinkExternal} href="https://bscscan.com/" bold={false} color="text">
             View on block explorer
           </SubMenuItem>
           <SubMenuItem as={LinkExternal} href="https://pancakeswap.info" bold={false} color="text" target="blank">

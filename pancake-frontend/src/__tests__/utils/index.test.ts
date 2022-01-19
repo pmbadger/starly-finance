@@ -13,20 +13,16 @@ import { TokenAmount, Token, ChainId, Percent, JSBI } from 'pancakeswap-sdk'
 describe('utils', () => {
   describe('#getBlockExplorerLink', () => {
     it('correct for tx', () => {
-      expect(getBlockExplorerLink('abc', 'transaction', ChainId.TESTNET)).toEqual('https://ropsten.etherscan.io/tx/abc')
+      expect(getBlockExplorerLink('abc', 'transaction', ChainId.MAINNET)).toEqual('https://bscscan.com/tx/abc')
     })
     it('correct for token', () => {
-      expect(getBlockExplorerLink('abc', 'token', ChainId.TESTNET)).toEqual('https://ropsten.etherscan.io/token/abc')
+      expect(getBlockExplorerLink('abc', 'token', ChainId.MAINNET)).toEqual('https://bscscan.com/token/abc')
     })
     it('correct for address', () => {
-      expect(getBlockExplorerLink('abc', 'address', ChainId.TESTNET)).toEqual(
-        'https://ropsten.etherscan.io/address/abc',
-      )
+      expect(getBlockExplorerLink('abc', 'address', ChainId.MAINNET)).toEqual('https://bscscan.com/address/abc')
     })
     it('enum', () => {
-      expect(getBlockExplorerLink('abc', 'address', ChainId.TESTNET)).toEqual(
-        'https://ropsten.etherscan.io/address/abc',
-      )
+      expect(getBlockExplorerLink('abc', 'address', ChainId.MAINNET)).toEqual('https://bscscan.com/address/abc')
     })
   })
 

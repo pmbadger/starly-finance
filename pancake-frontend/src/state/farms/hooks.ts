@@ -29,7 +29,7 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 1 = STLY-ETH LP
+ * 1 = STLY-BNB LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
@@ -99,9 +99,8 @@ export const usePriceEthBusd = (): BigNumber => {
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeEthFarm = useFarmFromPid(1)
-
-  const cakePriceBusdAsString = cakeEthFarm.token.busdPrice
+  const cakeBnbFarm = useFarmFromPid(1)
+  const cakePriceBusdAsString = cakeBnbFarm.token.busdPrice
   const cakePriceBusd = useMemo(() => {
     return new BigNumber(cakePriceBusdAsString)
   }, [cakePriceBusdAsString])

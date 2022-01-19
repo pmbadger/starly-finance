@@ -1,7 +1,8 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_URL } from 'config'
+import { BASE_URL, BASE_BLOCK_EXPLORER_URL } from 'config'
 import { CAKE } from '../config/constants/tokens'
+import { nodes } from './getRpcUrl'
 
 /**
  * Prompt the user to add Ethereum as a network on Metamask, or switch to Ethereum if the wallet is on a different network
@@ -13,8 +14,20 @@ export const setupNetwork = async () => {
     const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
       await provider.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: `0x${chainId.toString(16)}` }],
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: `0x${chainId.toString(16)}`,
+            chainName: 'Binance Smart Chain Mainnet',
+            nativeCurrency: {
+              name: 'BNB',
+              symbol: 'bnb',
+              decimals: 18,
+            },
+            rpcUrls: nodes,
+            blockExplorerUrls: [`${BASE_BLOCK_EXPLORER_URL}/`],
+          },
+        ],
       })
       return true
     } catch (error) {

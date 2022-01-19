@@ -5,7 +5,7 @@ import { BscConnector } from '@binance-chain/bsc-connector'
 import { ethers } from 'ethers'
 import getNodeUrl from './getRpcUrl'
 
-const POLLING_INTERVAL = 12000
+const POLLING_INTERVAL = 4000
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 

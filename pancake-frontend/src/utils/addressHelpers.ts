@@ -5,7 +5,7 @@ import { ChainId } from 'pancakeswap-sdk'
 
 export const getAddress = (address: Address): string => {
   const chainId = process.env.REACT_APP_CHAIN_ID
-  return address[chainId] ? address[chainId] : address[ChainId.TESTNET]
+  return address[chainId] ? address[chainId] : address[ChainId.MAINNET]
 }
 
 export const getCakeAddress = () => {

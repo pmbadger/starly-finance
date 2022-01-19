@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from 'pancakeswap-sdk'
-import { WETH as WETHToken, CAKE } from './tokens'
+import { WBNB, CAKE, BUSD } from './tokens'
 
-export const ROUTER_ADDRESS = '0x0fAd43D35371B9A5532845F7D4CB55E3FCf67399'
+export const ROUTER_ADDRESS = '0xAb72A2257577a49CE8a565132905Ddf15489D2F2'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -10,7 +10,8 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], BUSD[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
 /**
@@ -18,6 +19,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
  */
 export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+  [ChainId.MAINNET]: {},
   [ChainId.TESTNET]: {},
 }
 
@@ -27,21 +29,26 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
  * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+  [ChainId.MAINNET]: {},
   [ChainId.TESTNET]: {},
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], WETH[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [BUSD[ChainId.TESTNET], WETH[ChainId.TESTNET]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], WETH[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [BUSD[ChainId.TESTNET], WETH[ChainId.TESTNET]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.TESTNET]: [[CAKE[ChainId.TESTNET], WETHToken]],
+  // [ChainId.MAINNET]: [[CAKE[ChainId.MAINNET], WBNB]],
+  // TODO: correct to Mainnet
+  [ChainId.TESTNET]: [[CAKE[ChainId.TESTNET], WBNB]],
 }
 
 export const NetworkContextName = 'NETWORK'
@@ -65,8 +72,8 @@ export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.Bi
 // for non expert mode disable swaps above this
 export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
 
-// used to ensure the user doesn't send so much ETH so they end up with <.01
-export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
+// used to ensure the user doesn't send so much BNB so they end up with <.01
+export const MIN_BNB: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 BNB
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
 
 export const ZERO_PERCENT = new Percent('0')

@@ -1,7 +1,8 @@
 import { ChainId } from 'pancakeswap-sdk'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
-  [ChainId.TESTNET]: 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+  [ChainId.MAINNET]: 'https://bsc-dataseed1.defibit.io',
+  [ChainId.TESTNET]: 'https://data-seed-prebsc-1-s1.binance.org:8545',
 }
 
 export default NETWORK_URLS

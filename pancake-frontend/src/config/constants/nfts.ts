@@ -5,13 +5,13 @@ export const IPFS_GATEWAY = 'https://cloudflare-ipfs.com'
 export const nftSources: NftSource = {
   [NftType.PANCAKE]: {
     address: {
-      3: '0x000000000000000000000000000000000000000r',
+      97: '0x000000000000000000000000000000000000000r',
     },
     identifierKey: 'image',
   },
   [NftType.MIXIE]: {
     address: {
-      3: '0x000000000000000000000000000000000000000s',
+      97: '0x000000000000000000000000000000000000000s',
     },
     identifierKey: 'image',
   },
