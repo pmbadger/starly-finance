@@ -2,7 +2,7 @@
   "short_name": "Starly",
   "name": "Starly",
   "description": "Farm STLY with Starly LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "homepage_url": "https://starly.finance",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",
@@ -10,7 +10,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "starly-favicon.png",
       "type": "image/x-icon",
       "sizes": "64x64"
     }

@@ -61,8 +61,9 @@ const HomeHeader: React.FC = () => {
   return (
     <Row>
       <TitlesContainer>
-        <Title>The First DEX on BSC network</Title>
-        <Title>with a three-type referral system</Title>
+        <Title>Starly is a DeFi space with unlimited</Title>
+        <Title>multichain access to DEX, Staking,</Title>
+        <Title>Launchpad and NFT games</Title>
         <SubTitle>
           Enjoy profitable yield farming and exchanges
           <br />
