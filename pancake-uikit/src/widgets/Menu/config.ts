@@ -163,25 +163,25 @@ export const socials = [
   {
     label: "Facebook",
     icon: "FacebookIcon",
-    href: "#",
+    href: "https://www.facebook.com/starly.finance/",
     id: 'btn4-facebook'
   },
   {
     label: "Twitter",
     icon: "TwitterIcon",
-    href: "#",
+    href: "https://twitter.com/StarlyFinance",
     id: 'btn5-twitter'
   },
   {
     label: "Linkedin",
     icon: "LinkedinIcon",
-    href: "#",
+    href: "https://www.linkedin.com/company/starly-finance",
     id: 'btn6-linkedin'
   },
   {
     label: "Youtube",
     icon: "YoutubeIcon",
-    href: "#",
+    href: "https://www.youtube.com/channel/UCJqGsG4wQaXf9WEaqn6o1BA/featured",
     id: 'btn7-youtube'
   }
   // {
