@@ -22,10 +22,10 @@ module.exports = {
     bsc_mainnet: {
       provider: () => new HDWalletProvider(
           process.env.PRIVATE_KEY,
-          "https://bsc-dataseed2.binance.org/"
+          "https://bsc-dataseed1.ninicoin.io/"
       ),
       network_id: 56,
-      gas: 3000000,
+      gas: 5000000,
       gasPrice: 5000000000
     },
     bsc_testnet: {

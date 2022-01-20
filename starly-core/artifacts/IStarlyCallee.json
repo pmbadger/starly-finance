@@ -1,5 +1,5 @@
 {
-  "contractName": "IBiswapCallee",
+  "contractName": "IStarlyCallee",
   "abi": [
     {
       "constant": false,
@@ -25,32 +25,32 @@
           "type": "bytes"
         }
       ],
-      "name": "BiswapCall",
+      "name": "StarlyCall",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"BiswapCall\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IBiswapCallee.sol\":\"IBiswapCallee\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":9999999},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IBiswapCallee.sol\":{\"keccak256\":\"0xbbcd36b5685574b4cd844747f3618a5d7466580d28c9655adc1ceb93191a7582\",\"urls\":[\"bzz-raw://87a14383c6cec3c1226248a1a2ae2988489a524cc4bebbcf05d9b9bfb66048ba\",\"dweb:/ipfs/QmWiceDsFzJr5DfyAVjodGnkoaWAKDApgXPLgw2qWgoMpm\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"StarlyCall\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IStarlyCallee.sol\":\"IStarlyCallee\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":9999999},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IStarlyCallee.sol\":{\"keccak256\":\"0x166053d688088ab4736e5c130a6a37b7c7151caa1189c4c7116a445790b81735\",\"urls\":[\"bzz-raw://02540e8710d3f18895bd7b96fe8a7237e2f65179afff26e1c494e9f1f8b8bfa3\",\"dweb:/ipfs/QmPv4ZJ3NnajJvjHAtVPBXW2D1G7hMSJY5F3S7A4j1TEt8\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity >=0.5.0;\n\ninterface IBiswapCallee {\n    function BiswapCall(address sender, uint amount0, uint amount1, bytes calldata data) external;\n}\n",
-  "sourcePath": "/home/ubuntu/work/starly-project/starly/biswap-core/contracts/interfaces/IBiswapCallee.sol",
+  "source": "pragma solidity >=0.5.0;\n\ninterface IStarlyCallee {\n    function StarlyCall(address sender, uint amount0, uint amount1, bytes calldata data) external;\n}\n",
+  "sourcePath": "/home/ubuntu/work/starly_finance_project/starly-core/contracts/interfaces/IStarlyCallee.sol",
   "ast": {
-    "absolutePath": "project:/contracts/interfaces/IBiswapCallee.sol",
+    "absolutePath": "project:/contracts/interfaces/IStarlyCallee.sol",
     "exportedSymbols": {
-      "IBiswapCallee": [
-        1772
+      "IStarlyCallee": [
+        1856
       ]
     },
-    "id": 1773,
+    "id": 1857,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1760,
+        "id": 1844,
         "literals": [
           "solidity",
           ">=",
@@ -58,7 +58,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:4"
       },
       {
         "baseContracts": [],
@@ -66,33 +66,33 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1772,
+        "id": 1856,
         "linearizedBaseContracts": [
-          1772
+          1856
         ],
-        "name": "IBiswapCallee",
+        "name": "IStarlyCallee",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "id": 1771,
+            "id": 1855,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "BiswapCall",
+            "name": "StarlyCall",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1769,
+              "id": 1853,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1762,
+                  "id": 1846,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1771,
-                  "src": "76:14:3",
+                  "scope": 1855,
+                  "src": "76:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -100,10 +100,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1761,
+                    "id": 1845,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "76:7:3",
+                    "src": "76:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -115,11 +115,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1764,
+                  "id": 1848,
                   "name": "amount0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1771,
-                  "src": "92:12:3",
+                  "scope": 1855,
+                  "src": "92:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -127,10 +127,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1763,
+                    "id": 1847,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "92:4:3",
+                    "src": "92:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -141,11 +141,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1766,
+                  "id": 1850,
                   "name": "amount1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1771,
-                  "src": "106:12:3",
+                  "scope": 1855,
+                  "src": "106:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -153,10 +153,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1765,
+                    "id": 1849,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "106:4:3",
+                    "src": "106:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -167,11 +167,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1768,
+                  "id": 1852,
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1771,
-                  "src": "120:19:3",
+                  "scope": 1855,
+                  "src": "120:19:4",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -179,10 +179,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1767,
+                    "id": 1851,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "120:5:3",
+                    "src": "120:5:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -192,33 +192,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "75:65:3"
+              "src": "75:65:4"
             },
             "returnParameters": {
-              "id": 1770,
+              "id": 1854,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "149:0:3"
+              "src": "149:0:4"
             },
-            "scope": 1772,
-            "src": "56:94:3",
+            "scope": 1856,
+            "src": "56:94:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1773,
-        "src": "26:126:3"
+        "scope": 1857,
+        "src": "26:126:4"
       }
     ],
-    "src": "0:153:3"
+    "src": "0:153:4"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "project:/contracts/interfaces/IBiswapCallee.sol",
+      "absolutePath": "project:/contracts/interfaces/IStarlyCallee.sol",
       "exportedSymbols": {
-        "IBiswapCallee": [
-          1772
+        "IStarlyCallee": [
+          1856
         ]
       }
     },
@@ -232,9 +232,9 @@
             ".0"
           ]
         },
-        "id": 1760,
+        "id": 1844,
         "name": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:4"
       },
       {
         "attributes": {
@@ -248,10 +248,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            1772
+            1856
           ],
-          "name": "IBiswapCallee",
-          "scope": 1773
+          "name": "IStarlyCallee",
+          "scope": 1857
         },
         "children": [
           {
@@ -264,8 +264,8 @@
               "modifiers": [
                 null
               ],
-              "name": "BiswapCall",
-              "scope": 1772,
+              "name": "StarlyCall",
+              "scope": 1856,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -277,7 +277,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "sender",
-                      "scope": 1771,
+                      "scope": 1855,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -291,20 +291,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 1761,
+                        "id": 1845,
                         "name": "ElementaryTypeName",
-                        "src": "76:7:3"
+                        "src": "76:7:4"
                       }
                     ],
-                    "id": 1762,
+                    "id": 1846,
                     "name": "VariableDeclaration",
-                    "src": "76:14:3"
+                    "src": "76:14:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "amount0",
-                      "scope": 1771,
+                      "scope": 1855,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -317,20 +317,20 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1763,
+                        "id": 1847,
                         "name": "ElementaryTypeName",
-                        "src": "92:4:3"
+                        "src": "92:4:4"
                       }
                     ],
-                    "id": 1764,
+                    "id": 1848,
                     "name": "VariableDeclaration",
-                    "src": "92:12:3"
+                    "src": "92:12:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "amount1",
-                      "scope": 1771,
+                      "scope": 1855,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -343,20 +343,20 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1765,
+                        "id": 1849,
                         "name": "ElementaryTypeName",
-                        "src": "106:4:3"
+                        "src": "106:4:4"
                       }
                     ],
-                    "id": 1766,
+                    "id": 1850,
                     "name": "VariableDeclaration",
-                    "src": "106:12:3"
+                    "src": "106:12:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "data",
-                      "scope": 1771,
+                      "scope": 1855,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "bytes",
@@ -369,19 +369,19 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 1767,
+                        "id": 1851,
                         "name": "ElementaryTypeName",
-                        "src": "120:5:3"
+                        "src": "120:5:4"
                       }
                     ],
-                    "id": 1768,
+                    "id": 1852,
                     "name": "VariableDeclaration",
-                    "src": "120:19:3"
+                    "src": "120:19:4"
                   }
                 ],
-                "id": 1769,
+                "id": 1853,
                 "name": "ParameterList",
-                "src": "75:65:3"
+                "src": "75:65:4"
               },
               {
                 "attributes": {
@@ -390,32 +390,32 @@
                   ]
                 },
                 "children": [],
-                "id": 1770,
+                "id": 1854,
                 "name": "ParameterList",
-                "src": "149:0:3"
+                "src": "149:0:4"
               }
             ],
-            "id": 1771,
+            "id": 1855,
             "name": "FunctionDefinition",
-            "src": "56:94:3"
+            "src": "56:94:4"
           }
         ],
-        "id": 1772,
+        "id": 1856,
         "name": "ContractDefinition",
-        "src": "26:126:3"
+        "src": "26:126:4"
       }
     ],
-    "id": 1773,
+    "id": 1857,
     "name": "SourceUnit",
-    "src": "0:153:3"
+    "src": "0:153:4"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-02T12:18:07.223Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-20T13:48:14.946Z",
   "devdoc": {
     "methods": {}
   },
