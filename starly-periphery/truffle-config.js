@@ -25,7 +25,7 @@ module.exports = {
           "https://bsc-dataseed2.binance.org/"
       ),
       network_id: 56,
-      gas: 3000000,
+      gas: 5300000,
       gasPrice: 5000000000
     },
     bsc_testnet: {

@@ -5,7 +5,7 @@
 The following assumes the use of `node@>=10`.
 
 ### Note
-File `contracts/interfaces/IBiswapPair.sol` was copied from Core interfaces.
+File `contracts/interfaces/IStarlyPair.sol` was copied from Core interfaces.
 
 ## Install Dependencies
 
@@ -17,7 +17,7 @@ File `contracts/interfaces/IBiswapPair.sol` was copied from Core interfaces.
 
 ## Deploy contracts
 
-In the file **libraries/BiswapLibrary.sol** on line **25** insert 
+In the file **libraries/StarlyLibrary.sol** on line **25** insert 
 **INIT_CODE_HASH**, which is taken from the **Factory** contract.
 Then, run command:  
 
