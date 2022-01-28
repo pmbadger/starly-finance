@@ -8,7 +8,7 @@
   "sourceMap": "23:2052:6:-:0;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
   "deployedSourceMap": "23:2052:6:-:0;;;;;;12:1:-1;9;2:12",
   "source": "pragma solidity 0.6.6;\nlibrary FixedPoint {\n    // range: [0, 2**112 - 1]\n    // resolution: 1 / 2**112\n    struct uq112x112 {\n        uint224 _x;\n    }\n\n    // range: [0, 2**144 - 1]\n    // resolution: 1 / 2**112\n    struct uq144x112 {\n        uint _x;\n    }\n\n    uint8 private constant RESOLUTION = 112;\n\n    // encode a uint112 as a UQ112x112\n    function encode(uint112 x) internal pure returns (uq112x112 memory) {\n        return uq112x112(uint224(x) << RESOLUTION);\n    }\n\n    // encodes a uint144 as a UQ144x112\n    function encode144(uint144 x) internal pure returns (uq144x112 memory) {\n        return uq144x112(uint256(x) << RESOLUTION);\n    }\n\n    // divide a UQ112x112 by a uint112, returning a UQ112x112\n    function div(uq112x112 memory self, uint112 x) internal pure returns (uq112x112 memory) {\n        require(x != 0, 'FixedPoint: DIV_BY_ZERO');\n        return uq112x112(self._x / uint224(x));\n    }\n\n    // multiply a UQ112x112 by a uint, returning a UQ144x112\n    // reverts on overflow\n    function mul(uq112x112 memory self, uint y) internal pure returns (uq144x112 memory) {\n        uint z;\n        require(y == 0 || (z = uint(self._x) * y) / y == uint(self._x), \"FixedPoint: MULTIPLICATION_OVERFLOW\");\n        return uq144x112(z);\n    }\n\n    // returns a UQ112x112 which represents the ratio of the numerator to the denominator\n    // equivalent to encode(numerator).div(denominator)\n    function fraction(uint112 numerator, uint112 denominator) internal pure returns (uq112x112 memory) {\n        require(denominator > 0, \"FixedPoint: DIV_BY_ZERO\");\n        return uq112x112((uint224(numerator) << RESOLUTION) / denominator);\n    }\n\n    // decode a UQ112x112 into a uint112 by truncating after the radix point\n    function decode(uq112x112 memory self) internal pure returns (uint112) {\n        return uint112(self._x >> RESOLUTION);\n    }\n\n    // decode a UQ144x112 into a uint144 by truncating after the radix point\n    function decode144(uq144x112 memory self) internal pure returns (uint144) {\n        return uint144(self._x >> RESOLUTION);\n    }\n}",
-  "sourcePath": "/home/ubuntu/work/starly-project/starly/biswap-swap-fee-reward/contracts/libs/FixedPoint.sol",
+  "sourcePath": "/home/ubuntu/work/starly_finance_project/starly-swap-fee-reward/contracts/libs/FixedPoint.sol",
   "ast": {
     "absolutePath": "project:/contracts/libs/FixedPoint.sol",
     "exportedSymbols": {
@@ -5172,8 +5172,8 @@
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-03T21:25:22.671Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-26T11:41:33.465Z",
   "devdoc": {
     "methods": {}
   },

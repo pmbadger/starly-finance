@@ -85,7 +85,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity =0.6.6;\ncontract Ownable {\n    address private _owner;\n\n    constructor () internal {\n        _owner = msg.sender;\n        emit OwnershipTransferred(address(0), _owner);\n    }\n\n    function owner() public view returns (address) {\n        return _owner;\n    }\n\n    function isOwner(address account) public view returns (bool) {\n        return account == _owner;\n    }\n\n    function renounceOwnership() public onlyOwner {\n        emit OwnershipTransferred(_owner, address(0));\n        _owner = address(0);\n    }\n\n    function _transferOwnership(address newOwner) internal {\n        require(newOwner != address(0), \"Ownable: new owner is the zero address\");\n        emit OwnershipTransferred(_owner, newOwner);\n        _owner = newOwner;\n    }\n\n    function transferOwnership(address newOwner) public onlyOwner {\n        _transferOwnership(newOwner);\n    }\n\n\n    modifier onlyOwner() {\n        require(isOwner(msg.sender), \"Ownable: caller is not the owner\");\n        _;\n    }\n\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\n}",
-  "sourcePath": "/home/ubuntu/work/starly-project/starly/biswap-swap-fee-reward/contracts/Ownable.sol",
+  "sourcePath": "/home/ubuntu/work/starly_finance_project/starly-swap-fee-reward/contracts/Ownable.sol",
   "ast": {
     "absolutePath": "project:/contracts/Ownable.sol",
     "exportedSymbols": {
@@ -3306,8 +3306,8 @@
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-03T21:25:22.594Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-26T11:41:33.413Z",
   "devdoc": {
     "methods": {}
   },

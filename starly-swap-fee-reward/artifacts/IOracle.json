@@ -38,7 +38,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.6.6;\ninterface IOracle {\n    function consult(address tokenIn, uint amountIn, address tokenOut) external view returns (uint amountOut);\n}",
-  "sourcePath": "/home/ubuntu/work/starly-project/starly/biswap-swap-fee-reward/contracts/interfaces/IOracle.sol",
+  "sourcePath": "/home/ubuntu/work/starly_finance_project/starly-swap-fee-reward/contracts/interfaces/IOracle.sol",
   "ast": {
     "absolutePath": "project:/contracts/interfaces/IOracle.sol",
     "exportedSymbols": {
@@ -433,8 +433,8 @@
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-03T21:25:22.665Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-26T11:41:33.461Z",
   "devdoc": {
     "methods": {}
   },
